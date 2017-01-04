@@ -62,6 +62,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Wed Jan  4 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.1.4-1.fmi
+- Switched to using FMI open source naming conventions
+
 * Thu Oct 27 2016 Mika Heiskanen <mika.heiskanen@fmi.fi> - 16.10.27-1.fmi
 - Added more tolerance to Pacific view guessing
 

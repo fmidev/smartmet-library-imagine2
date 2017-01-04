@@ -1,4 +1,7 @@
-LIB = imagine2
+SUBNAME = imagine
+LIB = smartmet-$(SUBNAME)2
+SPEC = smartmet-library-$(SUBNAME)
+INCDIR = smartmet/$(SUBNAME)2
 
 # Installation directories
 
@@ -66,7 +69,6 @@ else
 	-I$(includedir)/smartmet/newbase \
 	`freetype-config --cflags` \
 	`pkg-config --cflags cairomm-1.0`
-
 endif
 
 # Compile options in detault, debug and profile modes
@@ -88,11 +90,9 @@ LIBS = -L$(libdir) \
 
 rpmsourcedir = /tmp/$(shell whoami)/rpmbuild
 
-rpmerr = "There's no spec file (imagine.spec). RPM wasn't created. Please make a spec file or copy and rename it into imagine.spec"
-
 # What to install
 
-LIBFILE = libsmartmet_$(LIB).so
+LIBFILE = lib$(LIB).so
 
 # How to install
 
@@ -142,12 +142,12 @@ format:
 	clang-format -i -style=file include/*.h source/*.cpp test/*.cpp
 
 install:
-	@mkdir -p $(includedir)/smartmet/$(LIB)
+	@mkdir -p $(includedir)/$(INCDIR)
 	@list='$(HDRS)'; \
 	for hdr in $$list; do \
 	  HDR=$$(basename $$hdr); \
-	  echo $(INSTALL_DATA) $$hdr $(includedir)/smartmet/$(LIB)/$$HDR; \
-	  $(INSTALL_DATA) $$hdr $(includedir)/smartmet/$(LIB)/$$HDR; \
+	  echo $(INSTALL_DATA) $$hdr $(includedir)/$(INCDIR)/$$HDR; \
+	  $(INSTALL_DATA) $$hdr $(includedir)/$(INCDIR)/$$HDR; \
 	done
 	@mkdir -p $(libdir)
 	$(INSTALL_PROG) $(LIBFILE) $(libdir)/$(LIBFILE)
@@ -159,16 +159,16 @@ objdir:
 	@mkdir -p $(objdir)
 
 rpm: clean
-	if [ -e imagine.spec ]; \
+	if [ -e $(SPEC).spec ]; \
 	then \
-	  smartspecupdate imagine.spec ; \
+	  smartspecupdate $(SPEC).spec ; \
 	  mkdir -p $(rpmsourcedir) ; \
-	  tar -C ../ -cf $(rpmsourcedir)/libsmartmet-$(LIB).tar imagine ; \
-	  gzip -f $(rpmsourcedir)/libsmartmet-$(LIB).tar ; \
-	  TAR_OPTIONS=--wildcards rpmbuild -v -ta $(rpmsourcedir)/libsmartmet-$(LIB).tar.gz ; \
-	  rm -f $(rpmsourcedir)/libsmartmet-$(LIB).tar.gz ; \
+	  tar -C ../ -cf $(rpmsourcedir)/$(SPEC)2.tar $(SUBNAME) ; \
+	  gzip -f $(rpmsourcedir)/$(SPEC)2.tar ; \
+	  TAR_OPTIONS=--wildcards rpmbuild -v -ta $(rpmsourcedir)/$(SPEC)2.tar.gz ; \
+	  rm -f $(rpmsourcedir)/$(SPEC)2.tar.gz ; \
 	else \
-	  echo $(rpmerr); \
+	  echo $(SPEC).spec file missing; \
 	fi;
 
 .SUFFIXES: $(SUFFIXES) .cpp

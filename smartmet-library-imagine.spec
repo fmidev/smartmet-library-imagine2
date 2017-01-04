@@ -25,6 +25,8 @@ Requires: libjpeg
 Requires: libpng
 Requires: zlib
 Provides: %{LIBNAME}
+Obsoletes: libsmartmet-imagine2 < 17.1.4
+Obsoletes: libsmartmet-imagine2-debuginfo < 17.1.4
 
 %description
 FMI imagine2 rendering library
@@ -53,6 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 %package -n %{DEVELNAME}
 Summary: FMI %{DIRNAME} development files
 Provides: %{DEVELNAME}
+Obsoletes: libsmartmet-imagine2-devel < 17.1.4
 
 %description -n %{DEVELNAME}
 FMI %{DIRNAME} development files

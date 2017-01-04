@@ -76,10 +76,17 @@ ImagineXr::ImagineXr(int w, int h, const string &to_fn, const string &fmt_)
   {
     pdf_surf = Cairo::PdfSurface::create(fn, width, height);
   }
+  else if (fmt == "ps" || fmt == "eps")
+  {
+    ps_surf = Cairo::PsSurface::create(fn, width, height);
+  }
+  else if (fmt == "svg")
+  {
+    svg_surf = Cairo::SvgSurface::create(fn, width, height);
+  }
   else
   {
-    /* 'ImageSurface' does not need the filename at construction.
-    */
+    // 'ImageSurface' does not need the filename at construction.
     image_surf = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, width, height);
   }
 
@@ -111,6 +118,8 @@ ImagineXr::ImagineXr(int w, int h)
 
 ImagineXr::ImagineXr(const ImagineXr &o)
     : pdf_surf(o.pdf_surf),
+      ps_surf(o.ps_surf),
+      svg_surf(o.svg_surf),
       image_surf(o.image_surf),
       fn(o.fn),
       fmt(o.fmt),
@@ -319,7 +328,9 @@ void ImagineXr::ApplyAlignment(enum NFmiAlignment alignment, int &x, int &y, int
 
 const int32_t *ImagineXr::ARGB_32() const
 {
-  if (!image_surf) throw runtime_error("Pixels not supported for PDF canvas!");
+  if (pdf_surf) throw runtime_error("Pixels not supported for PDF canvas!");
+  if (ps_surf) throw runtime_error("Pixels not supported for PS canvas!");
+  if (svg_surf) throw runtime_error("Pixels not supported for SVG canvas!");
 
   return (const int32_t *)image_surf->get_data();
 }
@@ -445,33 +456,35 @@ void ImagineXr::Composite(const ImagineXr &img2,
 
   ApplyAlignment(alignment, x, y, img2.Width(), img2.Height());
 
-  /* This part is tricky to be backward compatible; several alternatives below.
-  *
-  * QD-Contour test code uses 'Copy' blending rule with us; and seems to
-  * imply it should only affect the size of the source, not elsewhere.
-  *
-  * Cairo takes 'Copy' to mean the remaining target picture is wiped out,
-  * leaving only the last stamped image on it (rest is white).
-  */
+/* This part is tricky to be backward compatible; several alternatives below.
+*
+* QD-Contour test code uses 'Copy' blending rule with us; and seems to
+* imply it should only affect the size of the source, not elsewhere.
+*
+* Cairo takes 'Copy' to mean the remaining target picture is wiped out,
+* leaving only the last stamped image on it (rest is white).
+*/
 
-  // Selected this one in a meeting with Mika H. and Mikko R. 21-Aug-2008:
-  // ignoring the alpha/opaqueness factor (kept in the calling interface
-  // for easier old/new merger in QD-Contour)
+// Selected this one in a meeting with Mika H. and Mikko R. 21-Aug-2008:
+// ignoring the alpha/opaqueness factor (kept in the calling interface
+// for easier old/new merger in QD-Contour)
 
-  // Use given rule; limit changes in image to the size of the stamp.
-  // This works, and is backward compatible, but ignores 'opaque'ness
-  // because there is no 'cr->fill_with_alpha()'.
-  //
-  SetBlend(rule);
+// Use given rule; limit changes in image to the size of the stamp.
+// This works, and is backward compatible, but ignores 'opaque'ness
+// because there is no 'cr->fill_with_alpha()'.
+//
 
-  cr->set_source(img2.image_surf, x, y);
-  cr->rectangle(x, y, img2.Width(), img2.Height());
-  cr->fill();
+#if 0
+    SetBlend(rule);
 
-  if (opaque != 1.0)
-  {
-    WARNING("Ignored transparency %.2f in compositing for Cairo", opaque);
-  }
+    cr->set_source( img2.image_surf, x,y );
+    cr->rectangle( x,y, img2.Width(), img2.Height() );
+    cr->fill();
+
+    if (opaque != 1.0) {
+        WARNING( "Ignored transparency %.2f in compositing for Cairo", opaque );
+    }
+#else
 
   /** Another alternative (turned back):
       //
@@ -479,15 +492,18 @@ void ImagineXr::Composite(const ImagineXr &img2,
       // essentially ignores 'rule' unless it's 'Copy' and the stamping image
       // has no transparent areas)
       //
-      SetBlend( kFmiColorOver );  (void)rule;
+          **/
 
-      cr->set_source( img2.image_surf, x,y );
+  SetBlend(kFmiColorOver);
+  (void)rule;
 
-      // 'opaque' (not '1.0-opaque') gives right result: 1.0 causes full
-      // "stamping", 0.0 no stamp at all.
-      //
-      cr->paint_with_alpha( opaque );
-  **/
+  cr->set_source(img2.image_surf, x, y);
+
+  // 'opaque' (not '1.0-opaque') gives right result: 1.0 causes full
+  // "stamping", 0.0 no stamp at all.
+  //
+  cr->paint_with_alpha(opaque);
+#endif
 }
 
 /*
@@ -689,6 +705,14 @@ void ImagineXr::Write() const
   if (fn == "") throw runtime_error("Temporary image; not intended to be written");
 
   if (pdf_surf)
+  {
+    // Nothing we can (have to) do; file is most likely already on the disk
+  }
+  else if (svg_surf)
+  {
+    // Nothing we can (have to) do; file is most likely already on the disk
+  }
+  else if (ps_surf)
   {
     // Nothing we can (have to) do; file is most likely already on the disk
   }

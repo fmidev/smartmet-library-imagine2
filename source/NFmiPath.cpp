@@ -71,7 +71,7 @@ namespace Imagine
 // Append a path using a line of desired type
 // ----------------------------------------------------------------------
 
-void NFmiPath::Add(const NFmiPath &thePath, bool fExact)
+void NFmiPath::Add(const NFmiPath& thePath, bool fExact)
 {
   // We cannot simply copy, since we wish to change the first
   // moveto in the path being appended into a lineto of the
@@ -95,7 +95,7 @@ void NFmiPath::Add(const NFmiPath &thePath, bool fExact)
 // order, but we actually want to reverse the path.
 // ----------------------------------------------------------------------
 
-void NFmiPath::Insert(const NFmiPath &thePath, bool fExact)
+void NFmiPath::Insert(const NFmiPath& thePath, bool fExact)
 {
   // And insert one by one to get correct inverse order
 
@@ -124,7 +124,7 @@ void NFmiPath::Insert(const NFmiPath &thePath, bool fExact)
 // list, which means we must use reverse iterators.
 // ----------------------------------------------------------------------
 
-void NFmiPath::AddReverse(const NFmiPath &thePath, bool fExact)
+void NFmiPath::AddReverse(const NFmiPath& thePath, bool fExact)
 {
   // Holder for the next op to be added
 
@@ -195,7 +195,7 @@ void NFmiPath::DoCloseLineTo(NFmiPathOperation theOper)
 
 using namespace std;
 
-void NFmiPath::Add(const string &theString)
+void NFmiPath::Add(const string& theString)
 {
   NFmiPathOperation previous_op = kFmiMoveTo;
   double previous_x = 0;
@@ -458,7 +458,7 @@ void NFmiPath::Align(NFmiAlignment theAlignment, double theX, double theY)
 // Note: The path and the area may be in different views
 // ----------------------------------------------------------------------
 
-void NFmiPath::Project(const NFmiArea *const theArea)
+void NFmiPath::Project(const NFmiArea* const theArea)
 {
   if (!theArea) return;
 
@@ -489,7 +489,7 @@ void NFmiPath::Project(const NFmiArea *const theArea)
 // Apply an inverse projection to a path
 // ----------------------------------------------------------------------
 
-void NFmiPath::InvProject(const NFmiArea *const theArea)
+void NFmiPath::InvProject(const NFmiArea* const theArea)
 {
   if (theArea != 0)
   {
@@ -507,7 +507,7 @@ void NFmiPath::InvProject(const NFmiArea *const theArea)
 // Apply an grid projection to a path
 // ----------------------------------------------------------------------
 
-void NFmiPath::InvGrid(const NFmiGrid *const theGrid)
+void NFmiPath::InvGrid(const NFmiGrid* const theGrid)
 {
   if (theGrid != 0)
   {
@@ -666,7 +666,7 @@ void NFmiPath::SimplifyLines(double theOffset)
 // Output path in textual form
 // ----------------------------------------------------------------------
 
-std::ostream &operator<<(std::ostream &os, const NFmiPath &thePath)
+std::ostream& operator<<(std::ostream& os, const NFmiPath& thePath)
 {
   NFmiPathData::const_iterator iter = thePath.Elements().begin();
 
@@ -893,7 +893,7 @@ string NFmiPath::ftoa(double theValue) const
 // ----------------------------------------------------------------------
 
 #ifndef IMAGINE_WITH_CAIRO
-void NFmiPath::Add(NFmiFillMap &theMap) const
+void NFmiPath::Add(NFmiFillMap& theMap) const
 {
   // Data holders for moves. 1 is the newest, 4 the oldest
 
@@ -976,7 +976,7 @@ void NFmiPath::Add(NFmiFillMap &theMap) const
 // ----------------------------------------------------------------------
 
 #ifndef IMAGINE_WITH_CAIRO
-void NFmiPath::Stroke(ImagineXr_or_NFmiImage &img,
+void NFmiPath::Stroke(ImagineXr_or_NFmiImage& img,
                       NFmiColorTools::Color theColor,
                       NFmiColorTools::NFmiBlendRule theRule) const
 {
@@ -1023,7 +1023,7 @@ void NFmiPath::Stroke(ImagineXr_or_NFmiImage &img,
 // Stroke onto given image using various Porter-Duff rules
 // ----------------------------------------------------------------------
 
-void NFmiPath::Stroke(ImagineXr_or_NFmiImage &img,
+void NFmiPath::Stroke(ImagineXr_or_NFmiImage& img,
                       double theWidth,
                       NFmiColorTools::Color theColor,
                       NFmiColorTools::NFmiBlendRule theRule) const
@@ -1268,91 +1268,7 @@ NFmiPath NFmiPath::Clip(
 }
 #endif
 
-static bool IsInside(const NFmiArea *const theArea, const NFmiPathElement &theElement)
-{
-  return theArea->IsInside(NFmiPoint(theElement.x, theElement.y));
-}
-
-static void AddElementToCutPath(NFmiPath &thePath,
-                                bool prevInside,
-                                bool currentInside,
-                                const NFmiPathElement &theElem,
-                                NFmiPathOperation oper,
-                                bool lastOperation)
-{
-  if (oper == kFmiMoveTo)
-  {
-    if (prevInside == false && currentInside)  // ulkoa sisälle
-      ;                                        // moveto sisältä ulos, ei lisätä uuteen path:iin
-    else if (prevInside && currentInside == false)  // sisältä ulos
-      thePath.Add(theElem);
-    else if (prevInside && currentInside)  // sisällä kokonaan
-      thePath.Add(theElem);
-    else  // ulkona
-    {
-    }  // moveto ulkona, ei lisätä uuteen path:iin
-  }
-  else
-  {  // joku viiva tyyppi, oletetaan että lineto (ei oikeastaan väliä)
-    if (prevInside == false && currentInside)  // ulkoa sisälle
-    {
-      if (lastOperation)  // tämä on ainoa poikkeus käsittely, kun kyseessä on viimeisestä viivan
-                          // pätkästä
-        thePath.Add(theElem);
-      else
-      {
-        NFmiPathElement elem(theElem);
-        elem.op = kFmiMoveTo;  // pitää muuttaa moveto-tyypiksi
-        thePath.Add(elem);
-      }
-    }
-    else if (prevInside && currentInside == false)  // sisältä ulos
-      thePath.Add(theElem);
-    else if (prevInside && currentInside)  // sisällä kokonaan
-      thePath.Add(theElem);
-    else  // ulkona
-    {
-    }  // moveto ulkona, ei lisätä uuteen path:iin
-  }
-}
-
-// ----------------------------------------------------------------------
-// Create new path that is cut inside the given area. But so that the lines
-// at the edges goes out of area (by one point along the polyline).
-// HUOM! Tämä on raakile versio ja toimii vain rajojen katkaisijana,
-// pitäisi tehdä sellainen versio joka osaisi tehdä alue leikkaukset
-// ghost-viivojen kanssa.
-// ----------------------------------------------------------------------
-
-NFmiPath NFmiPath::Clip(const NFmiArea *const theArea) const
-{
-  NFmiPath path;
-  if (theArea && itsElements.size() > 1)
-  {
-    NFmiPathData::const_iterator iter = itsElements.begin();
-    NFmiPathData::const_iterator prevIter = iter++;
-    bool prevInside = IsInside(theArea, *prevIter);
-    bool currentInside = prevInside;
-    for (; iter != itsElements.end(); ++iter)
-    {
-      prevInside = currentInside;  // tämä pitää tehdä loopin alussa, jotta loopin lopuksi on tiedot
-                                   // kahden viimeisen pisteen tilasta
-      currentInside = IsInside(theArea, *iter);
-      AddElementToCutPath(path, prevInside, currentInside, *prevIter, iter->op, false);
-      prevIter = iter;
-    }
-    // lopuksi pitää lisätä tarvittaessa vielä viimeinen piste
-    AddElementToCutPath(path,
-                        prevInside,
-                        currentInside,
-                        *prevIter,
-                        prevIter->op,
-                        true);  // huom! tässä on prevIter->op
-  }
-  return path;
-}
-
-void add_cuts(NFmiContourTree &theTree, std::set<double> &theCuts, double theLon1, double theLon2)
+void add_cuts(NFmiContourTree& theTree, std::set<double>& theCuts, double theLon1, double theLon2)
 {
   std::set<double>::const_iterator iter = theCuts.begin();
   std::set<double>::const_iterator end = theCuts.end();
@@ -1376,11 +1292,11 @@ void add_cuts(NFmiContourTree &theTree, std::set<double> &theCuts, double theLon
  */
 // ----------------------------------------------------------------------
 
-void make_pacific(const NFmiPath &thePath,
-                  const NFmiEsriBox &theBox,
-                  NFmiPath &theOutPath,
-                  NFmiContourTree &theTree,
-                  std::set<double> &theCuts,
+void make_pacific(const NFmiPath& thePath,
+                  const NFmiEsriBox& theBox,
+                  NFmiPath& theOutPath,
+                  NFmiContourTree& theTree,
+                  std::set<double>& theCuts,
                   bool theDateLine)
 {
   if (thePath.Empty()) return;
@@ -1485,11 +1401,11 @@ void make_pacific(const NFmiPath &thePath,
  */
 // ----------------------------------------------------------------------
 
-void make_atlantic(const NFmiPath &thePath,
-                   const NFmiEsriBox &theBox,
-                   NFmiPath &theOutPath,
-                   NFmiContourTree &theTree,
-                   std::set<double> &theCuts,
+void make_atlantic(const NFmiPath& thePath,
+                   const NFmiEsriBox& theBox,
+                   NFmiPath& theOutPath,
+                   NFmiContourTree& theTree,
+                   std::set<double>& theCuts,
                    bool theDateLine)
 {
   if (thePath.Empty()) return;
@@ -1735,13 +1651,13 @@ bool NFmiPath::IsPacificView() const
         {
           // if line is all together over 180 + eps, its pacific
           if (lastX > 180 + eps && iter->x > 180 + eps) return true;
+
           if (lastX < 180 && iter->x > 180 + eps) return true;
           if (lastX > 180 + eps && iter->x < 180) return true;
           // Or looks like it should be made into a Pacific view
           // when there are lines longer than half the world
           if (lastX < -90 && iter->x > 90) return true;
           if (lastX > 90 && iter->x < -90) return true;
-
           break;
         }
       }

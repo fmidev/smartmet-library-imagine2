@@ -219,7 +219,9 @@ const NFmiPath ReadPath(const std::string &theFilename,
 
   fclose(fp);
 
+#ifndef IMAGINE_WITH_CAIRO
   ret.Clip(theMinLongitude, theMinLatitude, theMaxLongitude, theMaxLatitude);
+#endif
   return ret;
 }
 

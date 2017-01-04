@@ -1,5 +1,5 @@
-%define LIBNAME imagine
-Summary: imagine library
+%define LIBNAME imagine2
+Summary: imagine2 library
 Name: libsmartmet-%{LIBNAME}
 Version: 16.10.27
 Release: 1%{?dist}.fmi
@@ -24,7 +24,7 @@ Requires: zlib
 Provides: %{LIBNAME}
 
 %description
-FMI imagine library
+FMI imagine2 library
 
 %prep
 rm -rf $RPM_BUILD_ROOT
@@ -41,7 +41,7 @@ make %{_smp_mflags}
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(-,root,root,0775)
+%defattr(0775,root,root,-)
 %{_libdir}/libsmartmet_%{LIBNAME}.so
 
 %post -p /sbin/ldconfig
@@ -58,9 +58,10 @@ FMI %{LIBNAME} development files
 %defattr(0664,root,root,-)
 %{_includedir}/smartmet/%{LIBNAME}/*.h
 
+
 %changelog
 * Thu Oct 27 2016 Mika Heiskanen <mika.heiskanen@fmi.fi> - 16.10.27-1.fmi
-- Added more tolerance to Pacific view guessing
+- Improved Pacific area detection
 * Sun Jan 17 2016 Mika Heiskanen <mika.heiskanen@fmi.fi> - 16.1.17-1.fmi
 - newbase API changed
 * Wed Apr 15 2015 Mika Heiskanen <mika.heiskanen@fmi.fi> - 15.4.15-1.fmi
@@ -68,11 +69,15 @@ FMI %{LIBNAME} development files
 * Thu Apr  9 2015 Mika Heiskanen <mika.heiskanen@fmi.fi> - 15.4.9-1.fmi
 - newbase API changed
 * Mon Mar 30 2015 Mika Heiskanen <mika.heiskanen@fmi.fi> - 15.3.30-1.fmi
-- Switched to dynamic linkage
+- Switch to using dynamic linkage
 * Fri Feb  6 2015 Mika Heiskanen <mika.heiskanen@fmi.fi> - 15.2.6-1.fmi
 - Recompiled with the latest newbase
 * Thu Sep 25 2014 Mika Heiskanen <mika.heiskanen@fmi.fi> - 14.9.25-1.fmi
 - New improved color reduction algorithm
+* Wed Apr 30 2014 Mika Heiskanen <mika.heiskanen@fmi.fi> - 14.4.30-1.fmi
+- Added support for ps, eps and svg formats
+* Tue Apr 29 2014 Mika Heiskanen <mika.heiskanen@fmi.fi> - 14.4.29-1.fmi
+- Added imagine2 version
 * Wed Nov 27 2013 Mika Heiskanen <mika.heiskanen@fmi.fi> - 13.11.27-1.fmi
 - Recompiled due to newbase API changes
 * Thu Oct 17 2013 Mika Heiskanen <mika.heiskanen@fmi.fi> - 13.10.17-1.fmi

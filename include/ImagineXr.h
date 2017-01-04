@@ -40,14 +40,17 @@ class ImagineXr
   * to be tedious.
   */
   Cairo::RefPtr<Cairo::PdfSurface> pdf_surf;
+  Cairo::RefPtr<Cairo::PsSurface> ps_surf;
+  Cairo::RefPtr<Cairo::SvgSurface> svg_surf;
   Cairo::RefPtr<Cairo::ImageSurface> image_surf;
 
   const Cairo::RefPtr<Cairo::Surface> surf() const
   {
-    if (pdf_surf)
-      return pdf_surf;
-    else
-      return image_surf;
+    if (image_surf) return image_surf;
+    if (pdf_surf) return pdf_surf;
+    if (ps_surf) return ps_surf;
+    if (svg_surf) return svg_surf;
+    throw std::runtime_error("No Cairo surface initialized");
   }
 
   const string fn;   // filename to write to ('PdfSurface' needs it up front)

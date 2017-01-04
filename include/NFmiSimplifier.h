@@ -93,7 +93,7 @@ class _FMI_DLL NFmiSimplifier
  protected:
   const NFmiSimplifierMethod itsMethod;
   const double itsTolerance;
-  const NFmiCounter<T> itsCounter;
+  const NFmiCounter itsCounter;
 
  public:
   // Constructors, destructors
@@ -115,10 +115,10 @@ class _FMI_DLL NFmiSimplifier
   // Access to data members
 
   NFmiSimplifierMethod Method(void) { return itsMethod; }
-  double Tolerance(void) const { return itsTolerance; }
+  double Tolerance(void) { return itsTolerance; }
   // Actual simplification methods
 
-  const std::vector<T> Simplify(const std::vector<T>& theData) const
+  const vector<T> Simplify(const vector<T>& theData) const
   {
     switch (itsMethod)
     {
@@ -134,8 +134,6 @@ class _FMI_DLL NFmiSimplifier
         return SimplifyMinTriangle(theData);
       case kFmiSimplifierMaxTriangle:
         return SimplifyMaxTriangle(theData);
-      default:
-        return std::vector<T>();
     }
   }
 
@@ -144,7 +142,7 @@ class _FMI_DLL NFmiSimplifier
   // Simplify straight line segments into one segment only
   // ------------------------------------------------------------
 
-  const std::vector<T> SimplifyStraight(const std::vector<T>& theData) const { return theData; }
+  const vector<T> SimplifyStraight(const vector<T>& theData) { return theData; }
   // ------------------------------------------------------------
   // Simplify so than the smallest deviation point from the
   // line formed by the adjacent points is deleted first.
@@ -152,18 +150,18 @@ class _FMI_DLL NFmiSimplifier
   // the tolerance.
   // ------------------------------------------------------------
 
-  const std::vector<T> SimplifyMinDistance(const std::vector<T>& theData) const { return theData; }
+  const vector<T> SimplifyMinDistance(const vector<T>& theData) { return theData; }
   // ------------------------------------------------------------
   // Simplify so that the maximum deviation point is kept
   // from the line formed adjancent points kept earlier.
   // This is the Douglas-Peucker algorithm.
   // ------------------------------------------------------------
 
-  const std::vector<T> SimplifyMaxDistance(const std::vector<T>& theData) const
+  const vector<T> SimplifyMaxDistance(const vector<T>& theData)
   {
     // The output data
 
-    std::vector<T> out;
+    vector<T> out;
 
     // Special case of no line:
 
@@ -175,8 +173,8 @@ class _FMI_DLL NFmiSimplifier
 
     // Stack of vector indices for recursion, initialized with N-1
 
-    std::stack<int> stk;
-    stk.push(static_cast<int>(theData.size() - 1));
+    stack<int> stk;
+    stk.push(theData.size() - 1);
 
     // Using squared distances in comparisons is faster
 
@@ -244,8 +242,7 @@ class _FMI_DLL NFmiSimplifier
       else
       {
         out.push_back(theData[stk.top()]);
-        i = stk.top();
-        stk.pop();
+        i = stk.pop();
       }
     } while (!stk.empty());
 
@@ -273,9 +270,9 @@ class _FMI_DLL NFmiSimplifier
   // 1/2*abs((x2y1-x1y2)+(x3y2-x2y3)+(x1y3-x3y1))
   // ------------------------------------------------------------
 
-  const std::vector<T> SimplifyMinTriangle(const std::vector<T>& theData) const
+  const vector<T> SimplifyMinTriangle(const vector<T>& theData)
   {
-    std::vector<T> out;
+    vector<T> out;
 
     out = theData;
 
@@ -292,7 +289,7 @@ class _FMI_DLL NFmiSimplifier
     {
       // Output from work to out
 
-      std::vector<T> work = out;
+      vector<T> work = out;
       out.clear();
 
       out.push_back(work[0]);
@@ -350,11 +347,11 @@ class _FMI_DLL NFmiSimplifier
   //
   // ------------------------------------------------------------
 
-  const std::vector<T> SimplifyMaxTriangle(const std::vector<T>& theData) const
+  const vector<T> SimplifyMaxTriangle(const vector<T>& theData)
   {
     // The output data
 
-    std::vector<T> out;
+    vector<T> out;
 
     // Special case of no line:
 
@@ -366,8 +363,8 @@ class _FMI_DLL NFmiSimplifier
 
     // Stack of vector indices for recursion, initialized with N-1
 
-    std::stack<int> stk;
-    stk.push(static_cast<int>(theData.size() - 1));
+    stack<int> stk;
+    stk.push(theData.size() - 1);
 
     int i = 0;
     do
@@ -412,8 +409,7 @@ class _FMI_DLL NFmiSimplifier
       else
       {
         out.push_back(theData[stk.top()]);
-        i = stk.top();
-        stk.pop();
+        i = stk.pop();
       }
     } while (!stk.empty());
 

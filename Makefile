@@ -1,4 +1,4 @@
-LIB = imagine
+LIB = imagine2
 
 # Installation directories
 
@@ -39,7 +39,8 @@ ifeq ($(CXX), clang++)
 	-isystem $(includedir) \
 	-isystem $(includedir)/smartmet \
 	-isystem $(includedir)/smartmet/newbase \
-	`freetype-config --cflags`
+	`freetype-config --cflags` \
+	`pkg-config --cflags cairomm-1.0`
 
 else
 
@@ -63,7 +64,8 @@ else
 	-I$(includedir) \
 	-I$(includedir)/smartmet \
 	-I$(includedir)/smartmet/newbase \
-	`freetype-config --cflags`
+	`freetype-config --cflags` \
+	`pkg-config --cflags cairomm-1.0`
 
 endif
 
@@ -79,6 +81,7 @@ LIBS = -L$(libdir) \
 	-lboost_thread \
 	-lgdal \
 	`freetype-config --libs` \
+	`pkg-config --libs cairomm-1.0` \
 	-ljpeg -lpng -lz
 
 # rpm variables

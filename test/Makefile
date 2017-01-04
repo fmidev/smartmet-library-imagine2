@@ -25,7 +25,8 @@ DIFFICULTFLAGS = \
 	-Wunreachable-code \
 	-Wredundant-decls
 
-CAIROMODE = # -DIMAGINE_WITH_CAIRO 
+# CAIROMODE = -DIMAGINE_WITH_CAIRO 
+CAIROMODE =
 
 # Platform independent Freetype2 support
 
@@ -34,7 +35,7 @@ FT2_CFLAGS= $(shell freetype-config --cflags)
 
 # Platform independent Cairomm support
 
-ifneq "$(CAIROMODE)" ""
+ifeq "$(CAIROMODE)" ""
   CAIRO_LIBS = $(shell pkg-config --libs cairomm-1.0)
   CAIRO_CFLAGS = $(CAIROMODE) $(shell pkg-config --cflags cairomm-1.0)
 else
@@ -53,13 +54,13 @@ INCLUDES = \
 	$(FT2_CFLAGS) \
 	$(CAIRO_CFLAGS)
 
-LIBS =  -L .. -lsmartmet_imagine \
+LIBS =  ../libsmartmet_imagine2.so \
 	-lsmartmet_newbase \
-	-lboost_regex-mt \
-	-lboost_filesystem-mt \
-        -lboost_iostreams-mt \
-        -lboost_thread-mt \
-        -lboost_system-mt \
+	-lboost_regex \
+	-lboost_filesystem \
+        -lboost_iostreams \
+        -lboost_thread \
+        -lboost_system \
 	$(FT2_LIBS) \
 	$(CAIRO_LIBS) \
 	-lpng -ljpeg -lz -lbz2 -lpthread -lrt
@@ -74,6 +75,6 @@ test: $(PROG)
 	./$$prog; \
 	done
 
-$(PROG) : % : %.cpp ../libsmartmet_imagine.a
+$(PROG) : % : %.cpp ../libsmartmet_imagine2.so
 	$(CC) $(CFLAGS) -o $@ $@.cpp $(INCLUDES) $(LIBS)
 

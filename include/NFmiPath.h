@@ -286,9 +286,9 @@ class NFmiPath
 
   NFmiEsriBox BoundingBox() const;
 
+#ifndef IMAGINE_WITH_CAIRO
   NFmiPath Clip(double theX1, double theY1, double theX2, double theY2, double theMargin = 0) const;
-  NFmiPath Clip(
-      const NFmiArea *const theArea) const;  // HUOM! toimii vain rajaviivoille oikein, ei alueille
+#endif
 
   void InsideOut() { itsInsideOut = !itsInsideOut; }
   bool IsInsideOut() const { return itsInsideOut; }

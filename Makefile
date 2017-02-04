@@ -86,10 +86,6 @@ LIBS = -L$(libdir) \
 	`pkg-config --libs cairomm-1.0` \
 	-ljpeg -lpng -lz
 
-# rpm variables
-
-rpmsourcedir = /tmp/$(shell whoami)/rpmbuild
-
 # What to install
 
 LIBFILE = lib$(LIB).so
@@ -161,10 +157,9 @@ objdir:
 rpm: clean
 	if [ -e $(SPEC).spec ]; \
 	then \
-	  mkdir -p $(rpmsourcedir) ; \
-	  tar -czvf $(rpmsourcedir)/$(SPEC)2.tar.gz --transform "s,^,$(SPEC)2/," * ; \
-	  rpmbuild -ta $(rpmsourcedir)/$(SPEC)2.tar.gz ; \
-	  rm -f $(rpmsourcedir)/$(SPEC)2.tar.gz ; \
+	  tar -czvf $(SPEC)2.tar.gz --transform "s,^,$(SPEC)2/," * ; \
+	  rpmbuild -ta $(SPEC)2.tar.gz ; \
+	  rm -f $(SPEC)2.tar.gz ; \
 	else \
 	  echo $(SPEC).spec file missing; \
 	fi;

@@ -162,9 +162,8 @@ rpm: clean
 	if [ -e $(SPEC).spec ]; \
 	then \
 	  mkdir -p $(rpmsourcedir) ; \
-	  tar -C ../ -cf $(rpmsourcedir)/$(SPEC)2.tar $(SUBNAME) ; \
-	  gzip -f $(rpmsourcedir)/$(SPEC)2.tar ; \
-	  TAR_OPTIONS=--wildcards rpmbuild -v -ta $(rpmsourcedir)/$(SPEC)2.tar.gz ; \
+	  tar -czvf $(rpmsourcedir)/$(SPEC)2.tar.gz --transform "s,^,$(SPEC)2/," * ; \
+	  rpmbuild -ta $(rpmsourcedir)/$(SPEC)2.tar.gz ; \
 	  rm -f $(rpmsourcedir)/$(SPEC)2.tar.gz ; \
 	else \
 	  echo $(SPEC).spec file missing; \

@@ -1,6 +1,6 @@
-%define DIRNAME imagine
-%define LIBNAME smartmet-%{DIRNAME}2
-%define SPECNAME smartmet-library-%{DIRNAME}2
+%define DIRNAME imagine2
+%define LIBNAME smartmet-%{DIRNAME}
+%define SPECNAME smartmet-library-%{DIRNAME}
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
@@ -62,7 +62,7 @@ FMI %{DIRNAME} development files
 
 %files -n %{DEVELNAME}
 %defattr(0664,root,root,-)
-%{_includedir}/smartmet/%{DIRNAME}2/*.h
+%{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
 * Wed Jan  4 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.1.4-1.fmi

@@ -46,7 +46,7 @@ CC = g++
 CFLAGS = -DUNIX -O0 -g $(MAINFLAGS)
 
 INCLUDES = \
-	-I ../include \
+	-I ../imagine \
 	-I /usr/include/ \
 	-I /usr/include/smartmet/newbase \
 	-I /usr/include/smartmet/regression \

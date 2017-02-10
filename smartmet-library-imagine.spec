@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine library
 Name: %{SPECNAME}
-Version: 17.1.4
+Version: 17.2.10
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -15,10 +15,10 @@ BuildRequires: boost-devel
 BuildRequires: freetype-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
-BuildRequires: smartmet-library-newbase-devel >= 16.12.19
+BuildRequires: smartmet-library-newbase-devel >= 17.2.10
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
-Requires: smartmet-library-newbase >= 16.12.19
+Requires: smartmet-library-newbase >= 17.2.10
 Requires: cairomm
 Requires: freetype
 Requires: libjpeg
@@ -65,6 +65,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Fri Feb 10 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.2.10-1.fmi
+- newbase API changed forced rebuild
+
 * Wed Jan  4 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.1.4-1.fmi
 - Switched to using FMI open source naming conventions
 

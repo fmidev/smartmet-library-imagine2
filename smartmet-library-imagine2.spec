@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 17.1.4
+Version: 17.2.10
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -65,6 +65,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Fri Feb 10 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.2.10-1.fmi
+- newbase API change forced recompile
+
 * Wed Jan  4 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.1.4-1.fmi
 - Switched to FMI open source naming conventions
 

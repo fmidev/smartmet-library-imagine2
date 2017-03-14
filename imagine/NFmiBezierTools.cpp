@@ -21,7 +21,7 @@
 #include "NFmiCounter.h"
 #include "NFmiPath.h"
 
-#include <NFmiGeoTools.h>
+#include <newbase/NFmiGeoTools.h>
 
 #include <stdexcept>
 #include <utility>

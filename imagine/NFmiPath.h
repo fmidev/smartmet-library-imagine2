@@ -50,7 +50,7 @@
 #include "NFmiAffine.h"
 #endif
 
-#include <NFmiArea.h>
+#include <newbase/NFmiArea.h>
 
 #include <string>
 #include <deque>

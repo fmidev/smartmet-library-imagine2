@@ -182,7 +182,7 @@
 
 #include "NFmiColorTools.h"
 
-#include <NFmiGlobals.h>
+#include <newbase/NFmiGlobals.h>
 
 #include <string>
 #include <map>

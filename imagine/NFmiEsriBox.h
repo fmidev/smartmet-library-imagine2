@@ -13,7 +13,7 @@
 #ifndef IMAGINE_NFMIESRIBOX_H
 #define IMAGINE_NFMIESRIBOX_H
 
-#include <NFmiGlobals.h>
+#include <newbase/NFmiGlobals.h>
 
 namespace Imagine
 {

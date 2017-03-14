@@ -144,9 +144,9 @@
 #include "NFmiEsriPolygonZ.h"
 #include "NFmiEsriMultiPatch.h"
 
-#include <NFmiFileSystem.h>
-#include <NFmiSettings.h>
-#include <NFmiTime.h>
+#include <newbase/NFmiFileSystem.h>
+#include <newbase/NFmiSettings.h>
+#include <newbase/NFmiTime.h>
 
 #include <fstream>
 #include <iomanip>

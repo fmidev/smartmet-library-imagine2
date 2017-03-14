@@ -7,7 +7,7 @@
 #ifndef IMAGINE_NFMIDATAHINTS_H
 #define IMAGINE_NFMIDATAHINTS_H
 
-#include <NFmiDataMatrix.h>
+#include <newbase/NFmiDataMatrix.h>
 
 #include <boost/shared_ptr.hpp>
 #include <list>

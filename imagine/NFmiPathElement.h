@@ -16,7 +16,7 @@
 #ifndef IMAGINE_NFMIPATHELEMENT_H
 #define IMAGINE_NFMIPATHELEMENT_H
 
-#include <NFmiDef.h>
+#include <newbase/NFmiDef.h>
 
 namespace Imagine
 {

@@ -32,7 +32,7 @@
 //       hence this include is here instead of derived classes.
 
 #include "NFmiColorTools.h"
-#include <NFmiGlobals.h>
+#include <newbase/NFmiGlobals.h>
 
 namespace Imagine
 {

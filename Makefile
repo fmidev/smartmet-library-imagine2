@@ -41,7 +41,6 @@ ifeq ($(CXX), clang++)
  INCLUDES = \
 	-isystem $(includedir) \
 	-isystem $(includedir)/smartmet \
-	-isystem $(includedir)/smartmet/newbase \
 	`freetype-config --cflags`
 
 else
@@ -65,7 +64,6 @@ else
  INCLUDES = \
 	-I$(includedir) \
 	-I$(includedir)/smartmet \
-	-I$(includedir)/smartmet/newbase \
 	`freetype-config --cflags`
 
 endif

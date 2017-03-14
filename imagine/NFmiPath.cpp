@@ -8,8 +8,8 @@
 #include "NFmiCounter.h"
 #include "NFmiEsriBox.h"
 
-#include <NFmiGrid.h>
-#include <NFmiValueString.h>
+#include <newbase/NFmiGrid.h>
+#include <newbase/NFmiValueString.h>
 
 #ifdef IMAGINE_WITH_CAIRO
 #include "ImagineXr.h"

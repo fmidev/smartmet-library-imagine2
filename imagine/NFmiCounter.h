@@ -45,7 +45,7 @@
 #ifndef IMAGINE_NFMICOUNTER_H
 #define IMAGINE_NFMICOUNTER_H
 
-#include <NFmiDef.h>
+#include <newbase/NFmiDef.h>
 #include <map>
 
 namespace Imagine

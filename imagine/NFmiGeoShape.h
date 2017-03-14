@@ -29,7 +29,7 @@
 #include "NFmiDrawable.h"
 #endif
 
-#include <NFmiArea.h>
+#include <newbase/NFmiArea.h>
 
 #include <string>
 #include <stdexcept>

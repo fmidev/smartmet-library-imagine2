@@ -7,9 +7,9 @@
 
 #include "NFmiGshhsTools.h"
 #include "NFmiPath.h"
-#include <NFmiFileSystem.h>
-#include <NFmiPoint.h>
-#include <NFmiSettings.h>
+#include <newbase/NFmiFileSystem.h>
+#include <newbase/NFmiPoint.h>
+#include <newbase/NFmiSettings.h>
 #include <stdexcept>
 
 using namespace std;

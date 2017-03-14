@@ -1,6 +1,6 @@
 #include "NFmiEsriTools.h"
 #include "NFmiEsriShape.h"
-#include "NFmiStringTools.h"
+#include <newbase/NFmiStringTools.h>
 #include <list>
 #include <stdexcept>
 

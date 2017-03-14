@@ -11,7 +11,7 @@
 #ifndef IMAGINE_NFMIBEZIERTOOLS_H
 #define IMAGINE_NFMIBEZIERTOOLS_H
 
-#include <NFmiDef.h>
+#include <newbase/NFmiDef.h>
 
 #include <list>
 #include <vector>

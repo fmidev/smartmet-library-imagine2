@@ -28,8 +28,8 @@
 #include "NFmiImageTools.h"
 #endif
 
-#include <NFmiFileSystem.h>
-#include <NFmiStringTools.h>
+#include <newbase/NFmiFileSystem.h>
+#include <newbase/NFmiStringTools.h>
 
 #include <cstdlib>  // for rand, RAND_MAX
 #include <iostream>

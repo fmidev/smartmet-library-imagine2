@@ -20,8 +20,8 @@
 #include "NFmiCounter.h"
 #include "NFmiPath.h"
 
-#include <NFmiGeoTools.h>
-#include <NFmiPoint.h>
+#include <newbase/NFmiGeoTools.h>
+#include <newbase/NFmiPoint.h>
 
 #include <list>
 #include <vector>

@@ -36,7 +36,7 @@
 #include "NFmiFreeType.h"
 #include "NFmiImage.h"
 
-#include <NFmiStringTools.h>
+#include <newbase/NFmiStringTools.h>
 
 #include <stdexcept>
 #include <vector>

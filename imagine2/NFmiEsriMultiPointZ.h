@@ -21,8 +21,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIESRIMULTIPOINTZ_H
-#define IMAGINE_NFMIESRIMULTIPOINTZ_H
+#pragma once
 
 #include "NFmiEsriPointZ.h"
 #include "NFmiEsriMultiPointM.h"
@@ -85,6 +84,5 @@ class _FMI_DLL NFmiEsriMultiPointZ : public NFmiEsriMultiPointM
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIESRIMULTIPOINTZ_H
 
 // ======================================================================

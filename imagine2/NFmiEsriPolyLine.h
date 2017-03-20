@@ -16,8 +16,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIESRIPOLYLINE_H
-#define IMAGINE_NFMIESRIPOLYLINE_H
+#pragma once
 
 #include <vector>
 
@@ -99,6 +98,5 @@ class _FMI_DLL NFmiEsriPolyLine : public NFmiEsriElement
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIESRIPOLYLINE_H
 
 // ======================================================================

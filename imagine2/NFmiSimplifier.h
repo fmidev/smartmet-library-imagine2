@@ -64,8 +64,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMISIMPLIFIER_H
-#define IMAGINE_NFMISIMPLIFIER_H
+#pragma once
 
 #include "NFmiCounter.h"
 
@@ -431,6 +430,5 @@ class _FMI_DLL NFmiSimplifier
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMISIMPLIFIER_H
 
 // ======================================================================

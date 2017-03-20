@@ -26,8 +26,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIESRIMULTIPATCH_H
-#define IMAGINE_NFMIESRIMULTIPATCH_H
+#pragma once
 
 #include "NFmiEsriPointZ.h"
 #include "NFmiEsriBox.h"
@@ -133,6 +132,5 @@ class _FMI_DLL NFmiEsriMultiPatch : public NFmiEsriElement
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIESRIMULTIPATCH_H
 
 // ======================================================================

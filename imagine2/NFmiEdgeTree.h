@@ -10,8 +10,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIEDGETREE_H
-#define IMAGINE_NFMIEDGETREE_H
+#pragma once
 
 #include "imagine-config.h"
 
@@ -85,4 +84,3 @@ class _FMI_DLL NFmiEdgeTree
 
 // ----------------------------------------------------------------------
 
-#endif  // IMAGINE_NFMIEDGETREE_H

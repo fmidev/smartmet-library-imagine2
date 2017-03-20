@@ -13,8 +13,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIESRIATTRIBUTENAME_H
-#define IMAGINE_NFMIESRIATTRIBUTENAME_H
+#pragma once
 
 #include <NFmiGlobals.h>
 #include <string>
@@ -105,6 +104,5 @@ class _FMI_DLL NFmiEsriAttributeName
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIESRIATTRIBUTENAME_H
 
 // ======================================================================

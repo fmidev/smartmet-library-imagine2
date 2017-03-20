@@ -17,8 +17,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIESRIPOLYGONM_H
-#define IMAGINE_NFMIESRIPOLYGONM_H
+#pragma once
 
 #include "NFmiEsriPointM.h"
 #include "NFmiEsriPolygon.h"
@@ -95,6 +94,5 @@ class _FMI_DLL NFmiEsriPolygonM : public NFmiEsriPolygon
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIESRIPOLYGONM_H
 
 // ======================================================================

@@ -4,8 +4,7 @@
  */
 // ======================================================================
 
-#ifndef IMAGINE_NFMIDATAHINTS_H
-#define IMAGINE_NFMIDATAHINTS_H
+#pragma once
 
 #include <NFmiDataMatrix.h>
 
@@ -55,6 +54,5 @@ class NFmiDataHints
 
 }  // namespace
 
-#endif  // IMAGINE_NFMIDATAHINTS_H
 
 // ======================================================================

@@ -19,8 +19,7 @@
  */
 // ======================================================================
 
-#ifndef IMAGINE_NFMICOLORTOOLS_H
-#define IMAGINE_NFMICOLORTOOLS_H
+#pragma once
 
 #include "imagine-config.h"
 
@@ -448,6 +447,5 @@ inline NFmiColorTools::Color NFmiColorTools::Simplify(Color c,
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMICOLORTOOLS_H
 
 // ----------------------------------------------------------------------

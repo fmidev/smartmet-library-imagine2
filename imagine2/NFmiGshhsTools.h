@@ -22,8 +22,7 @@
  */
 // ======================================================================
 
-#ifndef NFMIGSHHSTOOLS_H
-#define NFMIGSHHSTOOLS_H
+#pragma once
 
 #include <string>
 
@@ -44,6 +43,5 @@ const NFmiPath ReadPath(const std::string& theFilename,
 
 }  // namespace Imagine
 
-#endif  // NFMIGSHHSTOOLS_H
 
 // ======================================================================

@@ -17,8 +17,7 @@
  */
 // ======================================================================
 
-#ifndef IMAGINE_NFMIALIGNMENT_H
-#define IMAGINE_NFMIALIGNMENT_H
+#pragma once
 
 #include <string>
 
@@ -55,6 +54,5 @@ double YAlignmentFactor(NFmiAlignment theAlignment);
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIALIGNMENT_H
 
 // ======================================================================

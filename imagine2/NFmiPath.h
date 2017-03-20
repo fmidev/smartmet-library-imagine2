@@ -28,8 +28,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIPATH_H
-#define IMAGINE_NFMIPATH_H
+#pragma once
 
 #include "imagine-config.h"
 
@@ -333,6 +332,5 @@ class NFmiPath
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIPATH_H
 
 // ----------------------------------------------------------------------

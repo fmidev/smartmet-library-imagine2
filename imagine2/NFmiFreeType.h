@@ -7,8 +7,7 @@
 
 #ifdef UNIX  // En saanut viel‰ Imagine::NFmiFreeType -luokkaa toimimaan VC++ 2012 k‰‰nt‰j‰ss‰
 
-#ifndef IMAGINE_NFMIFREETYPE_H
-#define IMAGINE_NFMIFREETYPE_H
+#pragma once
 
 #include "imagine-config.h"
 
@@ -65,6 +64,5 @@ class NFmiFreeType
 }  // namespace Imagine
 
 #endif  // IMAGINE_NFMIFREETYPE_H
-#endif  // UNIX
 
 // ======================================================================

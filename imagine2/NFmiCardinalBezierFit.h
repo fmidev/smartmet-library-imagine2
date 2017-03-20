@@ -5,8 +5,7 @@
  */
 // ======================================================================
 
-#ifndef IMAGINE_NFMICARDINALBEZIERFIT_H
-#define IMAGINE_NFMICARDINALBEZIERFIT_H
+#pragma once
 
 #include "NFmiBezierTools.h"
 
@@ -24,6 +23,5 @@ const NFmiPaths Fit(const NFmiPaths& thePaths, double theMaxError);
 }  // namespace NFmiCardinalBezierFit
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMICARDINALBEZIERFIT_H
 
 // ======================================================================

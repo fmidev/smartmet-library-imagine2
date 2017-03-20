@@ -13,8 +13,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIPATHELEMENT_H
-#define IMAGINE_NFMIPATHELEMENT_H
+#pragma once
 
 #include <NFmiDef.h>
 
@@ -60,6 +59,5 @@ struct NFmiPathElement
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIPATHELEMENT_H
 
 // ======================================================================

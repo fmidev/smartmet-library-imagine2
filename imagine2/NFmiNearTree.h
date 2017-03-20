@@ -102,8 +102,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMINEARTREE_H
-#define IMAGINE_NFMINEARTREE_H
+#pragma once
 
 #include <NFmiGlobals.h>
 #include <vector>
@@ -486,6 +485,5 @@ class _FMI_DLL NFmiNearTree
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMINEARTREE_H
 
 // ======================================================================

@@ -10,8 +10,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIESRIBOX_H
-#define IMAGINE_NFMIESRIBOX_H
+#pragma once
 
 #include <NFmiGlobals.h>
 
@@ -65,6 +64,5 @@ class _FMI_DLL NFmiEsriBox
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIESRIBOX_H
 
 // ======================================================================

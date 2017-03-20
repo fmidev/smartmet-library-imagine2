@@ -10,8 +10,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIESRIPROJECTOR_H
-#define IMAGINE_NFMIESRIPROJECTOR_H
+#pragma once
 
 #include <NFmiDef.h>
 
@@ -31,6 +30,5 @@ class _FMI_DLL NFmiEsriProjector
 
 }  // namespace Imagine
 
-#endif  // NFMIESRIPROJECTOR_H
 
 // ======================================================================

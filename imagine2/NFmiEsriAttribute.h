@@ -39,8 +39,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIESRIATTRIBUTE_H
-#define IMAGINE_NFMIESRIATTRIBUTE_H
+#pragma once
 
 #include <string>
 
@@ -105,6 +104,5 @@ class _FMI_DLL NFmiEsriAttribute
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIESRIATTRIBUTE_H
 
 // ======================================================================

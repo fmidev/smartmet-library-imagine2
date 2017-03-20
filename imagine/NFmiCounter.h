@@ -42,8 +42,7 @@
  */
 // ======================================================================
 
-#ifndef IMAGINE_NFMICOUNTER_H
-#define IMAGINE_NFMICOUNTER_H
+#pragma once
 
 #include <newbase/NFmiDef.h>
 #include <map>
@@ -115,6 +114,5 @@ class _FMI_DLL NFmiCounter
 
 }  // namespace Imagine
 
-#endif
 
 // ======================================================================

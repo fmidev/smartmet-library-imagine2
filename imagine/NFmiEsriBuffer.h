@@ -4,8 +4,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIESRIBUFFER_H
-#define IMAGINE_NFMIESRIBUFFER_H
+#pragma once
 
 #include <string>
 
@@ -30,6 +29,5 @@ bool EsriRead(std::istream& is, std::string& theString, unsigned int theLength);
 }
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIESRIBUFFER_H
 
 // ======================================================================

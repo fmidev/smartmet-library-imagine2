@@ -8,8 +8,7 @@
 // Note: This namespace contains tools which are mostly useful
 // only to the various Bezier fitting namespaces.
 
-#ifndef IMAGINE_NFMIBEZIERTOOLS_H
-#define IMAGINE_NFMIBEZIERTOOLS_H
+#pragma once
 
 #include <newbase/NFmiDef.h>
 
@@ -45,6 +44,5 @@ double BezierLength(const NFmiPath& thePath, double theRelativeAccuracy);
 }  // namespace NFmiBezierTools
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIBEZIERTOOLS_H
 
 // ======================================================================

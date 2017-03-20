@@ -10,8 +10,7 @@
  */
 // ======================================================================
 
-#ifndef IMAGINE_NFMIAFFINE_H
-#define IMAGINE_NFMIAFFINE_H
+#pragma once
 
 #include <newbase/NFmiGlobals.h>
 
@@ -47,6 +46,5 @@ class _FMI_DLL NFmiAffine
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIAFFINE_H
 
 // ======================================================================

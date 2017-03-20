@@ -10,8 +10,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIEDGE_H
-#define IMAGINE_NFMIEDGE_H
+#pragma once
 
 #include <newbase/NFmiGlobals.h>
 #include <cmath>
@@ -90,4 +89,3 @@ class _FMI_DLL NFmiEdge
 
 // ----------------------------------------------------------------------
 
-#endif  // IMAGINE_NFMIEDGE_H

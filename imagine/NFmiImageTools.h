@@ -5,8 +5,7 @@
  */
 // ======================================================================
 
-#ifndef IMAGINE_NFMIIMAGETOOLS_H
-#define IMAGINE_NFMIIMAGETOOLS_H
+#pragma once
 
 #include "imagine-config.h"
 
@@ -34,6 +33,5 @@ std::string MimeType(const std::string& theFileName);
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIIMAGETOOLS_H
 
 // ======================================================================

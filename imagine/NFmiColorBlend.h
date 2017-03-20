@@ -14,8 +14,7 @@
  */
 // ======================================================================
 
-#ifndef IMAGINE_NFMICOLORBLEND_H
-#define IMAGINE_NFMICOLORBLEND_H
+#pragma once
 
 #include "NFmiColorTools.h"
 #include <cstdlib>
@@ -1002,6 +1001,5 @@ struct NFmiColorBlendOnTransparent
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMICOLORBLEND_H
 
 // ----------------------------------------------------------------------

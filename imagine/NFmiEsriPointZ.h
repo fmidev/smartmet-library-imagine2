@@ -13,8 +13,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIESRIPOINTZ_H
-#define IMAGINE_NFMIESRIPOINTZ_H
+#pragma once
 
 #include "NFmiEsriPointM.h"
 #include "NFmiEsriBox.h"
@@ -67,6 +66,5 @@ class _FMI_DLL NFmiEsriPointZ : public NFmiEsriPointM
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIESRIPOINTZ_H
 
 // ======================================================================

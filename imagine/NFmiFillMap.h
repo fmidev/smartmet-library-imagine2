@@ -35,8 +35,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIFILLMAP_H
-#define IMAGINE_NFMIFILLMAP_H
+#pragma once
 
 #include "imagine-config.h"
 
@@ -146,6 +145,5 @@ class _FMI_DLL NFmiFillMap : public NFmiDrawable
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIFILLMAP_H
 
 // ======================================================================

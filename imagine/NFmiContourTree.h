@@ -122,8 +122,7 @@
  */
 // ======================================================================
 
-#ifndef IMAGINE_NFMICONTOURTREE_H
-#define IMAGINE_NFMICONTOURTREE_H
+#pragma once
 
 #include "imagine-config.h"
 
@@ -538,4 +537,3 @@ class _FMI_DLL NFmiContourTree : public NFmiEdgeTree
 
 // ----------------------------------------------------------------------
 
-#endif  // IMAGINE_NFMICONTOURTREE_H

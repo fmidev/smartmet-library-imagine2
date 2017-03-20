@@ -17,8 +17,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIESRIPOLYLINEM_H
-#define IMAGINE_NFMIESRIPOLYLINEM_H
+#pragma once
 
 #include "NFmiEsriPointM.h"
 #include "NFmiEsriBox.h"
@@ -95,6 +94,5 @@ class _FMI_DLL NFmiEsriPolyLineM : public NFmiEsriPolyLine
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIESRIPOLYLINEM_H
 
 // ======================================================================

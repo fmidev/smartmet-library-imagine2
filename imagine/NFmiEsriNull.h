@@ -9,8 +9,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIESRINULL_H
-#define IMAGINE_NFMIESRINULL_H
+#pragma once
 
 #include "NFmiEsriElement.h"
 #include "NFmiEsriBox.h"
@@ -58,6 +57,5 @@ class _FMI_DLL NFmiEsriNull : public NFmiEsriElement
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIESRINULL_H
 
 // ======================================================================

@@ -19,8 +19,7 @@
  */
 // ======================================================================
 
-#ifndef IMAGINE_NFMIDRAWABLE_H
-#define IMAGINE_NFMIDRAWABLE_H
+#pragma once
 
 #include "imagine-config.h"
 
@@ -80,6 +79,5 @@ class _FMI_DLL NFmiDrawable
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIDRAWABLE_H
 
 // ======================================================================

@@ -14,8 +14,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIESRIPOLYGON_H
-#define IMAGINE_NFMIESRIPOLYGON_H
+#pragma once
 
 #include <vector>
 
@@ -99,6 +98,5 @@ class _FMI_DLL NFmiEsriPolygon : public NFmiEsriElement
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIESRIPOLYGON_H
 
 // ======================================================================

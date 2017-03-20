@@ -24,8 +24,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIESRIPOLYLINEZ_H
-#define IMAGINE_NFMIESRIPOLYLINEZ_H
+#pragma once
 
 #include "NFmiEsriPointZ.h"
 #include "NFmiEsriBox.h"
@@ -102,6 +101,5 @@ class _FMI_DLL NFmiEsriPolyLineZ : public NFmiEsriPolyLineM
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIESRIPOLYLINEZ_H
 
 // ======================================================================

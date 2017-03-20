@@ -11,8 +11,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIGEOSHAPE_H
-#define IMAGINE_NFMIGEOSHAPE_H
+#pragma once
 
 #include "imagine-config.h"
 
@@ -209,6 +208,5 @@ class _FMI_DLL NFmiGeoShape
 
 }  // namespace Imagine
 
-#endif
 
 // ======================================================================

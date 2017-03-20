@@ -5,8 +5,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIESRIELEMENT_H
-#define IMAGINE_NFMIESRIELEMENT_H
+#pragma once
 
 #include "NFmiEsriProjector.h"
 #include "NFmiEsriAttribute.h"
@@ -108,6 +107,5 @@ class _FMI_DLL NFmiEsriElement
 
 std::ostream& operator<<(std::ostream& os, const Imagine::NFmiEsriElement& theElement);
 
-#endif  // IMAGINE_NFMIESRIELEMENT_H
 
 // ======================================================================

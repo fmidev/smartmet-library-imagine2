@@ -4,8 +4,7 @@
 * Replacement for 'Imagine' library, using Cairo drawing
 */
 
-#ifndef IMAGINE_XR_H
-#define IMAGINE_XR_H
+#pragma once
 
 #include "imagine-config.h"
 
@@ -138,4 +137,3 @@ class ImagineXr
   void Write() const;
 };
 
-#endif

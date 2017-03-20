@@ -5,8 +5,7 @@
  */
 // ======================================================================
 
-#ifndef IMAGINE_NFMICOLORREDUCE_H
-#define IMAGINE_NFMICOLORREDUCE_H
+#pragma once
 
 #include "NFmiColorTools.h"
 #include <functional>
@@ -30,6 +29,5 @@ void AdaptiveReduce(NFmiImage& theImage, float theQuality, int theMaxColors, flo
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMICOLORREDUCE_H
 
 // ======================================================================

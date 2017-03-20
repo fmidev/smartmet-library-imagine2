@@ -14,8 +14,7 @@
 //
 // ======================================================================
 
-#ifndef IMAGINE_NFMIIMAGE_H
-#define IMAGINE_NFMIIMAGE_H
+#pragma once
 
 #include "imagine-config.h"
 
@@ -298,6 +297,5 @@ class _FMI_DLL NFmiImage
 
 }  // namespace Imagine
 
-#endif  // IMAGINE_NFMIIMAGE_H
 
 // ----------------------------------------------------------------------

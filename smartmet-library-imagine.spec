@@ -11,6 +11,7 @@ Group: Development/Libraries
 URL: https://github.com/fmidev/smartmet-library-imagine
 Source0: %{name}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRequires: make
 BuildRequires: boost-devel
 BuildRequires: freetype-devel
 BuildRequires: libjpeg-devel

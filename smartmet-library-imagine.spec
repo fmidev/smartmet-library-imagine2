@@ -21,6 +21,9 @@ BuildRequires: smartmet-library-newbase-devel >= 17.2.10
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
 Requires: smartmet-library-newbase >= 17.2.10
+Requires: boost-filesystem
+Requires: boost-regex
+Requires: boost-thread
 Requires: cairomm
 Requires: freetype
 Requires: libjpeg

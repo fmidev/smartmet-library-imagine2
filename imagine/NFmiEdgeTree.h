@@ -12,7 +12,6 @@
 
 #pragma once
 
-#include "imagine-config.h"
 
 // Essential includes:
 
@@ -23,11 +22,8 @@
 #include "NFmiFillMap.h"  // Fill map generation and rendering
 #endif
 
-#include <algorithm>
 #include <list>
 #include <set>
-#include <utility>
-#include <vector>
 
 namespace Imagine
 {

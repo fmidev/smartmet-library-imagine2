@@ -16,7 +16,6 @@
 
 #pragma once
 
-#include "imagine-config.h"
 
 #include "NFmiColorTools.h"
 #include "NFmiAlignment.h"
@@ -25,11 +24,7 @@
 #include "NFmiDrawable.h"
 #endif
 
-#include <string>   // for filenames, drawing text etc
-#include <utility>  // for pairs
-#include <vector>   // for vectors
 #include <set>      // for sets
-#include <cmath>    // for min,max,floor,ceil etc
 #include <cstdio>
 #include <stdexcept>
 

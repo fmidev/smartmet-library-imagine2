@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include <newbase/NFmiDef.h>
-
 #include <list>
 #include <vector>
 

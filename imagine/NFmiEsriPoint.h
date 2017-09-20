@@ -16,8 +16,6 @@
 #include "NFmiEsriElement.h"
 #include "NFmiEsriBox.h"
 
-#include <string>
-
 namespace Imagine
 {
 class _FMI_DLL NFmiEsriPoint : public NFmiEsriElement

@@ -8,7 +8,6 @@
 #include "NFmiGshhsTools.h"
 #include "NFmiPath.h"
 #include <newbase/NFmiFileSystem.h>
-#include <newbase/NFmiPoint.h>
 #include <newbase/NFmiSettings.h>
 #include <stdexcept>
 

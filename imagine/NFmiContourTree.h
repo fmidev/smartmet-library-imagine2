@@ -140,10 +140,7 @@
 #include <newbase/NFmiGrid.h>           // for grids
 #include <newbase/NFmiFastQueryInfo.h>  // for querydata
 
-#include <utility>    // pairs
-#include <set>        // sets
 #include <vector>     // vectors
-#include <algorithm>  // insert
 
 namespace Imagine
 {

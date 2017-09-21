@@ -13,7 +13,6 @@
 
 #pragma once
 
-#include "imagine-config.h"
 
 #include "NFmiEsriShape.h"
 #include "NFmiEsriTools.h"
@@ -30,7 +29,6 @@
 
 #include <newbase/NFmiArea.h>
 
-#include <string>
 #include <stdexcept>
 
 namespace Imagine

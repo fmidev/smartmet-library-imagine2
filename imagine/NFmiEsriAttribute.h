@@ -44,6 +44,7 @@
 #include <string>
 
 #include "NFmiEsriAttributeName.h"
+#include <newbase/NFmiMetTime.h>
 
 namespace Imagine
 {
@@ -67,6 +68,11 @@ class _FMI_DLL NFmiEsriAttribute
   {
   }
 
+  NFmiEsriAttribute(const NFmiMetTime& theValue, NFmiEsriAttributeName* theName)
+      : itsAttributeName(theName), itsDate(theValue)
+  {
+  }
+
   // Destructor is automatic
 
   ~NFmiEsriAttribute(void) {}
@@ -75,6 +81,8 @@ class _FMI_DLL NFmiEsriAttribute
   int GetInteger(void) const { return itsInteger; }
   double GetDouble(void) const { return itsDouble; }
   const std::string& GetString(void) const { return itsString; }
+  const NFmiMetTime& GetDate(void) const { return itsDate; }
+
   const std::string& GetName(void) const { return itsAttributeName->Name(); }
   NFmiEsriAttributeType GetType(void) const { return itsAttributeName->Type(); }
   // Setting values - it is assumed that type has been checked
@@ -82,6 +90,8 @@ class _FMI_DLL NFmiEsriAttribute
   void SetInteger(int theValue) { itsInteger = theValue; }
   void SetDouble(double theValue) { itsDouble = theValue; }
   void SetString(const std::string& theValue) { itsString = theValue; }
+  void SetDate(const NFmiMetTime& theValue) { itsDate = theValue; }
+
  private:
   // Must not have a null-attribute - hide the constructor
 
@@ -95,14 +105,13 @@ class _FMI_DLL NFmiEsriAttribute
 
   NFmiEsriAttributeName* itsAttributeName;
   std::string itsString;
-  union
-  {
+  NFmiMetTime itsDate;
+  union {
     int itsInteger;
     double itsDouble;
   };
 };
 
 }  // namespace Imagine
-
 
 // ======================================================================

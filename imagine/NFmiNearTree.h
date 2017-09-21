@@ -104,7 +104,6 @@
 
 #pragma once
 
-#include <newbase/NFmiGlobals.h>
 #include <vector>
 
 namespace Imagine

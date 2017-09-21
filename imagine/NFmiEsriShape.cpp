@@ -137,12 +137,12 @@
 #endif
 
 #include "NFmiEsriShape.h"
+#include "NFmiEsriMultiPatch.h"
+#include "NFmiEsriMultiPointZ.h"
 #include "NFmiEsriNull.h"
 #include "NFmiEsriPointZ.h"
-#include "NFmiEsriMultiPointZ.h"
 #include "NFmiEsriPolyLineZ.h"
 #include "NFmiEsriPolygonZ.h"
-#include "NFmiEsriMultiPatch.h"
 
 #include <newbase/NFmiFileSystem.h>
 #include <newbase/NFmiSettings.h>
@@ -150,7 +150,6 @@
 
 #include <fstream>
 #include <iomanip>
-#include <cstdlib>
 
 using namespace Imagine::NFmiEsriBuffer;  // Conversion tools
 using namespace std;
@@ -413,7 +412,7 @@ bool NFmiEsriShape::Read(const string &theFilename, bool fDBF)
 
     int slen = LittleEndianShort(dbffields, fieldpos + kFmixBaseFieldLengthPos);
 
-    if (ftype != 'N' && ftype != 'F' && ftype != 'C')
+    if (ftype != 'N' && ftype != 'F' && ftype != 'C' && ftype != 'D')
       throw runtime_error(string("Unrecognized shape value type '") + ftype + "'");
 
     if (ftype == 'N' || ftype == 'F')
@@ -430,11 +429,17 @@ bool NFmiEsriShape::Read(const string &theFilename, bool fDBF)
       }
       fieldsizes.push_back(flen);
     }
-    else
+    else if (ftype == 'C')
     {
       Add(new NFmiEsriAttributeName(fname, kFmiEsriString, -1, -1, slen));
       fieldsizes.push_back(slen);
       fieldtypes.push_back(kFmiEsriString);
+    }
+    else  // ftype=D for date in YYYYMMDD form
+    {
+      Add(new NFmiEsriAttributeName(fname, kFmiEsriDate, 8, 8, -1));
+      fieldtypes.push_back(kFmiEsriDate);
+      fieldsizes.push_back(8);
     }
 
     if (num == 0)
@@ -498,6 +503,16 @@ bool NFmiEsriShape::Read(const string &theFilename, bool fDBF)
         {
           double value = atof(dbfrecord.substr(offset, size).c_str());
           (*elementiter)->Add(NFmiEsriAttribute(value, *nameiter));
+          break;
+        }
+        case kFmiEsriDate:
+        {
+          long value = atol(dbfrecord.substr(offset, size).c_str());
+          int yyyy = value / 10000;
+          int mm = (value / 100) % 100;
+          int dd = value % 100;
+          NFmiMetTime t(yyyy, mm, dd);
+          (*elementiter)->Add(NFmiEsriAttribute(t, *nameiter));
           break;
         }
       }
@@ -789,6 +804,7 @@ bool NFmiEsriShape::WriteDBF(const string &theFilename) const
           break;
         case kFmiEsriInteger:
         case kFmiEsriDouble:
+        case kFmiEsriDate:
           field_length += attribute->FieldLength();
           break;
       }
@@ -824,6 +840,8 @@ bool NFmiEsriShape::WriteDBF(const string &theFilename) const
                   << static_cast<unsigned char>(attribute->FieldLength())
                   << static_cast<unsigned char>(attribute->DecimalCount());
           break;
+        case kFmiEsriDate:
+          throw std::runtime_error("Writing dates not supported yet");
       }
       dbffile << LittleEndianInt(0);
       for (i = 0; i < field_zeros; i++)
@@ -874,6 +892,8 @@ bool NFmiEsriShape::WriteDBF(const string &theFilename) const
 #endif
             break;
           }
+          case kFmiEsriDate:
+            throw std::runtime_error("Writing dates not supported yet");
         }
       }
     }

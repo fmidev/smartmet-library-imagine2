@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine library
 Name: %{SPECNAME}
-Version: 17.8.28
+Version: 17.9.21
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -70,6 +70,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Thu Sep 21 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.9.21-1.fmi
+- Added support for reading dBASE files with date fields
+
 * Mon Aug 28 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.8.28-1.fmi
 - Upgrade to boost 1.65
 

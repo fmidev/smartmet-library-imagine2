@@ -69,6 +69,25 @@ const std::string NFmiEsriElement::GetString(const string& theName) const
 }
 
 // ----------------------------------------------------------------------
+// Return date value of attribute
+// ----------------------------------------------------------------------
+
+const NFmiMetTime& NFmiEsriElement::GetDate(const std::string& theName) const
+{
+  list<NFmiEsriAttribute>::const_iterator begin = itsAttributes.begin();
+  list<NFmiEsriAttribute>::const_iterator end = itsAttributes.end();
+  list<NFmiEsriAttribute>::const_iterator iter;
+
+  for (iter = begin; iter != end; ++iter)
+  {
+    if ((*iter).GetName() == theName)
+      if ((*iter).GetType() == kFmiEsriDate) return (*iter).GetDate();
+  }
+
+  throw std::runtime_error("Date field " + theName + " not found");
+}
+
+// ----------------------------------------------------------------------
 // Return integer value of attribute
 // ----------------------------------------------------------------------
 

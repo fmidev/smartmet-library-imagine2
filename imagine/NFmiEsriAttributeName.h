@@ -24,7 +24,8 @@ enum NFmiEsriAttributeType
 {
   kFmiEsriString,
   kFmiEsriInteger,
-  kFmiEsriDouble
+  kFmiEsriDouble,
+  kFmiEsriDate
 };
 
 class _FMI_DLL NFmiEsriAttributeName
@@ -91,6 +92,7 @@ class _FMI_DLL NFmiEsriAttributeName
   short FieldLength() const { return itsFieldLength; }
   short DecimalCount() const { return itsDecimalCount; }
   short Length() const { return static_cast<short>(itsLength); }
+
  private:
   NFmiEsriAttributeName(void);
 
@@ -103,6 +105,5 @@ class _FMI_DLL NFmiEsriAttributeName
 };
 
 }  // namespace Imagine
-
 
 // ======================================================================

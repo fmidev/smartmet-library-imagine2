@@ -7,8 +7,8 @@
 
 #pragma once
 
-#include "NFmiEsriProjector.h"
 #include "NFmiEsriAttribute.h"
+#include "NFmiEsriProjector.h"
 
 #include <boost/shared_ptr.hpp>
 
@@ -58,6 +58,7 @@ class _FMI_DLL NFmiEsriElement
   const std::string GetString(const std::string& theName) const;
   int GetInteger(const std::string& theName) const;
   double GetDouble(const std::string& theName) const;
+  const NFmiMetTime& GetDate(const std::string& theName) const;
   NFmiEsriAttributeType GetType(const std::string& theName) const;
 
   // Update given bounding box
@@ -103,6 +104,5 @@ class _FMI_DLL NFmiEsriElement
 }  // namespace Imagine
 
 std::ostream& operator<<(std::ostream& os, const Imagine::NFmiEsriElement& theElement);
-
 
 // ======================================================================

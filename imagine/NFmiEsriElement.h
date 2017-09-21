@@ -8,6 +8,7 @@
 #pragma once
 
 #include "NFmiEsriAttribute.h"
+#include "NFmiEsriProjector.h"
 
 #include <boost/shared_ptr.hpp>
 

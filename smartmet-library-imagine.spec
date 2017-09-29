@@ -20,6 +20,7 @@ BuildRequires: libpng-devel
 BuildRequires: smartmet-library-newbase-devel >= 17.2.10
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
+BuildRequires: gdal-devel
 Requires: smartmet-library-newbase >= 17.2.10
 Requires: boost-filesystem
 Requires: boost-regex
@@ -61,6 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 Summary: FMI %{DIRNAME} development files
 Provides: %{DEVELNAME}
 Obsoletes: libsmartmet-imagine-devel < 17.1.4
+Requires: %{SPECNAME}
 
 %description -n %{DEVELNAME}
 FMI %{DIRNAME} development files

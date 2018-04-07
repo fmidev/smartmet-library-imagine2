@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine library
 Name: %{SPECNAME}
-Version: 17.9.21
+Version: 18.4.7
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -17,11 +17,11 @@ BuildRequires: boost-devel
 BuildRequires: freetype-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
-BuildRequires: smartmet-library-newbase-devel >= 17.2.10
+BuildRequires: smartmet-library-newbase-devel >= 18.4.7
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
 BuildRequires: gdal-devel
-Requires: smartmet-library-newbase >= 17.2.10
+Requires: smartmet-library-newbase >= 18.4.7
 Requires: boost-filesystem
 Requires: boost-regex
 Requires: boost-thread
@@ -72,6 +72,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Sat Apr  7 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.4.7-1.fmi
+- Upgrade to boost 1.66
+
 * Thu Sep 21 2017 Mika Heiskanen <mika.heiskanen@fmi.fi> - 17.9.21-1.fmi
 - Added support for reading dBASE files with date fields
 

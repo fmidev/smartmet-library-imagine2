@@ -6,3 +6,4 @@
 *.lib
 obj/
 *Test
+compile_commands.json

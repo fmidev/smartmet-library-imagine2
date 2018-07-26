@@ -132,7 +132,7 @@ const NFmiPath ReadPath(const std::string &theFilename,
 
   // Throw if failed to open
 
-  if (fp == NULL) throw std::runtime_error("Failed to open " + theFilename + " for reading");
+  if (fp == nullptr) throw std::runtime_error("Failed to open " + theFilename + " for reading");
 
   // Read the first header
   GSHHS header;

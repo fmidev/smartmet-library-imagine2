@@ -676,7 +676,7 @@ bool NFmiEsriShape::WriteSHP(const string &theFilename) const
 
   for (iter = Elements().begin(); iter != Elements().end(); ++iter)
   {
-    if (*iter != NULL)
+    if (*iter != nullptr)
     {
       shpfile << BigEndianInt(recnum) << BigEndianInt(((*iter)->StringSize()) / 2) << **iter;
       ++recnum;
@@ -721,7 +721,7 @@ bool NFmiEsriShape::WriteSHX(const string &theFilename) const
 
   for (iter = Elements().begin(); iter != Elements().end(); ++iter)
   {
-    if (*iter != NULL)
+    if (*iter != nullptr)
     {
       int recsize = ((*iter)->StringSize()) / 2;
       shxfile << BigEndianInt(curoffset) << BigEndianInt(recsize);
@@ -952,7 +952,7 @@ void NFmiEsriShape::Project(const NFmiEsriProjector &theProjector)
 
   for (; iter != itsElements.end(); ++iter)
   {
-    if (*iter != NULL)
+    if (*iter != nullptr)
     {
       (*iter)->Project(theProjector);
       (*iter)->Update(itsBox);
@@ -970,13 +970,13 @@ NFmiEsriAttributeName *NFmiEsriShape::AttributeName(const string &theFieldName) 
   attributes_type::const_iterator end = itsAttributeNames.end();
   attributes_type::const_iterator iter;
 
-  NFmiEsriAttributeName *out = NULL;
+  NFmiEsriAttributeName *out = nullptr;
 
   for (iter = begin; iter != end; ++iter)
   {
     // Just safety, should never happen
 
-    if (*iter == NULL) continue;
+    if (*iter == nullptr) continue;
 
     // If found match, exit immediately with pointer to the name
 

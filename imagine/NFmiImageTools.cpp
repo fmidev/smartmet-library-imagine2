@@ -102,7 +102,7 @@ std::string MimeType(const string& theFileName)
 {
   FILE* in;
   in = fopen(theFileName.c_str(), "rb");
-  if (in == NULL) throw runtime_error("Unable to determine image type of '" + theFileName + "'");
+  if (in == nullptr) throw runtime_error("Unable to determine image type of '" + theFileName + "'");
 
   unsigned char strmagic[4];
   size_t num = fread(strmagic, 1, 4, in);

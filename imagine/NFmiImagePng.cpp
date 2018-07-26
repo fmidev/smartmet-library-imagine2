@@ -44,25 +44,25 @@ void NFmiImage::ReadPNG(FILE *in)
 
   // Initialize PNG struct
 
-  png_structp png_ptr = NULL;
+  png_structp png_ptr = nullptr;
 
-  png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+  png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
   if (!png_ptr) throw NFmiImageMemoryError("Insufficient memory to allocate PNG structure");
 
   // Initialize info struct
 
-  png_infop info_ptr = NULL;
+  png_infop info_ptr = nullptr;
   info_ptr = png_create_info_struct(png_ptr);
   if (!info_ptr)
   {
-    png_destroy_read_struct(&png_ptr, NULL, NULL);
+    png_destroy_read_struct(&png_ptr, nullptr, nullptr);
   }
 
   // Jumper
 
   if (setjmp(png_jmpbuf(png_ptr)))
   {
-    png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
+    png_destroy_read_struct(&png_ptr, &info_ptr, nullptr);
     throw NFmiImageCorruptError("Invalid PNG header");
   }
 
@@ -75,7 +75,7 @@ void NFmiImage::ReadPNG(FILE *in)
   png_uint_32 width, height;
   int bit_depth, color_type;
 
-  png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, NULL, NULL, NULL);
+  png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, nullptr, nullptr, nullptr);
 
   // Allocate the final image
 
@@ -106,9 +106,9 @@ void NFmiImage::ReadPNG(FILE *in)
 
   unsigned char *row_data = static_cast<unsigned char *>(malloc(rowbytes));
 
-  if (row_data == NULL)
+  if (row_data == nullptr)
   {
-    png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
+    png_destroy_read_struct(&png_ptr, &info_ptr, nullptr);
     throw NFmiImageMemoryError("Insufficient memory to allocate PNG row data");
   }
 
@@ -120,7 +120,7 @@ void NFmiImage::ReadPNG(FILE *in)
 
   for (unsigned j = 0; j < height; j++)
   {
-    png_read_row(png_ptr, row_pointer, NULL);
+    png_read_row(png_ptr, row_pointer, nullptr);
 
     int boxoffset = 0;
     for (unsigned i = 0; i < width; i++)
@@ -137,16 +137,16 @@ void NFmiImage::ReadPNG(FILE *in)
 
   png_read_end(png_ptr, info_ptr);
 
-  if (row_data != NULL)
+  if (row_data != nullptr)
   {
     free(row_data);
-    row_data = NULL;
+    row_data = nullptr;
   }
   if (png_ptr && info_ptr)
   {
-    png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
-    png_ptr = NULL;
-    info_ptr = NULL;
+    png_destroy_read_struct(&png_ptr, &info_ptr, nullptr);
+    png_ptr = nullptr;
+    info_ptr = nullptr;
   }
 }
 
@@ -160,14 +160,14 @@ void NFmiImage::WritePNG(FILE *out) const
 
   // Allocate png info variables
 
-  png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+  png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
 
   if (!png_ptr) throw NFmiImageMemoryError("Insufficient memory to allocate PNG write structure");
 
   png_infop info_ptr = png_create_info_struct(png_ptr);
   if (!info_ptr)
   {
-    png_destroy_write_struct(&png_ptr, NULL);
+    png_destroy_write_struct(&png_ptr, nullptr);
     throw NFmiImageMemoryError("Insufficient memory to allocate PNG info structure");
   }
 
@@ -283,7 +283,7 @@ void NFmiImage::WritePNG(FILE *out) const
     // Image data holder
 
     unsigned char *row_data = static_cast<unsigned char *>(malloc(channels * itsWidth));
-    if (row_data == NULL)
+    if (row_data == nullptr)
     {
       png_destroy_write_struct(&png_ptr, &info_ptr);
       throw NFmiImageMemoryError("Insufficient memory to allocate PNG write structure");
@@ -396,7 +396,7 @@ void NFmiImage::WritePNG(FILE *out) const
     // Set the transparent palette
 
     if (num_transparent > 0)
-      png_set_tRNS(png_ptr, info_ptr, transparent_values, num_transparent, NULL);
+      png_set_tRNS(png_ptr, info_ptr, transparent_values, num_transparent, nullptr);
 
     // Set the opaque palette
 
@@ -416,7 +416,7 @@ void NFmiImage::WritePNG(FILE *out) const
     // Image data holder
 
     unsigned char *row_data = static_cast<unsigned char *>(malloc(itsWidth));
-    if (row_data == NULL)
+    if (row_data == nullptr)
     {
       png_destroy_write_struct(&png_ptr, &info_ptr);
       throw NFmiImageMemoryError("Insufficient memory to allocate PNG write row data");

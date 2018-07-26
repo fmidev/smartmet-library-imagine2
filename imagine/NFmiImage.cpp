@@ -332,8 +332,8 @@ static void Composite2(T theBlender,
 
 void NFmiImage::Destroy(void)
 {
-  if (itsPixels != NULL) delete[] itsPixels;
-  itsPixels = NULL;
+  if (itsPixels != nullptr) delete[] itsPixels;
+  itsPixels = nullptr;
 }
 
 // ----------------------------------------------------------------------
@@ -367,7 +367,7 @@ NFmiImage::NFmiImage(const NFmiImage &theImage)
 // Constructor based on filename. The file type is autodetected.
 // ----------------------------------------------------------------------
 #ifndef IMAGINE_WITH_CAIRO
-NFmiImage::NFmiImage(const string &theFileName) : itsPixels(NULL)
+NFmiImage::NFmiImage(const string &theFileName) : itsPixels(nullptr)
 {
   DefaultOptions();
   Read(theFileName);
@@ -438,7 +438,7 @@ void NFmiImage::Allocate(int theWidth, int theHeight)
   itsWidth = theWidth;
   itsHeight = theHeight;
   itsPixels = new int[theWidth * theHeight];  // Allocate
-  if (itsPixels == NULL)
+  if (itsPixels == nullptr)
   {
     ostringstream os;
     os << "Insufficient memory to allocate image of size " << theWidth << "x" << theHeight;
@@ -475,7 +475,7 @@ void NFmiImage::Read(const string &theFileName)
   FILE *in;
   in = fopen(theFileName.c_str(), "rb");
 
-  if (in == NULL) throw NFmiImageOpenError(std::string("Failed to open image ") + theFileName);
+  if (in == nullptr) throw NFmiImageOpenError(std::string("Failed to open image ") + theFileName);
 
   itsType = mime;
 
@@ -496,7 +496,7 @@ void NFmiImage::Read(const string &theFileName)
     throw NFmiImageFormatError("Unrecognized image format in '" + theFileName + "'");
   // Assert we got an image
 
-  if (itsPixels == NULL)
+  if (itsPixels == nullptr)
     throw NFmiImageCorruptError(std::string("Failed to read image ") + theFileName);
 
   // Close the input file
@@ -545,7 +545,7 @@ void NFmiImage::WriteJpeg(const string &theFileName) const
 
   FILE *out;
   out = fopen(tmp.c_str(), "wb");
-  if (out == NULL) throw runtime_error("Failed to open '" + theFileName + "' for writing a JPEG");
+  if (out == nullptr) throw runtime_error("Failed to open '" + theFileName + "' for writing a JPEG");
   WriteJPEG(out);
   fclose(out);
 
@@ -567,7 +567,7 @@ void NFmiImage::WritePng(const string &theFileName) const
 
   FILE *out;
   out = fopen(tmp.c_str(), "wb");
-  if (out == NULL) throw runtime_error("Failed to open '" + theFileName + "' for writing a PNG");
+  if (out == nullptr) throw runtime_error("Failed to open '" + theFileName + "' for writing a PNG");
   WritePNG(out);
   fclose(out);
 
@@ -589,7 +589,7 @@ void NFmiImage::WriteWbmp(const string &theFileName) const
 
   FILE *out;
   out = fopen(tmp.c_str(), "wb");
-  if (out == NULL) throw runtime_error("Failed to open '" + theFileName + "' for writing a WBMP");
+  if (out == nullptr) throw runtime_error("Failed to open '" + theFileName + "' for writing a WBMP");
   WriteWBMP(out);
   fclose(out);
 
@@ -609,7 +609,7 @@ void NFmiImage::WriteGif(const string &theFileName) const
 
   FILE *out;
   out = fopen(tmp.c_str(), "wb");
-  if (out == NULL) throw runtime_error("Failed to open '" + theFileName + "' for writing a GIF");
+  if (out == nullptr) throw runtime_error("Failed to open '" + theFileName + "' for writing a GIF");
   WriteGIF(out);
   fclose(out);
 
@@ -629,7 +629,7 @@ void NFmiImage::WritePnm(const string &theFileName) const
 
   FILE *out;
   out = fopen(tmp.c_str(), "wb");
-  if (out == NULL) throw runtime_error("Failed to open '" + theFileName + "' for writing a PNM");
+  if (out == nullptr) throw runtime_error("Failed to open '" + theFileName + "' for writing a PNM");
   WritePNM(out);
   fclose(out);
 
@@ -649,7 +649,7 @@ void NFmiImage::WritePgm(const string &theFileName) const
 
   FILE *out;
   out = fopen(tmp.c_str(), "wb");
-  if (out == NULL) throw runtime_error("Failed to open '" + theFileName + "' for writing a PGM");
+  if (out == nullptr) throw runtime_error("Failed to open '" + theFileName + "' for writing a PGM");
   WritePGM(out);
   fclose(out);
 

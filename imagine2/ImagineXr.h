@@ -34,7 +34,7 @@ typedef int int32_t;
 class ImagineXr
 {
  private:
-  /* Either 'pdf_surf' or 'image_surf' is non-NULL; tried to use just a single
+  /* Either 'pdf_surf' or 'image_surf' is non-nullptr; tried to use just a single
   * 'Cairo::Surface' object, but they differ enough and casting 'RefPtr' proved
   * to be tedious.
   */

@@ -70,7 +70,7 @@ void NFmiGeoShape::ProjectXY(const NFmiArea &theArea)
   switch (Type())
   {
     case kFmiGeoShapeEsri:
-      if (itsEsriShape != NULL) itsEsriShape->Project(ProjectXYEsriPoint(&theArea));
+      if (itsEsriShape != nullptr) itsEsriShape->Project(ProjectXYEsriPoint(&theArea));
       break;
     case kFmiGeoShapeShoreLine:
       throw NFmiGeoShapeError("NFmiGeoShape::Project() kFmiGeoShapeShoreLine not implemented");
@@ -208,7 +208,7 @@ const NFmiPath NFmiGeoShape::PathEsri() const
 
   // Just a safety, should not happen
 
-  if (itsEsriShape == NULL) return outpath;
+  if (itsEsriShape == nullptr) return outpath;
 
   // Iterate through all elements
 
@@ -218,7 +218,7 @@ const NFmiPath NFmiGeoShape::PathEsri() const
   {
     // There may be deleted elements in the shape, which are to be ignored
 
-    if (*iter == NULL) continue;
+    if (*iter == nullptr) continue;
 
     switch ((*iter)->Type())
     {
@@ -375,7 +375,7 @@ void NFmiGeoShape::AddEsri(NFmiFillMap &theMap) const
 {
   // Just a safety, should not happen
 
-  if (itsEsriShape == NULL) return;
+  if (itsEsriShape == nullptr) return;
 
   // Iterate through all elements
 
@@ -385,7 +385,7 @@ void NFmiGeoShape::AddEsri(NFmiFillMap &theMap) const
   {
     // There may be deleted elements in the shape, which are to be ignored
 
-    if (*iter == NULL) continue;
+    if (*iter == nullptr) continue;
 
     switch ((*iter)->Type())
     {
@@ -531,7 +531,7 @@ void NFmiGeoShape::MarkEsri(ImagineXr_or_NFmiImage &img,
 {
   // Just a safety, should not happen
 
-  if (itsEsriShape == NULL) return;
+  if (itsEsriShape == nullptr) return;
 
   // Iterate through all elements
 
@@ -541,7 +541,7 @@ void NFmiGeoShape::MarkEsri(ImagineXr_or_NFmiImage &img,
   {
     // There may be deleted elements in the shape, which are to be ignored
 
-    if (*iter == NULL) continue;
+    if (*iter == nullptr) continue;
 
     switch ((*iter)->Type())
     {
@@ -619,7 +619,7 @@ void NFmiGeoShape::WriteImageMapEsri(std::ostream &os, const string &theFieldNam
 {
   // Just a safety, should not happen
 
-  if (itsEsriShape == NULL) return;
+  if (itsEsriShape == nullptr) return;
 
   // Make sure the attribute exists
 
@@ -627,7 +627,7 @@ void NFmiGeoShape::WriteImageMapEsri(std::ostream &os, const string &theFieldNam
 
   // Return if the shape has no such field. Maybe should error instead?
 
-  if (attribute == NULL) return;
+  if (attribute == nullptr) return;
 
   // Iterate through all elements
 
@@ -637,7 +637,7 @@ void NFmiGeoShape::WriteImageMapEsri(std::ostream &os, const string &theFieldNam
   {
     // There may be deleted elements in the shape, which are to be ignored
 
-    if (*iter == NULL) continue;
+    if (*iter == nullptr) continue;
 
     // The attribute value
 

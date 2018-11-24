@@ -31,12 +31,13 @@
 #include <newbase/NFmiFileSystem.h>
 #include <newbase/NFmiStringTools.h>
 
+#include <algorithm>
 #include <cstdlib>  // for rand, RAND_MAX
 #include <iostream>
-#include <algorithm>
 #include <sstream>
 
-extern "C" {
+extern "C"
+{
 #ifndef UNIX
 #include <io.h>  // Windows _mktemp
 #endif
@@ -545,7 +546,8 @@ void NFmiImage::WriteJpeg(const string &theFileName) const
 
   FILE *out;
   out = fopen(tmp.c_str(), "wb");
-  if (out == nullptr) throw runtime_error("Failed to open '" + theFileName + "' for writing a JPEG");
+  if (out == nullptr)
+    throw runtime_error("Failed to open '" + theFileName + "' for writing a JPEG");
   WriteJPEG(out);
   fclose(out);
 
@@ -589,7 +591,8 @@ void NFmiImage::WriteWbmp(const string &theFileName) const
 
   FILE *out;
   out = fopen(tmp.c_str(), "wb");
-  if (out == nullptr) throw runtime_error("Failed to open '" + theFileName + "' for writing a WBMP");
+  if (out == nullptr)
+    throw runtime_error("Failed to open '" + theFileName + "' for writing a WBMP");
   WriteWBMP(out);
   fclose(out);
 
@@ -681,7 +684,7 @@ void NFmiImage::Erase(NFmiColorTools::Color theColor)
 
 void NFmiImage::ReduceColors()
 {
-// First we must simplify the alpha channel as requested in the color save mode
+  // First we must simplify the alpha channel as requested in the color save mode
 
 #if (defined IMAGINE_FORMAT_JPEG) || (defined IMAGINE_FORMAT_PNG)
   bool savealpha = (itsSaveAlphaFlag && !IsOpaque(itsAlphaLimit));
@@ -968,7 +971,7 @@ void NFmiImage::StrokeBasic(float theX1,
 
   switch (rule)
   {
-    // Cases for which Color stroke is faster:
+      // Cases for which Color stroke is faster:
 
     case NFmiColorTools::kFmiColorClear:
       StrokeBasic2(NFmiColorBlendClear(), x1, y1, x2, y2, theColor, *this);
@@ -983,7 +986,7 @@ void NFmiImage::StrokeBasic(float theX1,
       StrokeBasic2(NFmiColorBlendReduceConstrast(), x1, y1, x2, y2, theColor, *this);
       break;
 
-    // Cases for which RGBA stroke is faster:
+      // Cases for which RGBA stroke is faster:
 
     case NFmiColorTools::kFmiColorOver:
       StrokeBasic2(NFmiColorBlendOver(), x1, y1, x2, y2, r, g, b, a, *this);
@@ -1105,24 +1108,28 @@ void NFmiImage::Composite(const NFmiImage &thePattern,
   {
     case kFmiAlignCenter:
       y -= thePattern.Height() / 2;
+      // fall through
     case kFmiAlignNorth:
       x -= thePattern.Width() / 2;
       break;
 
     case kFmiAlignEast:
       x -= thePattern.Width();
+      // fall through
     case kFmiAlignWest:
       y -= thePattern.Height() / 2;
       break;
 
     case kFmiAlignSouthEast:
       y -= thePattern.Height();
+      // fall through
     case kFmiAlignNorthEast:
       x -= thePattern.Width();
       break;
 
     case kFmiAlignSouth:
       x -= thePattern.Width() / 2;
+      // fall through
     case kFmiAlignSouthWest:
       y -= thePattern.Height();
       break;

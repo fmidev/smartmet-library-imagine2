@@ -17,9 +17,9 @@
 #endif
 
 #include <algorithm>
-#include <stdexcept>
 #include <set>
 #include <sstream>
+#include <stdexcept>
 
 // ======================================================================
 //				HIDDEN INTERNAL FUNCTIONS
@@ -843,6 +843,7 @@ string NFmiPath::SVG(bool relative_moves, bool removeghostlines) const
               os += ((last_op == kFmiLineTo || last_op == kFmiGhostLineTo) ? " " : " L");
             else
               os += ' ';
+            break;
           case kFmiConicTo:
             os += (last_op == kFmiConicTo ? " " : " Q");
             break;
@@ -1034,10 +1035,10 @@ void NFmiPath::Stroke(ImagineXr_or_NFmiImage &img,
   if (theWidth <= 0) return;
 
 /*
-* Important that Cairo drawings are done the whole path at once;
-* cutting to thousands of moveto/lineto segments kills performance,
-* especially when creating PDF output (Cairo 1.6.4).
-*/
+ * Important that Cairo drawings are done the whole path at once;
+ * cutting to thousands of moveto/lineto segments kills performance,
+ * especially when creating PDF output (Cairo 1.6.4).
+ */
 #ifdef IMAGINE_WITH_CAIRO
   img.Stroke(itsElements, theWidth, theColor, theRule);
 #else

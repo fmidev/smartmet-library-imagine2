@@ -12,10 +12,11 @@
 // ======================================================================
 
 #include "NFmiGeoShape.h"
+
+#include "NFmiEsriMultiPatch.h"
 #include "NFmiEsriMultiPointZ.h"
 #include "NFmiEsriPolyLineZ.h"
 #include "NFmiEsriPolygonZ.h"
-#include "NFmiEsriMultiPatch.h"
 
 using namespace std;
 
@@ -31,12 +32,22 @@ bool overlaps(double min1, double max1, double min2, double max2)
 class ProjectXYEsriPoint : public NFmiEsriProjector
 {
  public:
-  ProjectXYEsriPoint(const NFmiArea *theArea) : itsArea(theArea), itsXshift(0) {}
+  ProjectXYEsriPoint(OGRSpatialReference *theShapeReference, NFmiArea *theArea)
+      : itsArea(theArea),
+        itsXshift(0),
+        itsTransformation(
+            OGRCreateCoordinateTransformation(theShapeReference, theArea->SpatialReference()))
+  {
+  }
+
   NFmiEsriPoint operator()(const NFmiEsriPoint &thePoint) const
   {
-    NFmiPoint tmp(thePoint.X() + itsXshift, thePoint.Y());
-    tmp = itsArea->ToXY(tmp);
-    return NFmiEsriPoint(tmp.X(), tmp.Y());
+    double x = thePoint.X() + itsXshift;
+    double y = thePoint.Y();
+    if (itsTransformation->Transform(1, &x, &y) == 0)
+      throw std::runtime_error("Failed to project shape coordinates");
+    auto xy = itsArea->WorldXYToXY(NFmiPoint(x, y));
+    return NFmiEsriPoint(xy.X(), xy.Y());
   }
 
   void SetBox(const NFmiEsriBox &theBox) const
@@ -59,18 +70,20 @@ class ProjectXYEsriPoint : public NFmiEsriProjector
  private:
   const NFmiArea *itsArea;
   mutable double itsXshift;
+  std::unique_ptr<OGRCoordinateTransformation> itsTransformation;
 };
 
 // ----------------------------------------------------------------------
 // Project the data to XY-coordinates
 // ----------------------------------------------------------------------
 
-void NFmiGeoShape::ProjectXY(const NFmiArea &theArea)
+void NFmiGeoShape::ProjectXY(NFmiArea &theArea)
 {
   switch (Type())
   {
     case kFmiGeoShapeEsri:
-      if (itsEsriShape != nullptr) itsEsriShape->Project(ProjectXYEsriPoint(&theArea));
+      if (itsEsriShape != nullptr)
+        itsEsriShape->Project(ProjectXYEsriPoint(itsEsriShape->SpatialReference(), &theArea));
       break;
     case kFmiGeoShapeShoreLine:
       throw NFmiGeoShapeError("NFmiGeoShape::Project() kFmiGeoShapeShoreLine not implemented");

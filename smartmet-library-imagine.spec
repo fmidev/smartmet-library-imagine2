@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine library
 Name: %{SPECNAME}
-Version: 18.11.24
+Version: 19.9.27
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -18,11 +18,11 @@ BuildRequires: boost-devel
 BuildRequires: freetype-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
-BuildRequires: smartmet-library-newbase-devel >= 18.10.23
+BuildRequires: smartmet-library-newbase-devel >= 19.9.26
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
 BuildRequires: gdal-devel
-Requires: smartmet-library-newbase >= 18.10.23
+Requires: smartmet-library-newbase >= 19.9.26
 Requires: boost-filesystem
 Requires: boost-regex
 Requires: boost-thread
@@ -73,6 +73,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Fri Sep 27 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.9.27-1.fmi
+- Repackaged due to newbase ABI changes
+
 * Sat Nov 24 2018 Mika Heiskanen <mika.heiskanen@fmi.fi> - 18.11.24-1.fmi
 - Fixed an accidental fall through in path generation
 

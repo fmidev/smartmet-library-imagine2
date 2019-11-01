@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 19.9.27
+Version: 19.10.31
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -15,10 +15,10 @@ BuildRequires: boost-devel
 BuildRequires: freetype-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
-BuildRequires: smartmet-library-newbase-devel >= 19.9.26
+BuildRequires: smartmet-library-newbase-devel >= 19.10.31
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
-Requires: smartmet-library-newbase >= 19.9.26
+Requires: smartmet-library-newbase >= 19.10.31
 Requires: cairomm
 Requires: freetype
 Requires: libjpeg
@@ -65,6 +65,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Thu Oct 31 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.10.31-1.fmi
+- Rebuilt due to newbase API/ABI changes
+
 * Fri Sep 27 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.9.27-1.fmi
 - Repackaged due to ABI changes in newbase
 

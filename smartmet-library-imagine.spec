@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine library
 Name: %{SPECNAME}
-Version: 19.10.31
+Version: 19.11.20
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -18,11 +18,11 @@ BuildRequires: boost-devel
 BuildRequires: freetype-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
-BuildRequires: smartmet-library-newbase-devel >= 19.10.31
+BuildRequires: smartmet-library-newbase-devel >= 19.11.20
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
 BuildRequires: gdal-devel
-Requires: smartmet-library-newbase >= 19.10.31
+Requires: smartmet-library-newbase >= 19.11.20
 Requires: boost-filesystem
 Requires: boost-regex
 Requires: boost-thread
@@ -73,6 +73,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Wed Nov 20 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.11.20-1.fmi
+- Repackaged due to newbase API changes
+
 * Thu Oct 31 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.10.31-1.fmi
 - Rebuilt due to newbase API/ABI changes
 

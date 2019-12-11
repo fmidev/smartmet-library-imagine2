@@ -32,7 +32,7 @@
 #include "NFmiEsriBox.h"
 #include "NFmiEsriElement.h"
 
-#include <gdal/ogr_spatialref.h>
+#include <ogr_spatialref.h>
 
 #include <vector>
 

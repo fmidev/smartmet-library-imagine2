@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine library
 Name: %{SPECNAME}
-Version: 19.11.20
+Version: 19.12.11
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -21,7 +21,7 @@ BuildRequires: libpng-devel
 BuildRequires: smartmet-library-newbase-devel >= 19.11.20
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
-BuildRequires: gdal-devel
+BuildRequires: gdal30-devel
 Requires: smartmet-library-newbase >= 19.11.20
 Requires: boost-filesystem
 Requires: boost-regex
@@ -73,6 +73,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Wed Dec 11 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.12.11-1.fmi
+- Upgrade to GDAL 3.0
+
 * Wed Nov 20 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.11.20-1.fmi
 - Repackaged due to newbase API changes
 

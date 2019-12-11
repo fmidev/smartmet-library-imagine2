@@ -64,6 +64,7 @@ else
  INCLUDES = \
 	-I$(includedir) \
 	-I$(includedir)/smartmet \
+	-I$(PREFIX)/gdal30/include \
 	`freetype-config --cflags`
 
 endif
@@ -78,7 +79,7 @@ LIBS = -L$(libdir) \
 	-lboost_filesystem \
 	-lboost_regex \
 	-lboost_thread \
-	-lgdal \
+	-L$(PREFIX)/gdal30/lib -lgdal \
 	`freetype-config --libs` \
 	-ljpeg -lpng -lz
 

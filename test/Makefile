@@ -1,6 +1,6 @@
 PROG = $(patsubst %.cpp,%,$(wildcard *Test.cpp))
 
-MAINFLAGS = -Wall -W -Wno-unused-parameter
+MAINFLAGS = -std=c++11 -Wall -W -Wno-unused-parameter
 
 EXTRAFLAGS = \
 	-Werror \
@@ -46,10 +46,11 @@ CC = g++
 CFLAGS = -DUNIX -O0 -g $(MAINFLAGS)
 
 INCLUDES = \
-	-I ../imagine \
-	-I /usr/include/smartmet/ \
-	-I /usr/include/smartmet/newbase \
-	-I /usr/include/smartmet/regression \
+	-I../imagine \
+	-I/usr/include/smartmet/ \
+	-I/usr/include/smartmet/newbase \
+	-I/usr/include/smartmet/regression \
+	-I/usr/gdal30/include \
 	$(FT2_CFLAGS) \
 	$(CAIRO_CFLAGS)
 

@@ -81,7 +81,7 @@ LIBS = -L$(libdir) \
 	-lboost_filesystem \
 	-lboost_regex \
 	-lboost_thread \
-	-lgdal \
+	-L$(PREFIX)/gdal30/lib -lgdal \
 	`freetype-config --libs` \
 	`pkg-config --libs cairomm-1.0` \
 	-ljpeg -lpng -lz

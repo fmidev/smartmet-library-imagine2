@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine library
 Name: %{SPECNAME}
-Version: 19.12.13
+Version: 20.1.8
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -18,11 +18,11 @@ BuildRequires: boost-devel
 BuildRequires: freetype-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
-BuildRequires: smartmet-library-newbase-devel >= 19.12.12
+BuildRequires: smartmet-library-newbase-devel >= 20.1.8
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
 BuildRequires: gdal30-devel
-Requires: smartmet-library-newbase >= 19.12.12
+Requires: smartmet-library-newbase >= 20.1.8
 Requires: boost-filesystem
 Requires: boost-regex
 Requires: boost-thread
@@ -73,6 +73,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Wed Jan  8 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.1.8-1.fmi
+- Repackaged due to NFmiPoint ABI changes
+
 * Fri Dec 13 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.12.13-1.fmi
 - Repackaged due to NFmiArea API changes
 

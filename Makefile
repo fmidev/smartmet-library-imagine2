@@ -31,7 +31,7 @@ DEFINES = -DWGS84 -DUNIX -D_REENTRANT -DFMI_COMPRESSION -DBOOST -DBOOST_IOSTREAM
 ifeq ($(CXX), clang++)
 
  FLAGS = \
-	-std=c++11 -fPIC -MD \
+	-std=c++11 -fPIC -MD -fno-omit-frame-pointer \
 	-Weverything \
 	-Wno-c++98-compat \
 	-Wno-float-equal \
@@ -47,7 +47,7 @@ ifeq ($(CXX), clang++)
 
 else
 
- FLAGS = -std=c++11 -fPIC -MD -Wall -W -Wno-unused-parameter
+ FLAGS = -std=c++11 -fPIC -MD -Wall -W -Wno-unused-parameter -fno-omit-frame-pointer
 
  FLAGS_DEBUG = \
 	-Wcast-align \
@@ -157,7 +157,7 @@ objdir:
 rpm: clean
 	if [ -e $(SPEC).spec ]; \
 	then \
-	  tar -czvf $(SPEC).tar.gz --transform "s,^,$(SPEC)/," * ; \
+	  tar -czvf $(SPEC).tar.gz --exclude test --exclude-vcs --transform "s,^,$(SPEC)/," * ; \
 	  rpmbuild -ta $(SPEC).tar.gz ; \
 	  rm -f $(SPEC).tar.gz ; \
 	else \

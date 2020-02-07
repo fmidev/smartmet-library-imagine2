@@ -71,6 +71,9 @@ FMI %{DIRNAME} development files
 * Fri Dec 13 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.12.13-1.fmi
 - Repackaged due to NFmiArea API changes
 
+* Wed Dec  4 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.12.4-1.fmi
+- Use -fno-omit-frame-pointer for a better profiling and debugging experience                                                                                              
+
 * Wed Nov 20 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.11.20-1.fmi
 - Repackaged due to newbase API changes
 

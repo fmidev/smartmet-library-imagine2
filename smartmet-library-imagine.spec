@@ -73,6 +73,7 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+<<<<<<< HEAD
 * Thu Feb  6 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.2.6-1.fmi
 - NFmiPoint Z-coordinate removed from the ABI
 
@@ -81,6 +82,9 @@ FMI %{DIRNAME} development files
 
 * Wed Dec 11 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.12.11-1.fmi
 - Upgrade to GDAL 3.0
+
+* Wed Dec  4 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.12.4-1.fmi
+- Use -fno-omit-frame-pointer for a better profiling and debugging experience                                                                                              
 
 * Wed Nov 20 2019 Mika Heiskanen <mika.heiskanen@fmi.fi> - 19.11.20-1.fmi
 - Repackaged due to newbase API changes

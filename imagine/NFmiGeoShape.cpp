@@ -44,8 +44,20 @@ class ProjectXYEsriPoint : public NFmiEsriProjector
   {
     double x = thePoint.X() + itsXshift;
     double y = thePoint.Y();
+
+    if (itsTransformation->GetSourceCS()->EPSGTreatsAsLatLong() == 1) std::swap(x, y);
+
     if (itsTransformation->Transform(1, &x, &y) == 0)
       throw std::runtime_error("Failed to project shape coordinates");
+
+    if (itsTransformation->GetSourceCS()->EPSGTreatsAsLatLong() == 1) std::swap(x, y);
+
+#if GDAL_VERSION_MAJOR > 1
+    if (itsTransformation->GetTargetCS()->EPSGTreatsAsLatLong() == 0 &&
+        itsTransformation->GetTargetCS()->EPSGTreatsAsNorthingEasting() == 0)
+      std::swap(x, y);
+#endif
+
     auto xy = itsArea->WorldXYToXY(NFmiPoint(x, y));
     return NFmiEsriPoint(xy.X(), xy.Y());
   }

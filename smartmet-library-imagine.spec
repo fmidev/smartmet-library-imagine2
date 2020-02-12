@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine library
 Name: %{SPECNAME}
-Version: 20.2.6
+Version: 20.2.12
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -73,7 +73,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
-<<<<<<< HEAD
+* Wed Feb 12 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.2.12-1.fmi
+- Fixed NFmiGeoShape::Project to handle EPSGTreatsAsLatLong
+
 * Thu Feb  6 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.2.6-1.fmi
 - NFmiPoint Z-coordinate removed from the ABI
 

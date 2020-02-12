@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 20.2.6
+Version: 20.2.12
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -18,9 +18,11 @@ BuildRequires: libpng-devel
 BuildRequires: smartmet-library-newbase-devel >= 20.2.6
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
+BuildRequires: gdal30-devel
 Requires: smartmet-library-newbase >= 20.2.6
 Requires: cairomm
 Requires: freetype
+Requires: gdal30
 Requires: libjpeg
 Requires: libpng
 Requires: zlib
@@ -65,6 +67,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Wed Feb 12 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.2.12-1.fmi
+- Ported to use GDAL 3.0
+
 * Thu Feb  6 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.2.6-1.fmi
 - NFmiPoint Z-coordinate was removed from the ABI
 

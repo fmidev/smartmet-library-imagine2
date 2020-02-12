@@ -1,6 +1,6 @@
 PROG = $(patsubst %.cpp,%,$(wildcard *Test.cpp))
 
-MAINFLAGS = -Wall -W -Wno-unused-parameter
+MAINFLAGS = -std=c++11 -Wall -W -Wno-unused-parameter
 
 EXTRAFLAGS = \
 	-Werror \
@@ -54,8 +54,8 @@ INCLUDES = \
 	$(FT2_CFLAGS) \
 	$(CAIRO_CFLAGS)
 
-LIBS =  ../libsmartmet_imagine2.so \
-	-lsmartmet_newbase \
+LIBS =  ../libsmartmet-imagine2.so \
+	-lsmartmet-newbase \
 	-lboost_regex \
 	-lboost_filesystem \
         -lboost_iostreams \
@@ -75,6 +75,6 @@ test: $(PROG)
 	./$$prog; \
 	done
 
-$(PROG) : % : %.cpp ../libsmartmet_imagine2.so
+$(PROG) : % : %.cpp ../libsmartmet-imagine2.so
 	$(CC) $(CFLAGS) -o $@ $@.cpp $(INCLUDES) $(LIBS)
 

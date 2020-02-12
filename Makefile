@@ -39,6 +39,7 @@ ifeq ($(CXX), clang++)
 	-Wno-missing-prototypes
 
  INCLUDES = \
+	-isystem $(PREFIX)/gdal30/include \
 	-isystem $(includedir) \
 	-isystem $(includedir)/smartmet \
 	-isystem $(includedir)/smartmet/newbase \
@@ -64,6 +65,7 @@ else
  FLAGS_RELEASE = -Wuninitialized
 
  INCLUDES = \
+	-I$(PREFIX)/gdal30/include \
 	-I$(includedir) \
 	-I$(includedir)/smartmet \
 	-I$(includedir)/smartmet/newbase \
@@ -84,6 +86,7 @@ LIBS = -L$(libdir) \
 	-L$(PREFIX)/gdal30/lib -lgdal \
 	`freetype-config --libs` \
 	`pkg-config --libs cairomm-1.0` \
+	-lfmt \
 	-ljpeg -lpng -lz
 
 # What to install

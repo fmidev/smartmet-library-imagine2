@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 20.2.12
+Version: 20.3.26
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -15,11 +15,11 @@ BuildRequires: boost-devel
 BuildRequires: freetype-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
-BuildRequires: smartmet-library-newbase-devel >= 20.2.6
+BuildRequires: smartmet-library-newbase-devel >= 20.3.26
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
 BuildRequires: gdal30-devel
-Requires: smartmet-library-newbase >= 20.2.6
+Requires: smartmet-library-newbase >= 20.3.26
 Requires: cairomm
 Requires: freetype
 Requires: gdal30
@@ -67,6 +67,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Thu Mar 26 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.3.26-1.fmi
+- Repackaged due to NFmiArea API changes
+
 * Wed Feb 12 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.2.12-1.fmi
 - Ported to use GDAL 3.0
 

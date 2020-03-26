@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine library
 Name: %{SPECNAME}
-Version: 20.2.12
+Version: 20.3.26
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -18,11 +18,11 @@ BuildRequires: boost-devel
 BuildRequires: freetype-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
-BuildRequires: smartmet-library-newbase-devel >= 20.2.6
+BuildRequires: smartmet-library-newbase-devel >= 20.3.26
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
 BuildRequires: gdal30-devel
-Requires: smartmet-library-newbase >= 20.2.6
+Requires: smartmet-library-newbase >= 20.3.26
 Requires: boost-filesystem
 Requires: boost-regex
 Requires: boost-thread
@@ -73,6 +73,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Thu Mar 26 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.3.26-1.fmi
+- Repackaged since NFmiArea API changed
+
 * Wed Feb 12 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.2.12-1.fmi
 - Fixed NFmiGeoShape::Project to handle EPSGTreatsAsLatLong
 

@@ -67,11 +67,11 @@ NFmiPath NFmiContourTree::Path(void) const
  */
 // ----------------------------------------------------------------------
 
-void NFmiContourTree::Contour(const NFmiDataMatrix<NFmiPoint>& thePts,
+void NFmiContourTree::Contour(const NFmiCoordinateMatrix& thePts,
                               const NFmiDataMatrix<float>& theValues,
                               const NFmiContourInterpolation& theInterpolation)
 {
-  if (thePts.NX() != theValues.NX() || thePts.NY() != theValues.NY())
+  if (thePts.Width() != theValues.NX() || thePts.Height() != theValues.NY())
     throw runtime_error("Cannot contour values with coordinate matrix of different size");
 
   switch (theInterpolation)
@@ -130,12 +130,12 @@ void NFmiContourTree::Contour(const NFmiDataMatrix<float>& theValues,
  */
 // ----------------------------------------------------------------------
 
-void NFmiContourTree::Contour(const NFmiDataMatrix<NFmiPoint>& thePts,
+void NFmiContourTree::Contour(const NFmiCoordinateMatrix& thePts,
                               const NFmiDataMatrix<float>& theValues,
                               const NFmiDataHints& theHelper,
                               const NFmiContourInterpolation& theInterpolation)
 {
-  if (thePts.NX() != theValues.NX() || thePts.NY() != theValues.NY())
+  if (thePts.Width() != theValues.NX() || thePts.Height() != theValues.NY())
     throw runtime_error("Cannot contour values with coordinate matrix of different size");
 
   switch (theInterpolation)
@@ -197,23 +197,23 @@ void NFmiContourTree::Contour(const NFmiDataMatrix<float>& theValues,
  */
 // ----------------------------------------------------------------------
 
-void NFmiContourTree::ContourNearest(const NFmiDataMatrix<NFmiPoint>& thePts,
+void NFmiContourTree::ContourNearest(const NFmiCoordinateMatrix& thePts,
                                      const NFmiDataMatrix<float>& theValues)
 {
-  for (unsigned int j = 0; j < thePts.NY() - 1; j++)
-    for (unsigned int i = 0; i < thePts.NX() - 1; i++)
+  for (unsigned int j = 0; j < thePts.Height() - 1; j++)
+    for (unsigned int i = 0; i < thePts.Width() - 1; i++)
 
-      ContourNearest4(thePts[i][j].X(),
-                      thePts[i][j].Y(),
+      ContourNearest4(thePts.X(i, j),
+                      thePts.Y(i, j),
                       theValues[i][j],
-                      thePts[i + 1][j].X(),
-                      thePts[i + 1][j].Y(),
+                      thePts.X(i + 1, j),
+                      thePts.Y(i + 1, j),
                       theValues[i + 1][j],
-                      thePts[i + 1][j + 1].X(),
-                      thePts[i + 1][j + 1].Y(),
+                      thePts.X(i + 1, j + 1),
+                      thePts.Y(i + 1, j + 1),
                       theValues[i + 1][j + 1],
-                      thePts[i][j + 1].X(),
-                      thePts[i][j + 1].Y(),
+                      thePts.X(i, j + 1),
+                      thePts.Y(i, j + 1),
                       theValues[i][j + 1]);
 }
 
@@ -229,23 +229,23 @@ void NFmiContourTree::ContourNearest(const NFmiDataMatrix<NFmiPoint>& thePts,
  */
 // ----------------------------------------------------------------------
 
-void NFmiContourTree::ContourDiscrete(const NFmiDataMatrix<NFmiPoint>& thePts,
+void NFmiContourTree::ContourDiscrete(const NFmiCoordinateMatrix& thePts,
                                       const NFmiDataMatrix<float>& theValues)
 {
-  for (unsigned int j = 0; j < thePts.NY() - 1; j++)
-    for (unsigned int i = 0; i < thePts.NX() - 1; i++)
+  for (unsigned int j = 0; j < thePts.Height() - 1; j++)
+    for (unsigned int i = 0; i < thePts.Width() - 1; i++)
 
-      ContourDiscrete4(thePts[i][j].X(),
-                       thePts[i][j].Y(),
+      ContourDiscrete4(thePts.X(i, j),
+                       thePts.Y(i, j),
                        theValues[i][j],
-                       thePts[i + 1][j].X(),
-                       thePts[i + 1][j].Y(),
+                       thePts.X(i + 1, j),
+                       thePts.Y(i + 1, j),
                        theValues[i + 1][j],
-                       thePts[i + 1][j + 1].X(),
-                       thePts[i + 1][j + 1].Y(),
+                       thePts.X(i + 1, j + 1),
+                       thePts.Y(i + 1, j + 1),
                        theValues[i + 1][j + 1],
-                       thePts[i][j + 1].X(),
-                       thePts[i][j + 1].Y(),
+                       thePts.X(i, j + 1),
+                       thePts.Y(i, j + 1),
                        theValues[i][j + 1]);
 }
 
@@ -320,7 +320,7 @@ void NFmiContourTree::ContourDiscrete(const NFmiDataMatrix<float>& theValues)
  */
 // ----------------------------------------------------------------------
 
-void NFmiContourTree::ContourNearest(const NFmiDataMatrix<NFmiPoint>& thePts,
+void NFmiContourTree::ContourNearest(const NFmiCoordinateMatrix& thePts,
                                      const NFmiDataMatrix<float>& theValues,
                                      const NFmiDataHints& theHelper)
 {
@@ -332,17 +332,17 @@ void NFmiContourTree::ContourNearest(const NFmiDataMatrix<NFmiPoint>& thePts,
   {
     for (int j = it->y1; j < it->y2; ++j)
       for (int i = it->x1; i < it->x2; ++i)
-        ContourNearest4(thePts[i][j].X(),
-                        thePts[i][j].Y(),
+        ContourNearest4(thePts.X(i, j),
+                        thePts.Y(i, j),
                         theValues[i][j],
-                        thePts[i + 1][j].X(),
-                        thePts[i + 1][j].Y(),
+                        thePts.X(i + 1, j),
+                        thePts.Y(i + 1, j),
                         theValues[i + 1][j],
-                        thePts[i + 1][j + 1].X(),
-                        thePts[i + 1][j + 1].Y(),
+                        thePts.X(i + 1, j + 1),
+                        thePts.Y(i + 1, j + 1),
                         theValues[i + 1][j + 1],
-                        thePts[i][j + 1].X(),
-                        thePts[i][j + 1].Y(),
+                        thePts.X(i, j + 1),
+                        thePts.Y(i, j + 1),
                         theValues[i][j + 1]);
   }
 }
@@ -358,7 +358,7 @@ void NFmiContourTree::ContourNearest(const NFmiDataMatrix<NFmiPoint>& thePts,
  */
 // ----------------------------------------------------------------------
 
-void NFmiContourTree::ContourDiscrete(const NFmiDataMatrix<NFmiPoint>& thePts,
+void NFmiContourTree::ContourDiscrete(const NFmiCoordinateMatrix& thePts,
                                       const NFmiDataMatrix<float>& theValues,
                                       const NFmiDataHints& theHelper)
 {
@@ -370,17 +370,17 @@ void NFmiContourTree::ContourDiscrete(const NFmiDataMatrix<NFmiPoint>& thePts,
   {
     for (int j = it->y1; j < it->y2; ++j)
       for (int i = it->x1; i < it->x2; ++i)
-        ContourDiscrete4(thePts[i][j].X(),
-                         thePts[i][j].Y(),
+        ContourDiscrete4(thePts.X(i, j),
+                         thePts.Y(i, j),
                          theValues[i][j],
-                         thePts[i + 1][j].X(),
-                         thePts[i + 1][j].Y(),
+                         thePts.X(i + 1, j),
+                         thePts.Y(i + 1, j),
                          theValues[i + 1][j],
-                         thePts[i + 1][j + 1].X(),
-                         thePts[i + 1][j + 1].Y(),
+                         thePts.X(i + 1, j + 1),
+                         thePts.Y(i + 1, j + 1),
                          theValues[i + 1][j + 1],
-                         thePts[i][j + 1].X(),
-                         thePts[i][j + 1].Y(),
+                         thePts.X(i, j + 1),
+                         thePts.Y(i, j + 1),
                          theValues[i][j + 1]);
   }
 }
@@ -471,23 +471,23 @@ void NFmiContourTree::ContourDiscrete(const NFmiDataMatrix<float>& theValues,
  */
 // ----------------------------------------------------------------------
 
-void NFmiContourTree::ContourLinear(const NFmiDataMatrix<NFmiPoint>& thePts,
+void NFmiContourTree::ContourLinear(const NFmiCoordinateMatrix& thePts,
                                     const NFmiDataMatrix<float>& theValues)
 {
-  for (unsigned int j = 0; j < thePts.NY() - 1; j++)
-    for (unsigned int i = 0; i < thePts.NX() - 1; i++)
+  for (unsigned int j = 0; j < thePts.Height() - 1; j++)
+    for (unsigned int i = 0; i < thePts.Width() - 1; i++)
 
-      ContourLinear4(thePts[i][j].X(),
-                     thePts[i][j].Y(),
+      ContourLinear4(thePts.X(i, j),
+                     thePts.Y(i, j),
                      theValues[i][j],
-                     thePts[i + 1][j].X(),
-                     thePts[i + 1][j].Y(),
+                     thePts.X(i + 1, j),
+                     thePts.Y(i + 1, j),
                      theValues[i + 1][j],
-                     thePts[i + 1][j + 1].X(),
-                     thePts[i + 1][j + 1].Y(),
+                     thePts.X(i + 1, j + 1),
+                     thePts.Y(i + 1, j + 1),
                      theValues[i + 1][j + 1],
-                     thePts[i][j + 1].X(),
-                     thePts[i][j + 1].Y(),
+                     thePts.X(i, j + 1),
+                     thePts.Y(i, j + 1),
                      theValues[i][j + 1]);
 }
 
@@ -534,7 +534,7 @@ void NFmiContourTree::ContourLinear(const NFmiDataMatrix<float>& theValues)
  */
 // ----------------------------------------------------------------------
 
-void NFmiContourTree::ContourLinear(const NFmiDataMatrix<NFmiPoint>& thePts,
+void NFmiContourTree::ContourLinear(const NFmiCoordinateMatrix& thePts,
                                     const NFmiDataMatrix<float>& theValues,
                                     const NFmiDataHints& theHelper)
 {
@@ -546,17 +546,17 @@ void NFmiContourTree::ContourLinear(const NFmiDataMatrix<NFmiPoint>& thePts,
   {
     for (int j = it->y1; j < it->y2; ++j)
       for (int i = it->x1; i < it->x2; ++i)
-        ContourLinear4(thePts[i][j].X(),
-                       thePts[i][j].Y(),
+        ContourLinear4(thePts.X(i, j),
+                       thePts.Y(i, j),
                        theValues[i][j],
-                       thePts[i + 1][j].X(),
-                       thePts[i + 1][j].Y(),
+                       thePts.X(i + 1, j),
+                       thePts.Y(i + 1, j),
                        theValues[i + 1][j],
-                       thePts[i + 1][j + 1].X(),
-                       thePts[i + 1][j + 1].Y(),
+                       thePts.X(i + 1, j + 1),
+                       thePts.Y(i + 1, j + 1),
                        theValues[i + 1][j + 1],
-                       thePts[i][j + 1].X(),
-                       thePts[i][j + 1].Y(),
+                       thePts.X(i, j + 1),
+                       thePts.Y(i, j + 1),
                        theValues[i][j + 1]);
   }
 }

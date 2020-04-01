@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 20.3.26
+Version: 20.4.1
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -15,11 +15,11 @@ BuildRequires: boost-devel
 BuildRequires: freetype-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
-BuildRequires: smartmet-library-newbase-devel >= 20.3.26
+BuildRequires: smartmet-library-newbase-devel >= 20.3.31
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
 BuildRequires: gdal30-devel
-Requires: smartmet-library-newbase >= 20.3.26
+Requires: smartmet-library-newbase >= 20.3.31
 Requires: cairomm
 Requires: freetype
 Requires: gdal30
@@ -67,6 +67,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Wed Apr  1 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.4.1-1.fmi
+- Use NFmiCoordinateMatrix instead of NFmiDataMatrix<NFmiPoint>
+
 * Thu Mar 26 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.3.26-1.fmi
 - Repackaged due to NFmiArea API changes
 

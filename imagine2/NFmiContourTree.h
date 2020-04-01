@@ -136,14 +136,14 @@
 
 #include "NFmiDataHints.h"
 
+#include <NFmiFastQueryInfo.h>  // for querydata
 #include <NFmiGlobals.h>        // for kFloatMissing
 #include <NFmiGrid.h>           // for grids
-#include <NFmiFastQueryInfo.h>  // for querydata
 
-#include <utility>    // pairs
-#include <set>        // sets
-#include <vector>     // vectors
 #include <algorithm>  // insert
+#include <set>        // sets
+#include <utility>    // pairs
+#include <vector>     // vectors
 
 namespace Imagine
 {
@@ -280,11 +280,11 @@ class _FMI_DLL NFmiContourTree : public NFmiEdgeTree
 
   /// Contour a data-matrix using the desired method.
 
-  void Contour(const NFmiDataMatrix<NFmiPoint>& thePts,
+  void Contour(const NFmiCoordinateMatrix& thePts,
                const NFmiDataMatrix<float>& theValues,
                const NFmiContourInterpolation& theInterpolation);
 
-  void Contour(const NFmiDataMatrix<NFmiPoint>& thePts,
+  void Contour(const NFmiCoordinateMatrix& thePts,
                const NFmiDataMatrix<float>& theValues,
                const NFmiDataHints& theHelper,
                const NFmiContourInterpolation& theInterpolation);
@@ -327,7 +327,7 @@ class _FMI_DLL NFmiContourTree : public NFmiEdgeTree
     kAbove
   };
 
-/// A help function definition for vertex insidedness combinations
+  /// A help function definition for vertex insidedness combinations
 
 #define VertexCombo(a, b) (3 * (a) + b)
 
@@ -384,10 +384,9 @@ class _FMI_DLL NFmiContourTree : public NFmiEdgeTree
 
   void ContourLinear(const NFmiDataMatrix<float>& theValues, const NFmiDataHints& theHelper);
 
-  void ContourLinear(const NFmiDataMatrix<NFmiPoint>& thePts,
-                     const NFmiDataMatrix<float>& theValues);
+  void ContourLinear(const NFmiCoordinateMatrix& thePts, const NFmiDataMatrix<float>& theValues);
 
-  void ContourLinear(const NFmiDataMatrix<NFmiPoint>& thePts,
+  void ContourLinear(const NFmiCoordinateMatrix& thePts,
                      const NFmiDataMatrix<float>& theValues,
                      const NFmiDataHints& theHelper);
 
@@ -397,10 +396,9 @@ class _FMI_DLL NFmiContourTree : public NFmiEdgeTree
 
   void ContourNearest(const NFmiDataMatrix<float>& theValues, const NFmiDataHints& theHelper);
 
-  void ContourNearest(const NFmiDataMatrix<NFmiPoint>& thePts,
-                      const NFmiDataMatrix<float>& theValues);
+  void ContourNearest(const NFmiCoordinateMatrix& thePts, const NFmiDataMatrix<float>& theValues);
 
-  void ContourNearest(const NFmiDataMatrix<NFmiPoint>& thePts,
+  void ContourNearest(const NFmiCoordinateMatrix& thePts,
                       const NFmiDataMatrix<float>& theValues,
                       const NFmiDataHints& theHelper);
 
@@ -410,10 +408,9 @@ class _FMI_DLL NFmiContourTree : public NFmiEdgeTree
 
   void ContourDiscrete(const NFmiDataMatrix<float>& theValues, const NFmiDataHints& theHelper);
 
-  void ContourDiscrete(const NFmiDataMatrix<NFmiPoint>& thePts,
-                       const NFmiDataMatrix<float>& theValues);
+  void ContourDiscrete(const NFmiCoordinateMatrix& thePts, const NFmiDataMatrix<float>& theValues);
 
-  void ContourDiscrete(const NFmiDataMatrix<NFmiPoint>& thePts,
+  void ContourDiscrete(const NFmiCoordinateMatrix& thePts,
                        const NFmiDataMatrix<float>& theValues,
                        const NFmiDataHints& theHelper);
 
@@ -536,4 +533,3 @@ class _FMI_DLL NFmiContourTree : public NFmiEdgeTree
 }  // namespace Imagine
 
 // ----------------------------------------------------------------------
-

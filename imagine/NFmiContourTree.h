@@ -277,11 +277,11 @@ class _FMI_DLL NFmiContourTree : public NFmiEdgeTree
 
   /// Contour a data-matrix using the desired method.
 
-  void Contour(const NFmiCoordinateMatrix& thePts,
+  void Contour(const Fmi::CoordinateMatrix& thePts,
                const NFmiDataMatrix<float>& theValues,
                const NFmiContourInterpolation& theInterpolation);
 
-  void Contour(const NFmiCoordinateMatrix& thePts,
+  void Contour(const Fmi::CoordinateMatrix& thePts,
                const NFmiDataMatrix<float>& theValues,
                const NFmiDataHints& theHelper,
                const NFmiContourInterpolation& theInterpolation);
@@ -381,9 +381,9 @@ class _FMI_DLL NFmiContourTree : public NFmiEdgeTree
 
   void ContourLinear(const NFmiDataMatrix<float>& theValues, const NFmiDataHints& theHelper);
 
-  void ContourLinear(const NFmiCoordinateMatrix& thePts, const NFmiDataMatrix<float>& theValues);
+  void ContourLinear(const Fmi::CoordinateMatrix& thePts, const NFmiDataMatrix<float>& theValues);
 
-  void ContourLinear(const NFmiCoordinateMatrix& thePts,
+  void ContourLinear(const Fmi::CoordinateMatrix& thePts,
                      const NFmiDataMatrix<float>& theValues,
                      const NFmiDataHints& theHelper);
 
@@ -393,9 +393,9 @@ class _FMI_DLL NFmiContourTree : public NFmiEdgeTree
 
   void ContourNearest(const NFmiDataMatrix<float>& theValues, const NFmiDataHints& theHelper);
 
-  void ContourNearest(const NFmiCoordinateMatrix& thePts, const NFmiDataMatrix<float>& theValues);
+  void ContourNearest(const Fmi::CoordinateMatrix& thePts, const NFmiDataMatrix<float>& theValues);
 
-  void ContourNearest(const NFmiCoordinateMatrix& thePts,
+  void ContourNearest(const Fmi::CoordinateMatrix& thePts,
                       const NFmiDataMatrix<float>& theValues,
                       const NFmiDataHints& theHelper);
 
@@ -405,9 +405,9 @@ class _FMI_DLL NFmiContourTree : public NFmiEdgeTree
 
   void ContourDiscrete(const NFmiDataMatrix<float>& theValues, const NFmiDataHints& theHelper);
 
-  void ContourDiscrete(const NFmiCoordinateMatrix& thePts, const NFmiDataMatrix<float>& theValues);
+  void ContourDiscrete(const Fmi::CoordinateMatrix& thePts, const NFmiDataMatrix<float>& theValues);
 
-  void ContourDiscrete(const NFmiCoordinateMatrix& thePts,
+  void ContourDiscrete(const Fmi::CoordinateMatrix& thePts,
                        const NFmiDataMatrix<float>& theValues,
                        const NFmiDataHints& theHelper);
 

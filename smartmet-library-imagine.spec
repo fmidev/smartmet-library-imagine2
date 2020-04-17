@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine library
 Name: %{SPECNAME}
-Version: 20.4.1
+Version: 20.4.17
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -18,11 +18,11 @@ BuildRequires: boost-devel
 BuildRequires: freetype-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
-BuildRequires: smartmet-library-newbase-devel >= 20.3.31
+BuildRequires: smartmet-library-newbase-devel >= 20.4.14
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
 BuildRequires: gdal30-devel
-Requires: smartmet-library-newbase >= 20.3.31
+Requires: smartmet-library-newbase >= 20.4.14
 Requires: boost-filesystem
 Requires: boost-regex
 Requires: boost-thread
@@ -73,6 +73,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Fri Apr 17 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.4.17-1.fmi
+- Use Fmi::CoordinateMatrix from gis-library
+
 * Wed Apr  1 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.4.1-1.fmi
 - Use NFmiCoordinateMatrix instead of NFmiDataMatrix<NFmiPoint>
 

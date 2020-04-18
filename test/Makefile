@@ -1,6 +1,6 @@
 PROG = $(patsubst %.cpp,%,$(wildcard *Test.cpp))
 
-MAINFLAGS = -Wall -W -Wno-unused-parameter
+MAINFLAGS = -std=c++11 -Wall -W -Wno-unused-parameter
 
 EXTRAFLAGS = \
 	-Werror \
@@ -46,16 +46,23 @@ endif
 CC = g++
 CFLAGS = -DUNIX -O0 -g $(MAINFLAGS)
 
-INCLUDES = \
-	-I ../imagine2 \
-	-I /usr/include/ \
-	-I /usr/include/smartmet/newbase \
-	-I /usr/include/smartmet/regression \
+# Boost 1.69
+
+ifneq "$(wildcard /usr/include/boost169)" ""
+  INCLUDES += -I/usr/include/boost169
+  LIBS += -L/usr/lib64/boost169
+endif
+
+INCLUDES += \
+	-I../imagine2 \
+	-I/usr/include/ \
+	-I/usr/include/smartmet/newbase \
+	-I/usr/include/smartmet/regression \
 	$(FT2_CFLAGS) \
 	$(CAIRO_CFLAGS)
 
-LIBS =  ../libsmartmet_imagine2.so \
-	-lsmartmet_newbase \
+LIBS +=  ../libsmartmet-imagine2.so \
+	-lsmartmet-newbase \
 	-lboost_regex \
 	-lboost_filesystem \
         -lboost_iostreams \
@@ -75,6 +82,6 @@ test: $(PROG)
 	./$$prog; \
 	done
 
-$(PROG) : % : %.cpp ../libsmartmet_imagine2.so
+$(PROG) : % : %.cpp ../libsmartmet-imagine2.so
 	$(CC) $(CFLAGS) -o $@ $@.cpp $(INCLUDES) $(LIBS)
 

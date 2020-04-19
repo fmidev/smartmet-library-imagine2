@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine library
 Name: %{SPECNAME}
-Version: 20.4.17
+Version: 20.4.18
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -14,18 +14,18 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: rpm-build
 BuildRequires: gcc-c++
 BuildRequires: make
-BuildRequires: boost-devel
+BuildRequires: boost169-devel
 BuildRequires: freetype-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
-BuildRequires: smartmet-library-newbase-devel >= 20.4.14
+BuildRequires: smartmet-library-newbase-devel >= 20.4.18
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
 BuildRequires: gdal30-devel
-Requires: smartmet-library-newbase >= 20.4.14
-Requires: boost-filesystem
-Requires: boost-regex
-Requires: boost-thread
+Requires: smartmet-library-newbase >= 20.4.18
+Requires: boost169-filesystem
+Requires: boost169-regex
+Requires: boost169-thread
 Requires: cairomm
 Requires: freetype
 Requires: libjpeg
@@ -73,6 +73,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Sat Apr 18 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.4.18-1.fmi
+- Upgrade to Boost 1.69
+
 * Fri Apr 17 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.4.17-1.fmi
 - Use Fmi::CoordinateMatrix from gis-library
 

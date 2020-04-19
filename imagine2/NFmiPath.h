@@ -44,18 +44,19 @@
 #include "ImagineXr.h"
 #define CAIRO_NORMAL_LINE_WIDTH (0.4)  // 2.0 is normal Cairo default
 #else
+#include "NFmiAffine.h"
 #include "NFmiDrawable.h"
 #include "NFmiFillMap.h"
-#include "NFmiAffine.h"
 #endif
 
 #include <NFmiArea.h>
+#include <gis/SpatialReference.h>
 
-#include <string>
-#include <deque>
 #include <algorithm>
 #include <cmath>   // for sqrt
 #include <cstdio>  // for sprintf in ftoa
+#include <deque>
+#include <string>
 
 #include <iostream>  // << is overloaded
 
@@ -222,7 +223,7 @@ class NFmiPath
   // Make Atlantic if so requested
   NFmiPath AtlanticView(bool atlantic) const;
 
-// Add the path to a fill map
+  // Add the path to a fill map
 
 #ifndef IMAGINE_WITH_CAIRO
   void Add(NFmiFillMap &theMap) const;
@@ -307,7 +308,7 @@ class NFmiPath
 #endif
 
   /***
-  */
+   */
  private:
   // Close the last subpath with an invisible or visible line
   //
@@ -331,6 +332,5 @@ class NFmiPath
 };
 
 }  // namespace Imagine
-
 
 // ----------------------------------------------------------------------

@@ -46,15 +46,22 @@ endif
 CC = g++
 CFLAGS = -DUNIX -O0 -g $(MAINFLAGS)
 
-INCLUDES = \
-	-I ../imagine2 \
-	-I /usr/include/ \
-	-I /usr/include/smartmet/newbase \
-	-I /usr/include/smartmet/regression \
+# Boost 1.69
+
+ifneq "$(wildcard /usr/include/boost169)" ""
+  INCLUDES += -I/usr/include/boost169
+  LIBS += -L/usr/lib64/boost169
+endif
+
+INCLUDES += \
+	-I../imagine2 \
+	-I/usr/include/ \
+	-I/usr/include/smartmet/newbase \
+	-I/usr/include/smartmet/regression \
 	$(FT2_CFLAGS) \
 	$(CAIRO_CFLAGS)
 
-LIBS =  ../libsmartmet-imagine2.so \
+LIBS +=  ../libsmartmet-imagine2.so \
 	-lsmartmet-newbase \
 	-lboost_regex \
 	-lboost_filesystem \

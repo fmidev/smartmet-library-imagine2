@@ -35,6 +35,13 @@ ifneq "$(wildcard /usr/include/boost169)" ""
   LIBS += -L/usr/lib64/boost169
 endif
 
+ifneq "$(wildcard /usr/gdal30/include)" ""
+  INCLUDES += -I/usr/gdal30/include
+  LIBS += -L$(PREFIX)/gdal30/lib
+else
+  INCLUDES += -I/usr/include/gdal
+endif
+
 ifeq ($(CXX), clang++)
 
  FLAGS = \
@@ -71,7 +78,6 @@ else
  INCLUDES += \
 	-I$(includedir) \
 	-I$(includedir)/smartmet \
-	-I$(PREFIX)/gdal30/include \
 	`freetype-config --cflags`
 
 endif
@@ -86,7 +92,6 @@ LIBS += -L$(libdir) \
 	-lboost_filesystem \
 	-lboost_regex \
 	-lboost_thread \
-	-L$(PREFIX)/gdal30/lib -lgdal \
 	`freetype-config --libs` \
 	-ljpeg -lpng -lz
 

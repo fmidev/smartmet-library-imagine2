@@ -52,12 +52,18 @@ ifneq "$(wildcard /usr/include/boost169)" ""
   LIBS += -L/usr/lib64/boost169
 endif
 
+ifneq "$(wildcard /usr/gdal30/include)" ""
+  INCLUDES += -I/usr/gdal30/include
+  LIBS += -L$(PREFIX)/gdal30/lib
+else
+  INCLUDES += -I/usr/include/gdal
+endif
+
 INCLUDES += \
 	-I../imagine \
 	-I/usr/include/smartmet/ \
 	-I/usr/include/smartmet/newbase \
 	-I/usr/include/smartmet/regression \
-	-I/usr/gdal30/include \
 	$(FT2_CFLAGS) \
 	$(CAIRO_CFLAGS)
 

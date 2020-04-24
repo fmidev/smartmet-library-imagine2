@@ -18,11 +18,11 @@ BuildRequires: boost169-devel
 BuildRequires: freetype-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
-BuildRequires: smartmet-library-newbase-devel >= 20.4.18
+BuildRequires: smartmet-library-newbase-devel >= 20.4.23
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
 BuildRequires: gdal30-devel
-Requires: smartmet-library-newbase >= 20.4.18
+Requires: smartmet-library-newbase >= 20.4.23
 Requires: boost169-filesystem
 Requires: boost169-regex
 Requires: boost169-thread

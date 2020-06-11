@@ -33,6 +33,7 @@ Requires: libpng
 Requires: zlib
 #TestRequires: make
 #TestRequires: gcc-c++
+#TestRequires: smartmet-library-newbase-devel
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine < 17.1.4
 Obsoletes: libsmartmet-imagine-debuginfo < 17.1.4

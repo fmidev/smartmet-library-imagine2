@@ -40,6 +40,7 @@ Requires: zlib
 #TestRequires: libjpeg
 #TestRequires: libpng
 #TestRequires: zlib
+#TestRequires: bzip2-libs
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine < 17.1.4
 Obsoletes: libsmartmet-imagine-debuginfo < 17.1.4

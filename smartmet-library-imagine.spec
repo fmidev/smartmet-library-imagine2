@@ -33,6 +33,7 @@ Requires: libpng
 Requires: zlib
 #TestRequires: make
 #TestRequires: gcc-c++
+#TestRequires: smartmet-library-regression
 #TestRequires: smartmet-library-newbase-devel
 #TestRequires: boost169-devel
 Provides: %{LIBNAME}

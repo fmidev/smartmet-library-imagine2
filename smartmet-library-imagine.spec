@@ -36,7 +36,7 @@ Requires: zlib
 #TestRequires: smartmet-library-regression
 #TestRequires: smartmet-library-newbase-devel
 #TestRequires: boost169-devel
-#TestRequires: freetype
+#TestRequires: freetype-devel
 #TestRequires: libjpeg
 #TestRequires: libpng
 #TestRequires: zlib

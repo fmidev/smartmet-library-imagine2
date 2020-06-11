@@ -36,6 +36,10 @@ Requires: zlib
 #TestRequires: smartmet-library-regression
 #TestRequires: smartmet-library-newbase-devel
 #TestRequires: boost169-devel
+#TestRequires: freetype
+#TestRequires: libjpeg
+#TestRequires: libpng
+#TestRequires: zlib
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine < 17.1.4
 Obsoletes: libsmartmet-imagine-debuginfo < 17.1.4

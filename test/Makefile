@@ -69,7 +69,7 @@ LIBS +=  ../libsmartmet-imagine.so \
         -lboost_system \
 	$(FT2_LIBS) \
 	$(CAIRO_LIBS) \
-	-ljpeg -lz -lpthread -lrt
+	-lz -lpthread -lrt
 
 all: $(PROG)
 clean:

@@ -28,16 +28,17 @@ Requires: freetype
 Requires: libjpeg
 Requires: libpng
 Requires: zlib
-#TestRequires: make
-#TestRequires: gcc-c++
-#TestRequires: smartmet-library-regression
-#TestRequires: smartmet-library-newbase-devel
+#TestRequires: cairomm-devel
 #TestRequires: boost169-devel
+#TestRequires: bzip2-libs
 #TestRequires: freetype-devel
+#TestRequires: gcc-c++
 #TestRequires: libjpeg
 #TestRequires: libpng
+#TestRequires: make
+#TestRequires: smartmet-library-newbase-devel
+#TestRequires: smartmet-library-regression
 #TestRequires: zlib
-#TestRequires: bzip2-libs
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4
 Obsoletes: libsmartmet-imagine2-debuginfo < 17.1.4

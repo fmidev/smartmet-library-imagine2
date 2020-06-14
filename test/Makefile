@@ -70,7 +70,7 @@ LIBS +=  ../libsmartmet-imagine2.so \
         -lboost_system \
 	$(FT2_LIBS) \
 	$(CAIRO_LIBS) \
-	-lpng -ljpeg -lz -lbz2 -lpthread -lrt
+	-lpng -lz -lpthread -lrt
 
 all: $(PROG)
 clean:

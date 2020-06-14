@@ -24,9 +24,20 @@ Requires: freetype
 Requires: libjpeg
 Requires: libpng
 Requires: zlib
+#TestRequires: make
+#TestRequires: gcc-c++
+#TestRequires: smartmet-library-regression
+#TestRequires: smartmet-library-newbase-devel
+#TestRequires: boost169-devel
+#TestRequires: freetype-devel
+#TestRequires: libjpeg
+#TestRequires: libpng
+#TestRequires: zlib
+#TestRequires: bzip2-libs
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4
 Obsoletes: libsmartmet-imagine2-debuginfo < 17.1.4
+
 
 %description
 FMI imagine2 rendering library

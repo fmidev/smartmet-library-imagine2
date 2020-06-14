@@ -12,12 +12,16 @@ URL: https://github.com/fmidev/smartmet-library-imagine
 Source0: %{name}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: boost169-devel
+BuildRequires: cairomm-devel
 BuildRequires: freetype-devel
+BuildRequires: gcc-c++
+BuildRequires: gdal-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
+BuildRequires: make
+BuildRequires: rpm-build
 BuildRequires: smartmet-library-newbase-devel >= 20.4.18
 BuildRequires: zlib-devel
-BuildRequires: cairomm-devel
 Requires: smartmet-library-newbase >= 20.4.18
 Requires: cairomm
 Requires: freetype

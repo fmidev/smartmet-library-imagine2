@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 20.4.24
+Version: 20.7.1
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -15,11 +15,11 @@ BuildRequires: boost169-devel
 BuildRequires: freetype-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
-BuildRequires: smartmet-library-newbase-devel >= 20.4.23
+BuildRequires: smartmet-library-newbase-devel >= 20.6.30
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
 BuildRequires: gdal30-devel
-Requires: smartmet-library-newbase >= 20.4.23
+Requires: smartmet-library-newbase >= 20.6.30
 Requires: cairomm
 Requires: freetype
 Requires: gdal30
@@ -67,6 +67,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Wed Jul  1 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.7.1-1.fmi
+- Repackaged
+
 * Fri Apr 24 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.4.24-1.fmi
 - Repackaged
 

@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 20.7.1
+Version: 20.8.21
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -12,7 +12,9 @@ URL: https://github.com/fmidev/smartmet-library-imagine
 Source0: %{name}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: boost169-devel
+BuildRequires: cairomm-devel
 BuildRequires: freetype-devel
+BuildRequires: gcc-c++
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: smartmet-library-newbase-devel >= 20.6.30
@@ -26,9 +28,21 @@ Requires: gdal30
 Requires: libjpeg
 Requires: libpng
 Requires: zlib
+#TestRequires: cairomm-devel
+#TestRequires: boost169-devel
+#TestRequires: bzip2-libs
+#TestRequires: freetype-devel
+#TestRequires: gcc-c++
+#TestRequires: libjpeg
+#TestRequires: libpng
+#TestRequires: make
+#TestRequires: smartmet-library-newbase-devel
+#TestRequires: smartmet-library-regression
+#TestRequires: zlib
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4
 Obsoletes: libsmartmet-imagine2-debuginfo < 17.1.4
+
 
 %description
 FMI imagine2 rendering library
@@ -67,8 +81,14 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Fri Aug 21 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.21-1.fmi
+- Upgrade to fmt 6.2
+
 * Wed Jul  1 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.7.1-1.fmi
 - Repackaged
+
+* Sun Jun 14 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.6.14-1.fmi
+- Separated from imagine for CircleCI
 
 * Fri Apr 24 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.4.24-1.fmi
 - Repackaged

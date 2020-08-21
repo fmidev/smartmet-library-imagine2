@@ -137,12 +137,12 @@
 #endif
 
 #include "NFmiEsriShape.h"
-#include "NFmiEsriMultiPatch.h"
-#include "NFmiEsriMultiPointZ.h"
 #include "NFmiEsriNull.h"
 #include "NFmiEsriPointZ.h"
+#include "NFmiEsriMultiPointZ.h"
 #include "NFmiEsriPolyLineZ.h"
 #include "NFmiEsriPolygonZ.h"
+#include "NFmiEsriMultiPatch.h"
 
 #include <NFmiFileSystem.h>
 #include <NFmiSettings.h>
@@ -152,6 +152,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <iomanip>
+#include <cstdlib>
 
 using namespace Imagine::NFmiEsriBuffer;  // Conversion tools
 using namespace std;

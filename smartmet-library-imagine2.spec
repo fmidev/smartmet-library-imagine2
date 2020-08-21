@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 20.6.14
+Version: 20.8.21
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -20,9 +20,9 @@ BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
-BuildRequires: smartmet-library-newbase-devel >= 20.4.18
+BuildRequires: smartmet-library-newbase-devel >= 20.8.21
 BuildRequires: zlib-devel
-Requires: smartmet-library-newbase >= 20.4.18
+Requires: smartmet-library-newbase >= 20.8.21
 Requires: cairomm
 Requires: freetype
 Requires: libjpeg
@@ -81,6 +81,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Fri Aug 21 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.21-1.fmi
+- Upgrade to fmt 6.2
+
 * Sun Jun 14 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.6.14-1.fmi
 - Separated from imagine for CircleCI
 

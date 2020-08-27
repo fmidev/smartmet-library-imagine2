@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 20.8.26
+Version: 20.8.27
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -17,11 +17,11 @@ BuildRequires: freetype-devel
 BuildRequires: gcc-c++
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
-BuildRequires: smartmet-library-newbase-devel >= 20.8.26
+BuildRequires: smartmet-library-newbase-devel >= 20.8.27
 BuildRequires: zlib-devel
 BuildRequires: cairomm-devel
 BuildRequires: gdal30-devel
-Requires: smartmet-library-newbase >= 20.8.26
+Requires: smartmet-library-newbase >= 20.8.27
 Requires: cairomm
 Requires: freetype
 Requires: gdal30
@@ -81,6 +81,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Thu Aug 27 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.27-1.fmi
+- NFmiGrid API changed
+
 * Wed Aug 26 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.26-1.fmi
 - Numerous newbase API changes
 

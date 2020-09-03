@@ -15,7 +15,11 @@ BuildRequires: boost169-devel
 BuildRequires: cairomm-devel
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
+%if 0%{rhel} >= 8
+BuildRequires: gdal30-devel
+%else
 BuildRequires: gdal-devel
+%endif
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: make

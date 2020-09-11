@@ -87,7 +87,7 @@ struct NFmiImageCorruptError : public NFmiImageError
   NFmiImageCorruptError(const std::string &s) : NFmiImageError(s) {}
 };
 
-class _FMI_DLL NFmiImage
+class NFmiImage
 #ifndef IMAGINE_WITH_CAIRO
     : public NFmiDrawable
 #endif

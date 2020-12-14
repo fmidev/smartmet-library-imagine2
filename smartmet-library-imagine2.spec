@@ -16,7 +16,7 @@ BuildRequires: cairomm-devel
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
 %if 0%{rhel} >= 8
-BuildRequires: gdal30-devel
+BuildRequires: gdal32-devel
 %else
 BuildRequires: gdal-devel
 %endif

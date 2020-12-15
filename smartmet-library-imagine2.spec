@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 20.9.11
+Version: 20.12.15
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -15,18 +15,14 @@ BuildRequires: boost169-devel
 BuildRequires: cairomm-devel
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
-%if 0%{rhel} >= 8
 BuildRequires: gdal32-devel
-%else
-BuildRequires: gdal-devel
-%endif
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
-BuildRequires: smartmet-library-newbase-devel >= 20.9.11
+BuildRequires: smartmet-library-newbase-devel >= 20.12.15
 BuildRequires: zlib-devel
-Requires: smartmet-library-newbase >= 20.9.11
+Requires: smartmet-library-newbase >= 20.12.15
 Requires: cairomm
 Requires: freetype
 Requires: libjpeg
@@ -85,6 +81,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Tue Dec 15 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.12.15-1.fmi
+- Upgrade to pgdg12
+
 * Fri Sep 11 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.9.11-1.fmi
 - Removed obsolete FMI_DLL export declarations
 

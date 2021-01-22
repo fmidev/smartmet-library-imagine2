@@ -1,29 +1,6 @@
 PROG = $(patsubst %.cpp,%,$(wildcard *Test.cpp))
 
-MAINFLAGS = -std=c++11 -Wall -W -Wno-unused-parameter
-
-EXTRAFLAGS = \
-	-Werror \
-	-pedantic \
-	-Wpointer-arith \
-	-Wcast-qual \
-	-Wcast-align \
-	-Wwrite-strings \
-	-Wconversion \
-	-Winline \
-	-Wctor-dtor-privacy \
-	-Wnon-virtual-dtor \
-	-Wno-pmf-conversions \
-	-Wsign-promo \
-	-Wchar-subscripts \
-	-Wold-style-cast \
-	-Wshadow \
-	-Woverloaded-virtual
-
-DIFFICULTFLAGS = \
-	-Weffc++ \
-	-Wunreachable-code \
-	-Wredundant-decls
+include $(shell echo $${PREFIX-/usr})/share/smartmet/devel/makefile.inc
 
 # CAIROMODE = -DIMAGINE_WITH_CAIRO 
 CAIROMODE =
@@ -43,15 +20,7 @@ else
   CAIRO_CFLAGS = 
 endif
 
-CC = g++
 CFLAGS = -DUNIX -O0 -g $(MAINFLAGS)
-
-# Boost 1.69
-
-ifneq "$(wildcard /usr/include/boost169)" ""
-  INCLUDES += -I/usr/include/boost169
-  LIBS += -L/usr/lib64/boost169
-endif
 
 INCLUDES += \
 	-I../imagine2 \
@@ -83,5 +52,5 @@ test: $(PROG)
 	done
 
 $(PROG) : % : %.cpp ../libsmartmet-imagine2.so
-	$(CC) $(CFLAGS) -o $@ $@.cpp $(INCLUDES) $(LIBS)
+	$(CXX) $(CFLAGS) -o $@ $@.cpp $(INCLUDES) $(LIBS)
 

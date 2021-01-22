@@ -679,7 +679,7 @@ bool ImagineXr::DrawFace(int x_,
     cr->move_to(x - 1, y + te.height);
     cr->show_text(text);
   }
-  catch (Cairo::logic_error err)
+  catch (Cairo::logic_error& err)
   {
     /* Cairo (1.6.4) exceptions behave REALLY funny: for non-valid UTF8, it
     * throws "input string not valid UTF8". Replacing that with 'X' throws

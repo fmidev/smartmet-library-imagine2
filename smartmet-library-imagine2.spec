@@ -20,9 +20,10 @@ BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
-BuildRequires: smartmet-library-newbase-devel >= 21.1.14
+BuildRequires: smartmet-library-newbase-devel >= 21.1.22
+BuildRequires: smartmet-library-macgyver-devel >= 21.1.14
 BuildRequires: zlib-devel
-Requires: smartmet-library-newbase >= 21.1.14
+Requires: smartmet-library-newbase >= 21.1.22
 Requires: cairomm
 Requires: freetype
 Requires: libjpeg

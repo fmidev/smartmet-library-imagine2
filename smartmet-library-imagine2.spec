@@ -39,6 +39,7 @@ Requires: zlib
 #TestRequires: make
 #TestRequires: smartmet-library-newbase-devel
 #TestRequires: smartmet-library-regression
+#TestRequires: smartmet-library-macgyver-devel >= 21.1.14
 #TestRequires: zlib
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4

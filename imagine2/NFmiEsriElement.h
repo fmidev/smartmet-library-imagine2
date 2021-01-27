@@ -40,7 +40,7 @@ enum NFmiEsriElementType
 
 class NFmiEsriBox;
 
-class _FMI_DLL NFmiEsriElement
+class NFmiEsriElement
 {
  public:
   virtual ~NFmiEsriElement(void) {}

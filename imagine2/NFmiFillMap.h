@@ -63,7 +63,7 @@ namespace Imagine
 typedef std::vector<float> NFmiFillMapElement;
 typedef std::map<float, NFmiFillMapElement> NFmiFillMapData;
 
-class _FMI_DLL NFmiFillMap : public NFmiDrawable
+class NFmiFillMap : public NFmiDrawable
 {
  public:
   // Constructors, destructors:

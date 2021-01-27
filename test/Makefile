@@ -1,57 +1,27 @@
 PROG = $(patsubst %.cpp,%,$(wildcard *Test.cpp))
 
-MAINFLAGS = -std=c++11 -Wall -W -Wno-unused-parameter
+REQUIRES = 
 
-EXTRAFLAGS = \
-	-Werror \
-	-pedantic \
-	-Wpointer-arith \
-	-Wcast-qual \
-	-Wcast-align \
-	-Wwrite-strings \
-	-Wconversion \
-	-Winline \
-	-Wctor-dtor-privacy \
-	-Wnon-virtual-dtor \
-	-Wno-pmf-conversions \
-	-Wsign-promo \
-	-Wchar-subscripts \
-	-Wold-style-cast \
-	-Wshadow \
-	-Woverloaded-virtual
+include $(shell echo $${PREFIX-/usr})/share/smartmet/devel/makefile.inc
 
-DIFFICULTFLAGS = \
-	-Weffc++ \
-	-Wunreachable-code \
-	-Wredundant-decls
-
-# CAIROMODE = -DIMAGINE_WITH_CAIRO 
-CAIROMODE =
+# Platform independent Cairomm support
+ 
+ifeq "$(CAIROMODE)" ""
+  CAIRO_LIBS = $(shell pkg-config --libs cairomm-1.0)
+  CAIRO_FLAGS = $(CAIROMODE) $(shell pkg-config --cflags cairomm-1.0)
+else
+  CAIRO_LIBS =
+  CAIRO_FLAGS = 
+endif
 
 # Platform independent Freetype2 support
 
 FT2_LIBS= $(shell freetype-config --libs)
-FT2_CFLAGS= $(shell freetype-config --cflags)
+FT2_FLAGS= $(shell freetype-config --cflags)
 
 # Platform independent Cairomm support
 
-ifeq "$(CAIROMODE)" ""
-  CAIRO_LIBS = $(shell pkg-config --libs cairomm-1.0)
-  CAIRO_CFLAGS = $(CAIROMODE) $(shell pkg-config --cflags cairomm-1.0)
-else
-  CAIRO_LIBS =
-  CAIRO_CFLAGS = 
-endif
-
-CC = g++
-CFLAGS = -DUNIX -O0 -g $(MAINFLAGS)
-
-# Boost 1.69
-
-ifneq "$(wildcard /usr/include/boost169)" ""
-  INCLUDES += -I/usr/include/boost169
-  LIBS += -L/usr/lib64/boost169
-endif
+FLAGS += -DUNIX $(CAIRO_FLAGS) $(FT2_FLAGS)
 
 INCLUDES += \
 	-I../imagine2 \
@@ -59,10 +29,11 @@ INCLUDES += \
 	-I/usr/include/smartmet \
 	-I/usr/include/smartmet/newbase \
 	-I/usr/include/smartmet/regression \
-	$(FT2_CFLAGS) \
-	$(CAIRO_CFLAGS)
+	$(FT2_CFLAGS)
+
 
 LIBS +=  ../libsmartmet-imagine2.so \
+	$(REQUIRED_LIBS) \
 	-lsmartmet-newbase \
 	-lsmartmet-gis \
 	-lboost_regex \
@@ -71,7 +42,6 @@ LIBS +=  ../libsmartmet-imagine2.so \
         -lboost_thread \
         -lboost_system \
 	$(FT2_LIBS) \
-	$(CAIRO_LIBS) \
 	-lpng -lz -lpthread -lrt
 
 all: $(PROG)
@@ -85,5 +55,5 @@ test: $(PROG)
 	done
 
 $(PROG) : % : %.cpp ../libsmartmet-imagine2.so
-	$(CC) $(CFLAGS) -o $@ $@.cpp $(INCLUDES) $(LIBS)
+	$(CXX) $(FLAGS) -o $@ $@.cpp $(INCLUDES) $(LIBS)
 

@@ -50,7 +50,7 @@ enum NFmiEsriMultiPatchType
   kFmiEsriRing = 5
 };
 
-class _FMI_DLL NFmiEsriMultiPatch : public NFmiEsriElement
+class NFmiEsriMultiPatch : public NFmiEsriElement
 {
  public:
   // Constructors, destructors

@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 20.8.27
+Version: 21.1.14
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -15,13 +15,15 @@ BuildRequires: boost169-devel
 BuildRequires: cairomm-devel
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
+BuildRequires: gdal32-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
-BuildRequires: smartmet-library-newbase-devel >= 20.8.27
+BuildRequires: make
+BuildRequires: rpm-build
+BuildRequires: smartmet-library-newbase-devel >= 21.1.22
+BuildRequires: smartmet-library-macgyver-devel >= 21.1.14
 BuildRequires: zlib-devel
-BuildRequires: cairomm-devel
-BuildRequires: gdal30-devel
-Requires: smartmet-library-newbase >= 20.8.27
+Requires: smartmet-library-newbase >= 21.1.22
 Requires: cairomm
 Requires: freetype
 Requires: gdal30
@@ -38,6 +40,7 @@ Requires: zlib
 #TestRequires: make
 #TestRequires: smartmet-library-newbase-devel
 #TestRequires: smartmet-library-regression
+#TestRequires: smartmet-library-macgyver-devel >= 21.1.14
 #TestRequires: zlib
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4
@@ -81,6 +84,15 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Thu Jan 14 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.1.14-1.fmi
+- Repackaged smartmet to resolve debuginfo issues
+
+* Tue Dec 15 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.12.15-1.fmi
+- Upgrade to pgdg12
+
+* Fri Sep 11 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.9.11-1.fmi
+- Removed obsolete FMI_DLL export declarations
+
 * Thu Aug 27 2020 Mika Heiskanen <mika.heiskanen@fmi.fi> - 20.8.27-1.fmi
 - NFmiGrid API changed
 

@@ -26,7 +26,7 @@ BuildRequires: zlib-devel
 Requires: smartmet-library-newbase >= 21.1.22
 Requires: cairomm
 Requires: freetype
-Requires: gdal30
+Requires: gdal32
 Requires: libjpeg
 Requires: libpng
 Requires: zlib

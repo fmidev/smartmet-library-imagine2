@@ -20,6 +20,7 @@ BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
+BuildRequires: fmt-devel >= 7.1.3
 BuildRequires: smartmet-library-newbase-devel >= 21.2.15
 BuildRequires: smartmet-library-macgyver-devel >= 21.1.25
 BuildRequires: smartmet-library-gis-devel >= 21.2.11
@@ -31,6 +32,7 @@ Requires: gdal32
 Requires: libjpeg
 Requires: libpng
 Requires: zlib
+Requires: fmt >= 7.1.3
 #TestRequires: cairomm-devel
 #TestRequires: boost169-devel
 #TestRequires: bzip2-libs

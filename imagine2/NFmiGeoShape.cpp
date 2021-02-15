@@ -16,6 +16,8 @@
 #include "NFmiEsriMultiPointZ.h"
 #include "NFmiEsriPolyLineZ.h"
 #include "NFmiEsriPolygonZ.h"
+#include <gis/CoordinateTransformation.h>
+#include <gis/SpatialReference.h>
 
 using namespace std;
 
@@ -34,8 +36,11 @@ class ProjectXYEsriPoint : public NFmiEsriProjector
   ProjectXYEsriPoint(OGRSpatialReference *theShapeReference, const NFmiArea *theArea)
       : itsArea(theArea),
         itsXshift(0),
-        itsTransformation(
-            OGRCreateCoordinateTransformation(theShapeReference, theArea->SpatialReference()))
+#ifdef NEW_NFMIAREA
+        itsTransformation(*theShapeReference, theArea->SpatialReference())
+#else
+        itsTransformation(*theShapeReference, theArea->WKT())
+#endif
   {
   }
 
@@ -44,18 +49,8 @@ class ProjectXYEsriPoint : public NFmiEsriProjector
     double x = thePoint.X() + itsXshift;
     double y = thePoint.Y();
 
-    if (itsTransformation->GetSourceCS()->EPSGTreatsAsLatLong() == 1) std::swap(x, y);
-
-    if (itsTransformation->Transform(1, &x, &y) == 0)
+    if (!itsTransformation.transform(x, y))
       throw std::runtime_error("Failed to project shape coordinates");
-
-    if (itsTransformation->GetSourceCS()->EPSGTreatsAsLatLong() == 1) std::swap(x, y);
-
-#if GDAL_VERSION_MAJOR > 1
-    if (itsTransformation->GetTargetCS()->EPSGTreatsAsLatLong() == 0 &&
-        itsTransformation->GetTargetCS()->EPSGTreatsAsNorthingEasting() == 0)
-      std::swap(x, y);
-#endif
 
     auto xy = itsArea->WorldXYToXY(NFmiPoint(x, y));
     return NFmiEsriPoint(xy.X(), xy.Y());
@@ -68,7 +63,8 @@ class ProjectXYEsriPoint : public NFmiEsriProjector
 
     double x1 = itsArea->BottomLeftLatLon().X();
     double x2 = itsArea->TopRightLatLon().X();
-    if (x2 < x1) x2 += 360;
+    if (x2 < x1)
+      x2 += 360;
 
     if (overlaps(x1, x2, theBox.Xmin(), theBox.Xmax()))
       itsXshift = 0;
@@ -81,7 +77,7 @@ class ProjectXYEsriPoint : public NFmiEsriProjector
  private:
   const NFmiArea *itsArea;
   mutable double itsXshift;
-  std::unique_ptr<OGRCoordinateTransformation> itsTransformation;
+  Fmi::CoordinateTransformation itsTransformation;
 };
 
 // ----------------------------------------------------------------------
@@ -154,7 +150,8 @@ void NFmiGeoShape::Stroke(ImagineXr_or_NFmiImage &img,
 {
   // Quick exit if color is not real
 
-  if (theColor == NFmiColorTools::NoColor) return;
+  if (theColor == NFmiColorTools::NoColor)
+    return;
 
   switch (Type())
   {
@@ -232,7 +229,8 @@ const NFmiPath NFmiGeoShape::PathEsri() const
 
   // Just a safety, should not happen
 
-  if (itsEsriShape == nullptr) return outpath;
+  if (itsEsriShape == nullptr)
+    return outpath;
 
   // Iterate through all elements
 
@@ -242,7 +240,8 @@ const NFmiPath NFmiGeoShape::PathEsri() const
   {
     // There may be deleted elements in the shape, which are to be ignored
 
-    if (*iter == nullptr) continue;
+    if (*iter == nullptr)
+      continue;
 
     switch ((*iter)->Type())
     {
@@ -399,7 +398,8 @@ void NFmiGeoShape::AddEsri(NFmiFillMap &theMap) const
 {
   // Just a safety, should not happen
 
-  if (itsEsriShape == nullptr) return;
+  if (itsEsriShape == nullptr)
+    return;
 
   // Iterate through all elements
 
@@ -409,7 +409,8 @@ void NFmiGeoShape::AddEsri(NFmiFillMap &theMap) const
   {
     // There may be deleted elements in the shape, which are to be ignored
 
-    if (*iter == nullptr) continue;
+    if (*iter == nullptr)
+      continue;
 
     switch ((*iter)->Type())
     {
@@ -555,7 +556,8 @@ void NFmiGeoShape::MarkEsri(ImagineXr_or_NFmiImage &img,
 {
   // Just a safety, should not happen
 
-  if (itsEsriShape == nullptr) return;
+  if (itsEsriShape == nullptr)
+    return;
 
   // Iterate through all elements
 
@@ -565,7 +567,8 @@ void NFmiGeoShape::MarkEsri(ImagineXr_or_NFmiImage &img,
   {
     // There may be deleted elements in the shape, which are to be ignored
 
-    if (*iter == nullptr) continue;
+    if (*iter == nullptr)
+      continue;
 
     switch ((*iter)->Type())
     {
@@ -643,7 +646,8 @@ void NFmiGeoShape::WriteImageMapEsri(std::ostream &os, const string &theFieldNam
 {
   // Just a safety, should not happen
 
-  if (itsEsriShape == nullptr) return;
+  if (itsEsriShape == nullptr)
+    return;
 
   // Make sure the attribute exists
 
@@ -651,7 +655,8 @@ void NFmiGeoShape::WriteImageMapEsri(std::ostream &os, const string &theFieldNam
 
   // Return if the shape has no such field. Maybe should error instead?
 
-  if (attribute == nullptr) return;
+  if (attribute == nullptr)
+    return;
 
   // Iterate through all elements
 
@@ -661,7 +666,8 @@ void NFmiGeoShape::WriteImageMapEsri(std::ostream &os, const string &theFieldNam
   {
     // There may be deleted elements in the shape, which are to be ignored
 
-    if (*iter == nullptr) continue;
+    if (*iter == nullptr)
+      continue;
 
     // The attribute value
 
@@ -729,7 +735,8 @@ void NFmiGeoShape::WriteImageMapEsri(std::ostream &os, const string &theFieldNam
 
               // Do not output point if no move in pixel resolution
 
-              if (i != i1 && x == lastx && y == lasty) continue;
+              if (i != i1 && x == lastx && y == lasty)
+                continue;
               lastx = x;
               lasty = y;
               points.push_back(make_pair(x, y));
@@ -742,7 +749,8 @@ void NFmiGeoShape::WriteImageMapEsri(std::ostream &os, const string &theFieldNam
             for (vector<pair<int, int> >::const_iterator it = points.begin(); it != points.end();
                  ++it)
             {
-              if (it != points.begin()) os << ' ';
+              if (it != points.begin())
+                os << ' ';
               os << it->first << "," << it->second;
             }
             os << '"' << endl;

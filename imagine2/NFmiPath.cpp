@@ -16,11 +16,11 @@
 #define CAIRO_LINE_WIDTH (1.0)
 #endif
 
-#include <iostream>
 #include <algorithm>
-#include <stdexcept>
+#include <iostream>
 #include <set>
 #include <sstream>
+#include <stdexcept>
 
 // ======================================================================
 //				HIDDEN INTERNAL FUNCTIONS
@@ -462,6 +462,16 @@ void NFmiPath::Project(const NFmiArea* const theArea)
 {
   if (!theArea) return;
 
+#ifdef WGS84
+  NFmiPathData::iterator iter;
+  for (iter = itsElements.begin(); iter != itsElements.end(); ++iter)
+  {
+    NFmiPoint pt = theArea->ToXY(NFmiPoint(iter->x, iter->y));
+    iter->x = pt.X();
+    iter->y = pt.Y();
+  }
+#else
+
   bool path_is_pacific = IsPacificView();
   bool area_is_pacific = theArea->PacificView();
 
@@ -483,6 +493,7 @@ void NFmiPath::Project(const NFmiArea* const theArea)
     iter->x = pt.X();
     iter->y = pt.Y();
   }
+#endif
 }
 
 // ----------------------------------------------------------------------
@@ -1035,10 +1046,10 @@ void NFmiPath::Stroke(ImagineXr_or_NFmiImage& img,
   if (theWidth <= 0) return;
 
 /*
-* Important that Cairo drawings are done the whole path at once;
-* cutting to thousands of moveto/lineto segments kills performance,
-* especially when creating PDF output (Cairo 1.6.4).
-*/
+ * Important that Cairo drawings are done the whole path at once;
+ * cutting to thousands of moveto/lineto segments kills performance,
+ * especially when creating PDF output (Cairo 1.6.4).
+ */
 #ifdef IMAGINE_WITH_CAIRO
   img.Stroke(itsElements, theWidth, theColor, theRule);
 #else

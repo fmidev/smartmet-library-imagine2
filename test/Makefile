@@ -26,6 +26,7 @@ FLAGS += -DUNIX $(CAIRO_FLAGS) $(FT2_FLAGS)
 INCLUDES += \
 	-I../imagine2 \
 	-I/usr/include/ \
+	-I/usr/include/smartmet \
 	-I/usr/include/smartmet/newbase \
 	-I/usr/include/smartmet/regression \
 	$(FT2_CFLAGS)
@@ -34,6 +35,7 @@ INCLUDES += \
 LIBS +=  ../libsmartmet-imagine2.so \
 	$(REQUIRED_LIBS) \
 	-lsmartmet-newbase \
+	-lsmartmet-gis \
 	-lboost_regex \
 	-lboost_filesystem \
         -lboost_iostreams \

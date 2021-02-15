@@ -9,13 +9,14 @@ include $(shell echo $${PREFIX-/usr})/share/smartmet/devel/makefile.inc
 
 # Compiler options
 
-DEFINES = -DUNIX -D_REENTRANT -DFMI_COMPRESSION -DBOOST -DBOOST_IOSTREAMS_NO_LIB
+DEFINES = -DWGS84 -DUNIX -D_REENTRANT -DFMI_COMPRESSION -DBOOST -DBOOST_IOSTREAMS_NO_LIB
 
  INCLUDES += \
 	-isystem $(includedir)/smartmet \
 	-isystem $(includedir)/smartmet/newbase \
 	$(shell freetype-config --cflags) \
 	$(shell pkg-config --cflags cairomm-1.0)
+
 LIBS += -L$(libdir) \
 	-lboost_filesystem \
 	-lboost_regex \

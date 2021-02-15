@@ -22,6 +22,7 @@ BuildRequires: make
 BuildRequires: rpm-build
 BuildRequires: smartmet-library-newbase-devel >= 21.2.15
 BuildRequires: smartmet-library-macgyver-devel >= 21.1.25
+BuildRequires: smartmet-library-gis-devel >= 21.2.11
 BuildRequires: zlib-devel
 Requires: smartmet-library-newbase >= 21.2.15
 Requires: cairomm

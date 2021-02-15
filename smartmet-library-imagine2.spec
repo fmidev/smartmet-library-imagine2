@@ -44,6 +44,7 @@ Requires: fmt >= 7.1.3
 #TestRequires: smartmet-library-newbase-devel
 #TestRequires: smartmet-library-regression
 #TestRequires: smartmet-library-macgyver-devel >= 21.1.25
+#TestRequires: smartmet-library-gis-devel >= 21.2.11
 #TestRequires: zlib
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4

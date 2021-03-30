@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 21.2.18
+Version: 21.3.30
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -88,6 +88,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Tue Mar 30 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.3.30-1.fmi
+- Handle colour "none" properly in ImagineXr::Erase
+
 * Thu Feb 18 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.2.18-1.fmi
 - Repackaged due to NFmiArea ABI changes
 

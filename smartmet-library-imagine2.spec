@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 21.3.30
+Version: 21.5.6
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -21,11 +21,11 @@ BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
 BuildRequires: fmt-devel >= 7.1.3
-BuildRequires: smartmet-library-newbase-devel >= 21.2.16
-BuildRequires: smartmet-library-macgyver-devel >= 21.1.25
-BuildRequires: smartmet-library-gis-devel >= 21.2.11
+BuildRequires: smartmet-library-newbase-devel >= 21.5.6
+BuildRequires: smartmet-library-macgyver-devel >= 21.2.25
+BuildRequires: smartmet-library-gis-devel >= 21.5.5
 BuildRequires: zlib-devel
-Requires: smartmet-library-newbase >= 21.2.16
+Requires: smartmet-library-newbase >= 21.5.6
 Requires: cairomm
 Requires: freetype
 Requires: gdal32
@@ -43,8 +43,8 @@ Requires: fmt >= 7.1.3
 #TestRequires: make
 #TestRequires: smartmet-library-newbase-devel
 #TestRequires: smartmet-library-regression
-#TestRequires: smartmet-library-macgyver-devel >= 21.1.25
-#TestRequires: smartmet-library-gis-devel >= 21.2.11
+#TestRequires: smartmet-library-macgyver-devel >= 21.2.25
+#TestRequires: smartmet-library-gis-devel >= 21.5.5
 #TestRequires: zlib
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4
@@ -88,6 +88,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Thu May  6 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.5.6-1.fmi
+- Repackaged due to NFmiAzimuthalArea ABI changes
+
 * Tue Mar 30 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.3.30-1.fmi
 - Handle colour "none" properly in ImagineXr::Erase
 

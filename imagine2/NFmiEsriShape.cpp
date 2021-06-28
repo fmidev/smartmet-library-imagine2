@@ -137,12 +137,12 @@
 #endif
 
 #include "NFmiEsriShape.h"
+#include "NFmiEsriMultiPatch.h"
+#include "NFmiEsriMultiPointZ.h"
 #include "NFmiEsriNull.h"
 #include "NFmiEsriPointZ.h"
-#include "NFmiEsriMultiPointZ.h"
 #include "NFmiEsriPolyLineZ.h"
 #include "NFmiEsriPolygonZ.h"
-#include "NFmiEsriMultiPatch.h"
 
 #include <NFmiFileSystem.h>
 #include <NFmiSettings.h>
@@ -152,7 +152,6 @@
 #include <cstdlib>
 #include <fstream>
 #include <iomanip>
-#include <cstdlib>
 
 using namespace Imagine::NFmiEsriBuffer;  // Conversion tools
 using namespace std;
@@ -244,12 +243,14 @@ bool NFmiEsriShape::Read(const string &theFilename, bool fDBF)
 
   // Delete old contents if there are any
 
-  if (!itsElements.empty()) Init();
+  if (!itsElements.empty())
+    Init();
 
   // Open the shp file for reading
 
   ifstream shpfile(shpfilename.c_str(), ios::in | ios::binary);
-  if (!shpfile) return false;
+  if (!shpfile)
+    return false;
 
   // Read the 100-byte header
 
@@ -334,7 +335,8 @@ bool NFmiEsriShape::Read(const string &theFilename, bool fDBF)
     }
 
     // Safety check
-    if (reclen < 0) break;
+    if (reclen < 0)
+      break;
 
     pos += reclen * 2;  // Esri sizes are in 16-bit units!
   }
@@ -358,16 +360,19 @@ bool NFmiEsriShape::Read(const string &theFilename, bool fDBF)
 
   // We're done if the DBF file is not desired
 
-  if (!fDBF) return true;
+  if (!fDBF)
+    return true;
 
   //! If the file does not exist, or is of zero size, we're done
 
-  if (NFmiFileSystem::FileEmpty(dbffilename)) return true;
+  if (NFmiFileSystem::FileEmpty(dbffilename))
+    return true;
 
   // Otherwise open the file for reading
 
   ifstream dbffile(dbffilename.c_str(), ios::in | ios::binary);
-  if (!dbffile) return false;  // failed to open!!
+  if (!dbffile)
+    return false;  // failed to open!!
 
   // Read the header
 
@@ -628,11 +633,13 @@ bool NFmiEsriShape::Write(const string &theFilename, bool fDBF, bool fSHX) const
 
   // Write the index file
 
-  if (fSHX) ok |= WriteSHX(shxfilename);
+  if (fSHX)
+    ok |= WriteSHX(shxfilename);
 
   // Write the attribute file
 
-  if (fDBF) ok |= WriteDBF(dbffilename);
+  if (fDBF)
+    ok |= WriteDBF(dbffilename);
 
   return ok;
 }
@@ -660,7 +667,8 @@ bool NFmiEsriShape::WriteSHP(const string &theFilename) const
   // Start writing the shp file
 
   ofstream shpfile(theFilename.c_str(), ios::out | ios::binary);
-  if (!shpfile) return false;
+  if (!shpfile)
+    return false;
 
   // Write the header
 
@@ -704,7 +712,8 @@ bool NFmiEsriShape::WriteSHX(const string &theFilename) const
   // Open output file
 
   ofstream shxfile(theFilename.c_str(), ios::out | ios::binary);
-  if (!shxfile) return false;
+  if (!shxfile)
+    return false;
 
   // Write the header
 
@@ -756,7 +765,8 @@ bool NFmiEsriShape::WriteDBF(const string &theFilename) const
   // Open output file
 
   ofstream dbffile(theFilename.c_str(), ios::out | ios::binary);
-  if (!dbffile) return false;
+  if (!dbffile)
+    return false;
 
   // Handle the special case of no attributes by writing
   // a dummy database.
@@ -975,7 +985,8 @@ NFmiEsriAttributeName *NFmiEsriShape::AttributeName(const string &theFieldName) 
   {
     // Just safety, should never happen
 
-    if (*iter == nullptr) continue;
+    if (*iter == nullptr)
+      continue;
 
     // If found match, exit immediately with pointer to the name
 

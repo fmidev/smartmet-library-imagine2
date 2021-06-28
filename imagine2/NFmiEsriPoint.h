@@ -13,8 +13,8 @@
 
 #pragma once
 
-#include "NFmiEsriElement.h"
 #include "NFmiEsriBox.h"
+#include "NFmiEsriElement.h"
 
 #include <string>
 
@@ -70,6 +70,5 @@ class NFmiEsriPoint : public NFmiEsriElement
 };
 
 }  // namespace Imagine
-
 
 // ======================================================================

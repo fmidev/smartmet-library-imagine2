@@ -24,10 +24,10 @@
 
 #include <NFmiGeoTools.h>
 
-#include <list>
-#include <vector>
-#include <utility>
 #include <iomanip>
+#include <list>
+#include <utility>
+#include <vector>
 
 using namespace std;
 
@@ -84,7 +84,8 @@ void SubdivideLine(NFmiPath& thePath,
 NFmiPath SubdividePath(const NFmiPath& thePath, double theMaxLength)
 {
   // safety check
-  if (theMaxLength <= 0) return thePath;
+  if (theMaxLength <= 0)
+    return thePath;
 
   NFmiPath out;
 
@@ -111,7 +112,7 @@ NFmiPath SubdividePath(const NFmiPath& thePath, double theMaxLength)
 
   return out;
 }
-}
+}  // namespace
 
 namespace NFmiTightBezierFit
 {

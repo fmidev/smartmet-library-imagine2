@@ -82,7 +82,7 @@ struct POINT
   int y;  //!< y-coordinate
 };
 
-}  // namespace anonymous
+}  // namespace
 
 // ======================================================================
 //				ACTUAL INTERFACE IMPLEMENTATION
@@ -121,7 +121,8 @@ const NFmiPath ReadPath(const std::string &theFilename,
 
   // Handle invalid bounding box by returning empty path
 
-  if (theMinLongitude >= theMaxLongitude || theMinLatitude >= theMaxLatitude) return ret;
+  if (theMinLongitude >= theMaxLongitude || theMinLatitude >= theMaxLatitude)
+    return ret;
 
   // Open file for reading
 
@@ -133,7 +134,8 @@ const NFmiPath ReadPath(const std::string &theFilename,
 
   // Throw if failed to open
 
-  if (fp == nullptr) throw std::runtime_error("Failed to open " + theFilename + " for reading");
+  if (fp == nullptr)
+    throw std::runtime_error("Failed to open " + theFilename + " for reading");
 
   // Read the first header
   GSHHS header;

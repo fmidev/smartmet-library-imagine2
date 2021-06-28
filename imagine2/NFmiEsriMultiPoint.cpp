@@ -47,7 +47,10 @@ NFmiEsriMultiPoint& NFmiEsriMultiPoint::operator=(const NFmiEsriMultiPoint& theP
 // Cloning
 // ----------------------------------------------------------------------
 
-NFmiEsriElement* NFmiEsriMultiPoint::Clone() const { return new NFmiEsriMultiPoint(*this); }
+NFmiEsriElement* NFmiEsriMultiPoint::Clone() const
+{
+  return new NFmiEsriMultiPoint(*this);
+}
 // ----------------------------------------------------------------------
 // Constructor based on a character buffer
 // ----------------------------------------------------------------------
@@ -76,14 +79,11 @@ NFmiEsriMultiPoint::NFmiEsriMultiPoint(const string& theBuffer, int thePos, int 
 
 int NFmiEsriMultiPoint::StringSize(void) const
 {
-  return (4  // the type	: 1 int
-          +
-          4 * 8  // bounding box : 4 doubles
-          +
-          4  // numpoints	: 1 int
-          +
-          NumPoints() * 2 * 8  // points	: 2n doubles
-          );
+  return (4                      // the type	: 1 int
+          + 4 * 8                // bounding box : 4 doubles
+          + 4                    // numpoints	: 1 int
+          + NumPoints() * 2 * 8  // points	: 2n doubles
+  );
 }
 
 // ----------------------------------------------------------------------

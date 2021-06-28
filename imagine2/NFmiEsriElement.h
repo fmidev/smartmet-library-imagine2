@@ -7,9 +7,9 @@
 
 #pragma once
 
-#include "NFmiEsriProjector.h"
 #include "NFmiEsriAttribute.h"
 #include "NFmiEsriBuffer.h"
+#include "NFmiEsriProjector.h"
 
 #include <boost/shared_ptr.hpp>
 
@@ -106,6 +106,5 @@ class NFmiEsriElement
 }  // namespace Imagine
 
 std::ostream& operator<<(std::ostream& os, const Imagine::NFmiEsriElement& theElement);
-
 
 // ======================================================================

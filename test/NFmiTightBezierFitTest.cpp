@@ -5,10 +5,10 @@
  */
 // ======================================================================
 
-#include <cmath>
 #include "NFmiPath.h"
 #include "NFmiTightBezierFit.h"
 #include "tframe.h"
+#include <cmath>
 
 using namespace std;
 
@@ -16,7 +16,8 @@ using namespace std;
 namespace NFmiTightBezierFitTest
 {
 #define EXPECT(a, b) \
-  if (a.SVG() != b) TEST_FAILED("Expected '" + string(b) + "', got '" + a.SVG() + "'");
+  if (a.SVG() != b)  \
+    TEST_FAILED("Expected '" + string(b) + "', got '" + a.SVG() + "'");
 
 // ----------------------------------------------------------------------
 /*!

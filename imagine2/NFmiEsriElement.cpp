@@ -38,7 +38,8 @@ NFmiEsriAttributeType NFmiEsriElement::GetType(const string& theName) const
 
   for (iter = begin; iter != end; ++iter)
   {
-    if ((*iter).GetName() == theName) return (*iter).GetType();
+    if ((*iter).GetName() == theName)
+      return (*iter).GetType();
   }
 
   // Just some default value, maybe we should throw?
@@ -59,7 +60,8 @@ const std::string NFmiEsriElement::GetString(const string& theName) const
   for (iter = begin; iter != end; ++iter)
   {
     if ((*iter).GetName() == theName)
-      if ((*iter).GetType() == kFmiEsriString) return (*iter).GetString();
+      if ((*iter).GetType() == kFmiEsriString)
+        return (*iter).GetString();
   }
 
   // Return empty string if field not found
@@ -81,7 +83,8 @@ int NFmiEsriElement::GetInteger(const string& theName) const
   for (iter = begin; iter != end; ++iter)
   {
     if ((*iter).GetName() == theName)
-      if ((*iter).GetType() == kFmiEsriInteger) return (*iter).GetInteger();
+      if ((*iter).GetType() == kFmiEsriInteger)
+        return (*iter).GetInteger();
   }
 
   // Maybe should error instead..
@@ -102,7 +105,8 @@ double NFmiEsriElement::GetDouble(const string& theName) const
   for (iter = begin; iter != end; ++iter)
   {
     if ((*iter).GetName() == theName)
-      if ((*iter).GetType() == kFmiEsriDouble) return (*iter).GetDouble();
+      if ((*iter).GetType() == kFmiEsriDouble)
+        return (*iter).GetDouble();
   }
 
   // Maybe should error instead..

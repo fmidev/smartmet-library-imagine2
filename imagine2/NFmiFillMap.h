@@ -48,11 +48,11 @@
 #endif
 
 #include <algorithm>  // vector sorting
+#include <cmath>      // abs,min,max
 #include <map>        // maps
 #include <set>        // sets
-#include <vector>     // vectors
 #include <utility>    // pairs
-#include <cmath>      // abs,min,max
+#include <vector>     // vectors
 
 #include "NFmiImage.h"
 
@@ -144,6 +144,5 @@ class NFmiFillMap : public NFmiDrawable
 };
 
 }  // namespace Imagine
-
 
 // ======================================================================

@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 21.1.14
+Version: 21.5.6
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -20,16 +20,19 @@ BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
-BuildRequires: smartmet-library-newbase-devel >= 21.1.22
-BuildRequires: smartmet-library-macgyver-devel >= 21.1.14
+BuildRequires: fmt-devel >= 7.1.3
+BuildRequires: smartmet-library-newbase-devel >= 21.5.6
+BuildRequires: smartmet-library-macgyver-devel >= 21.2.25
+BuildRequires: smartmet-library-gis-devel >= 21.5.5
 BuildRequires: zlib-devel
-Requires: smartmet-library-newbase >= 21.1.22
+Requires: smartmet-library-newbase >= 21.5.6
 Requires: cairomm
 Requires: freetype
 Requires: gdal32
 Requires: libjpeg
 Requires: libpng
 Requires: zlib
+Requires: fmt >= 7.1.3
 #TestRequires: cairomm-devel
 #TestRequires: boost169-devel
 #TestRequires: bzip2-libs
@@ -40,7 +43,8 @@ Requires: zlib
 #TestRequires: make
 #TestRequires: smartmet-library-newbase-devel
 #TestRequires: smartmet-library-regression
-#TestRequires: smartmet-library-macgyver-devel >= 21.1.14
+#TestRequires: smartmet-library-macgyver-devel >= 21.2.25
+#TestRequires: smartmet-library-gis-devel >= 21.5.5
 #TestRequires: zlib
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4
@@ -84,6 +88,21 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Thu May  6 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.5.6-1.fmi
+- Repackaged due to NFmiAzimuthalArea ABI changes
+
+* Tue Mar 30 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.3.30-1.fmi
+- Handle colour "none" properly in ImagineXr::Erase
+
+* Thu Feb 18 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.2.18-1.fmi
+- Repackaged due to NFmiArea ABI changes
+
+* Tue Feb 16 2021 Andris Pavēnis <andris.pavenis@fmi.fi> - 21.2.16-1.fmi
+- Repackaged due to newbase ABI changes
+
+* Mon Feb 15 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.2.15-1.fmi
+- Merged WGS84 branch
+
 * Thu Jan 14 2021 Mika Heiskanen <mika.heiskanen@fmi.fi> - 21.1.14-1.fmi
 - Repackaged smartmet to resolve debuginfo issues
 

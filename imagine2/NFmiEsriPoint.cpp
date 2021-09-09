@@ -46,7 +46,10 @@ NFmiEsriPoint& NFmiEsriPoint::operator=(const NFmiEsriPoint& thePoint)
 // Cloning
 // ----------------------------------------------------------------------
 
-NFmiEsriElement* NFmiEsriPoint::Clone() const { return new NFmiEsriPoint(*this); }
+NFmiEsriElement* NFmiEsriPoint::Clone() const
+{
+  return new NFmiEsriPoint(*this);
+}
 // ----------------------------------------------------------------------
 // Constructor based on a character buffer
 // ----------------------------------------------------------------------

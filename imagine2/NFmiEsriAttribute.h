@@ -82,6 +82,7 @@ class NFmiEsriAttribute
   void SetInteger(int theValue) { itsInteger = theValue; }
   void SetDouble(double theValue) { itsDouble = theValue; }
   void SetString(const std::string& theValue) { itsString = theValue; }
+
  private:
   // Must not have a null-attribute - hide the constructor
 
@@ -103,6 +104,5 @@ class NFmiEsriAttribute
 };
 
 }  // namespace Imagine
-
 
 // ======================================================================

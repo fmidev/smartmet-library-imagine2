@@ -18,20 +18,20 @@
 
 #include "imagine-config.h"
 
-#include "NFmiColorTools.h"
 #include "NFmiAlignment.h"
+#include "NFmiColorTools.h"
 
 #ifndef IMAGINE_WITH_CAIRO
 #include "NFmiDrawable.h"
 #endif
 
+#include <cmath>  // for min,max,floor,ceil etc
+#include <cstdio>
+#include <set>  // for sets
+#include <stdexcept>
 #include <string>   // for filenames, drawing text etc
 #include <utility>  // for pairs
 #include <vector>   // for vectors
-#include <set>      // for sets
-#include <cmath>    // for min,max,floor,ceil etc
-#include <cstdio>
-#include <stdexcept>
 
 #ifdef __BORLANDC__
 using std::FILE;
@@ -50,7 +50,7 @@ using std::FILE;
 #ifdef IMAGINE_IGNORE_FORMATS
 #undef IMAGINE_FORMAT_JPEG
 #undef IMAGINE_FORMAT_PNG
-#elif(!defined IMAGINE_FORMAT_JPEG) && (!defined IMAGINE_FORMAT_PNG)
+#elif (!defined IMAGINE_FORMAT_JPEG) && (!defined IMAGINE_FORMAT_PNG)
 #define IMAGINE_FORMAT_JPEG
 #define IMAGINE_FORMAT_PNG
 #endif
@@ -145,7 +145,7 @@ class NFmiImage
   //
   void DefaultOptions();
 
-// Access to individual options
+  // Access to individual options
 
 #ifdef IMAGINE_FORMAT_JPEG
   int JpegQuality(void) const { return itsJpegQuality; }
@@ -224,7 +224,7 @@ class NFmiImage
                  float theAlpha = 1.0);
 
   /******
-  */
+   */
  private:
   // Constructor, destructor utilities
   //
@@ -296,6 +296,5 @@ class NFmiImage
 };
 
 }  // namespace Imagine
-
 
 // ----------------------------------------------------------------------

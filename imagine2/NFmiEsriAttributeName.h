@@ -91,6 +91,7 @@ class NFmiEsriAttributeName
   short FieldLength() const { return itsFieldLength; }
   short DecimalCount() const { return itsDecimalCount; }
   short Length() const { return static_cast<short>(itsLength); }
+
  private:
   NFmiEsriAttributeName(void);
 
@@ -103,6 +104,5 @@ class NFmiEsriAttributeName
 };
 
 }  // namespace Imagine
-
 
 // ======================================================================

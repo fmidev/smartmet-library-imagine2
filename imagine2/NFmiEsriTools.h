@@ -9,4 +9,4 @@ namespace NFmiEsriTools
 {
 NFmiEsriShape* filter(const NFmiEsriShape& theShape, const std::string& theCondition);
 }
-}
+}  // namespace Imagine

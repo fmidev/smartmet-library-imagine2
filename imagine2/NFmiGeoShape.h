@@ -23,15 +23,15 @@
 #include "ImagineXr.h"
 #else
 #include "NFmiColorTools.h"
-#include "NFmiImage.h"
-#include "NFmiFillMap.h"
 #include "NFmiDrawable.h"
+#include "NFmiFillMap.h"
+#include "NFmiImage.h"
 #endif
 
 #include <NFmiArea.h>
 
-#include <string>
 #include <stdexcept>
+#include <string>
 
 namespace Imagine
 {
@@ -85,7 +85,7 @@ class NFmiGeoShape
   void Add(NFmiFillMap &theMap) const;
 #endif
 
-// Stroke onto given image using various Porter-Duff rules
+  // Stroke onto given image using various Porter-Duff rules
 
 #ifdef IMAGINE_WITH_CAIRO
   void Stroke(ImagineXr &drawing,
@@ -97,7 +97,7 @@ class NFmiGeoShape
               NFmiColorTools::NFmiBlendRule theRule = NFmiColorTools::kFmiColorCopy) const;
 #endif
 
-// Mark the coordinates
+  // Mark the coordinates
 
 #ifdef IMAGINE_WITH_CAIRO
   void Mark(ImagineXr &drawing,
@@ -162,7 +162,7 @@ class NFmiGeoShape
 
   const NFmiPath PathEsri() const;
 
-// Stroking
+  // Stroking
 
 #ifdef IMAGINE_WITH_CAIRO
   void StrokeEsri(ImagineXr &drawing,
@@ -179,7 +179,7 @@ class NFmiGeoShape
   void AddEsri(NFmiFillMap &theMap) const;
 #endif
 
-// Mark the coordinates
+  // Mark the coordinates
 
 #ifdef IMAGINE_WITH_CAIRO
   void MarkEsri(ImagineXr &drawing,
@@ -207,6 +207,5 @@ class NFmiGeoShape
 };
 
 }  // namespace Imagine
-
 
 // ======================================================================

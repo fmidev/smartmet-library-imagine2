@@ -6,10 +6,10 @@
 #include "NFmiImage.h"
 #include <NFmiStringTools.h>
 
-#include <set>
-#include <map>
-#include <iostream>
 #include <algorithm>
+#include <iostream>
+#include <map>
+#include <set>
 #include <sstream>
 
 using namespace std;
@@ -38,7 +38,8 @@ void NFmiImage::ReadPGM(FILE *in)
   while (buffer[0] == '#' || buffer[0] == '\n')
   {
     fgets(buffer, maxbufsize, in);
-    if (strlen(buffer) == 0) throw runtime_error("Invalid PGM image data");
+    if (strlen(buffer) == 0)
+      throw runtime_error("Invalid PGM image data");
   }
 
   // Then there are the dimensions X Y
@@ -47,8 +48,10 @@ void NFmiImage::ReadPGM(FILE *in)
   {
     istringstream input(buffer);
     input >> width >> height;
-    if (input.bad()) throw runtime_error("Failed to read PGM dimensions");
-    if (width <= 0 || height <= 0) throw runtime_error("PGM dimensions must be positive");
+    if (input.bad())
+      throw runtime_error("Failed to read PGM dimensions");
+    if (width <= 0 || height <= 0)
+      throw runtime_error("PGM dimensions must be positive");
   }
 
   // And the size of each color component (normally 255)
@@ -58,7 +61,8 @@ void NFmiImage::ReadPGM(FILE *in)
     fgets(buffer, maxbufsize, in);
     istringstream input(buffer);
     input >> colorsize;
-    if (input.bad()) throw runtime_error("Failed to read PGM color size");
+    if (input.bad())
+      throw runtime_error("Failed to read PGM color size");
     if (colorsize != 255)
       throw runtime_error("Only colorsize 255 is supported for PGM images (size=" +
                           NFmiStringTools::Convert(colorsize) + ")");
@@ -72,7 +76,8 @@ void NFmiImage::ReadPGM(FILE *in)
     for (int i = 0; i < width; i++)
     {
       const int gray = fgetc(in);
-      if (gray == EOF) throw runtime_error("PGM data ends abruptly");
+      if (gray == EOF)
+        throw runtime_error("PGM data ends abruptly");
       (*this)(i, j) = NFmiColorTools::MakeColor(gray, gray, gray);
     }
 }

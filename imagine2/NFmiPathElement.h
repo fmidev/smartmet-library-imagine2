@@ -33,7 +33,7 @@ enum NFmiPathOperation
 };
 
 /* The struct is basically the same, a _bit_ shorter... then old (below)
-*/
+ */
 struct NFmiPathElement
 {
   enum NFmiPathOperation op;
@@ -46,7 +46,7 @@ struct NFmiPathElement
   }
 
 /* Verbose alternatives for old code's compatibility
-*/
+ */
 #if 1
   enum NFmiPathOperation Oper() const { return op; }
   double X() const { return x; }
@@ -58,6 +58,5 @@ struct NFmiPathElement
 };
 
 }  // namespace Imagine
-
 
 // ======================================================================

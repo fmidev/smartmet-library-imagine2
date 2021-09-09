@@ -208,24 +208,28 @@ class NFmiNearTree
 
     else if (dist_left > dist_right)
     {
-      if (itsRightBranch == 0) itsRightBranch = new NFmiNearTree;
+      if (itsRightBranch == 0)
+        itsRightBranch = new NFmiNearTree;
 
       // note that the next line assumes that itsMaxRight is
       // negative for a new node
 
-      if (itsMaxRight < dist_right) itsMaxRight = dist_right;
+      if (itsMaxRight < dist_right)
+        itsMaxRight = dist_right;
 
       itsRightBranch->Insert(theObject);
     }
 
     else
     {
-      if (itsLeftBranch == 0) itsLeftBranch = new NFmiNearTree;
+      if (itsLeftBranch == 0)
+        itsLeftBranch = new NFmiNearTree;
 
       // note that the next line assumes that itsMaxLeft is
       // negative for a new node
 
-      if (itsMaxLeft < dist_left) itsMaxLeft = dist_left;
+      if (itsMaxLeft < dist_left)
+        itsMaxLeft = dist_left;
 
       itsLeftBranch->Insert(theObject);
     }
@@ -484,6 +488,5 @@ class NFmiNearTree
 };
 
 }  // namespace Imagine
-
 
 // ======================================================================

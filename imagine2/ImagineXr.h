@@ -1,8 +1,8 @@
 /*
-* ImagineXr.h
-*
-* Replacement for 'Imagine' library, using Cairo drawing
-*/
+ * ImagineXr.h
+ *
+ * Replacement for 'Imagine' library, using Cairo drawing
+ */
 
 #pragma once
 
@@ -12,14 +12,14 @@
 #error "Please define IMAGINE_WITH_CAIRO to use us."
 #endif
 
-#include "NFmiColorTools.h"
 #include "NFmiAlignment.h"
+#include "NFmiColorTools.h"
 #include "NFmiPathElement.h"
 
 #include <cairomm/cairomm.h>
 
-#include <string>
 #include <deque>
+#include <string>
 
 using namespace std;
 using namespace Cairo;
@@ -35,9 +35,9 @@ class ImagineXr
 {
  private:
   /* Either 'pdf_surf' or 'image_surf' is non-nullptr; tried to use just a single
-  * 'Cairo::Surface' object, but they differ enough and casting 'RefPtr' proved
-  * to be tedious.
-  */
+   * 'Cairo::Surface' object, but they differ enough and casting 'RefPtr' proved
+   * to be tedious.
+   */
   Cairo::RefPtr<Cairo::PdfSurface> pdf_surf;
   Cairo::RefPtr<Cairo::PsSurface> ps_surf;
   Cairo::RefPtr<Cairo::SvgSurface> svg_surf;
@@ -45,10 +45,14 @@ class ImagineXr
 
   const Cairo::RefPtr<Cairo::Surface> surf() const
   {
-    if (image_surf) return image_surf;
-    if (pdf_surf) return pdf_surf;
-    if (ps_surf) return ps_surf;
-    if (svg_surf) return svg_surf;
+    if (image_surf)
+      return image_surf;
+    if (pdf_surf)
+      return pdf_surf;
+    if (ps_surf)
+      return ps_surf;
+    if (svg_surf)
+      return svg_surf;
     throw std::runtime_error("No Cairo surface initialized");
   }
 
@@ -56,8 +60,8 @@ class ImagineXr
   const string fmt;  // "pdf"/"png"/"gif"/...
 
   /* 'PdfSurface' does not remember its width & height; we need to keep
-  * copy of the constructor values.
-  */
+   * copy of the constructor values.
+   */
   /*const*/ int width, height;
 
   Cairo::RefPtr<Cairo::Context> cr;  // same 'cr' and 'face' used by all operations
@@ -78,9 +82,9 @@ class ImagineXr
   static void ApplyAlignment(enum NFmiAlignment alignment, int &x, int &y, int w, int h);
 
   /*
-  * Cairo has alpha 0..255 whereas NFmiColor has 0..127, so we cannot give
-  * whole data blocks directly between them.
-  */
+   * Cairo has alpha 0..255 whereas NFmiColor has 0..127, so we cannot give
+   * whole data blocks directly between them.
+   */
   const int32_t *ARGB_32() const;
 
   /*******************/
@@ -139,4 +143,3 @@ class ImagineXr
 
   void Write() const;
 };
-

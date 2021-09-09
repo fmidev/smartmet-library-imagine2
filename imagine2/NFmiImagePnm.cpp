@@ -6,10 +6,10 @@
 #include "NFmiImage.h"
 #include <NFmiStringTools.h>
 
-#include <set>
-#include <map>
-#include <iostream>
 #include <algorithm>
+#include <iostream>
+#include <map>
+#include <set>
 #include <sstream>
 
 using namespace std;
@@ -38,7 +38,8 @@ void NFmiImage::ReadPNM(FILE *in)
   while (buffer[0] == '#' || buffer[0] == '\n')
   {
     fgets(buffer, maxbufsize, in);
-    if (strlen(buffer) == 0) throw runtime_error("Invalid PNM image data");
+    if (strlen(buffer) == 0)
+      throw runtime_error("Invalid PNM image data");
   }
 
   // Then there are the dimensions X Y
@@ -47,8 +48,10 @@ void NFmiImage::ReadPNM(FILE *in)
   {
     istringstream input(buffer);
     input >> width >> height;
-    if (input.bad()) throw runtime_error("Failed to read PNM dimensions");
-    if (width <= 0 || height <= 0) throw runtime_error("PNM dimensions must be positive");
+    if (input.bad())
+      throw runtime_error("Failed to read PNM dimensions");
+    if (width <= 0 || height <= 0)
+      throw runtime_error("PNM dimensions must be positive");
   }
 
   // And the size of each color component (normally 255)
@@ -58,7 +61,8 @@ void NFmiImage::ReadPNM(FILE *in)
     fgets(buffer, maxbufsize, in);
     istringstream input(buffer);
     input >> colorsize;
-    if (input.bad()) throw runtime_error("Failed to read PNM color size");
+    if (input.bad())
+      throw runtime_error("Failed to read PNM color size");
     if (colorsize != 255)
       throw runtime_error("Only colorsize 255 is supported for PNM images (size=" +
                           NFmiStringTools::Convert(colorsize) + ")");
@@ -74,7 +78,8 @@ void NFmiImage::ReadPNM(FILE *in)
       const int r = fgetc(in);
       const int g = fgetc(in);
       const int b = fgetc(in);
-      if (r == EOF || g == EOF || b == EOF) throw runtime_error("PNM data ends abruptly");
+      if (r == EOF || g == EOF || b == EOF)
+        throw runtime_error("PNM data ends abruptly");
       (*this)(i, j) = NFmiColorTools::MakeColor(r, g, b);
     }
 }

@@ -49,8 +49,8 @@
 #include "NFmiFillMap.h"
 #endif
 
-#include <NFmiArea.h>
 #include <gis/SpatialReference.h>
+#include <NFmiArea.h>
 
 #include <algorithm>
 #include <cmath>   // for sqrt
@@ -176,7 +176,8 @@ class NFmiPath
 
   void Add(const NFmiPath &thePath)
   {
-    if (thePath.Empty()) return;
+    if (thePath.Empty())
+      return;
 
     NFmiPathData::const_iterator it = thePath.itsElements.begin();
     // strip leading moveto if the coordinate is the same as last end point

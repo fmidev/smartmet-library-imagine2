@@ -15,7 +15,7 @@ BuildRequires: boost169-devel
 BuildRequires: cairomm-devel
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
-BuildRequires: gdal32-devel
+BuildRequires: gdal33-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: make
@@ -28,7 +28,7 @@ BuildRequires: zlib-devel
 Requires: smartmet-library-newbase >= 21.5.6
 Requires: cairomm
 Requires: freetype
-Requires: gdal32
+Requires: gdal33
 Requires: libjpeg
 Requires: libpng
 Requires: zlib

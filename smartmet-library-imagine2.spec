@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 21.5.6
+Version: 21.12.2
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -21,11 +21,11 @@ BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
 BuildRequires: fmt-devel >= 7.1.3
-BuildRequires: smartmet-library-newbase-devel >= 21.5.6
-BuildRequires: smartmet-library-macgyver-devel >= 21.2.25
-BuildRequires: smartmet-library-gis-devel >= 21.5.5
+BuildRequires: smartmet-library-newbase-devel >= 21.12.1
+BuildRequires: smartmet-library-macgyver-devel >= 21.12.1
+BuildRequires: smartmet-library-gis-devel >= 21.12.1
 BuildRequires: zlib-devel
-Requires: smartmet-library-newbase >= 21.5.6
+Requires: smartmet-library-newbase >= 21.12.1
 Requires: cairomm
 Requires: freetype
 Requires: gdal33
@@ -41,10 +41,10 @@ Requires: fmt >= 7.1.3
 #TestRequires: libjpeg
 #TestRequires: libpng
 #TestRequires: make
-#TestRequires: smartmet-library-newbase-devel
+#TestRequires: smartmet-library-newbase-devel >= 21.12.1
 #TestRequires: smartmet-library-regression
-#TestRequires: smartmet-library-macgyver-devel >= 21.2.25
-#TestRequires: smartmet-library-gis-devel >= 21.5.5
+#TestRequires: smartmet-library-macgyver-devel >= 21.12.1
+#TestRequires: smartmet-library-gis-devel >= 21.12.1
 #TestRequires: zlib
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4

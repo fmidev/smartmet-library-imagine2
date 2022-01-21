@@ -15,20 +15,20 @@ BuildRequires: boost169-devel
 BuildRequires: cairomm-devel
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
-BuildRequires: gdal33-devel
+BuildRequires: gdal34-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
 BuildRequires: fmt-devel >= 7.1.3
-BuildRequires: smartmet-library-newbase-devel >= 21.12.1
-BuildRequires: smartmet-library-macgyver-devel >= 21.12.1
-BuildRequires: smartmet-library-gis-devel >= 21.12.1
+BuildRequires: smartmet-library-newbase-devel >= 21.1.21
+BuildRequires: smartmet-library-macgyver-devel >= 21.1.21
+BuildRequires: smartmet-library-gis-devel >= 21.1.21
 BuildRequires: zlib-devel
-Requires: smartmet-library-newbase >= 21.12.1
+Requires: smartmet-library-newbase >= 21.1.21
 Requires: cairomm
 Requires: freetype
-Requires: gdal33
+Requires: gdal34
 Requires: libjpeg
 Requires: libpng
 Requires: zlib
@@ -41,10 +41,10 @@ Requires: fmt >= 7.1.3
 #TestRequires: libjpeg
 #TestRequires: libpng
 #TestRequires: make
-#TestRequires: smartmet-library-newbase-devel >= 21.12.1
+#TestRequires: smartmet-library-newbase-devel >= 21.1.21
 #TestRequires: smartmet-library-regression
-#TestRequires: smartmet-library-macgyver-devel >= 21.12.1
-#TestRequires: smartmet-library-gis-devel >= 21.12.1
+#TestRequires: smartmet-library-macgyver-devel >= 21.1.21
+#TestRequires: smartmet-library-gis-devel >= 21.1.21
 #TestRequires: zlib
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4

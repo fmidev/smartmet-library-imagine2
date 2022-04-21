@@ -11,19 +11,20 @@ include $(shell echo $${PREFIX-/usr})/share/smartmet/devel/makefile.inc
 
 DEFINES = -DUNIX -D_REENTRANT -DFMI_COMPRESSION -DBOOST -DBOOST_IOSTREAMS_NO_LIB
 
- INCLUDES += \
+EXTRA_INCLUDES := $(shell pkg-config --cflags freetype2 cairomm-1.0)
+EXTRA_LIBS := $(shell pkg-config --libs freetype2 cairomm-1.0)
+
+INCLUDES += \
 	-isystem $(includedir)/smartmet \
 	-isystem $(includedir)/smartmet/newbase \
-	$(shell freetype-config --cflags) \
-	$(shell pkg-config --cflags cairomm-1.0)
+	$(EXTRA_INCLUDES)
 
 LIBS += -L$(libdir) \
 	-lboost_filesystem \
 	-lboost_regex \
 	-lboost_thread \
-	`freetype-config --libs` \
-	`pkg-config --libs cairomm-1.0` \
 	$(REQUIRED_LIBS) \
+	$(EXTRA_LIBS) \
 	-ljpeg -lpng -lz
 
 # What to install

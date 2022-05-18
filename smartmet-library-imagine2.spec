@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 22.1.21
+Version: 22.5.18
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -21,11 +21,11 @@ BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
 BuildRequires: fmt-devel >= 7.1.3
-BuildRequires: smartmet-library-newbase-devel >= 21.1.21
-BuildRequires: smartmet-library-macgyver-devel >= 21.1.21
-BuildRequires: smartmet-library-gis-devel >= 21.1.21
+BuildRequires: smartmet-library-newbase-devel >= 22.5.18
+BuildRequires: smartmet-library-macgyver-devel >= 22.3.28
+BuildRequires: smartmet-library-gis-devel >= 22.5.4
 BuildRequires: zlib-devel
-Requires: smartmet-library-newbase >= 21.1.21
+Requires: smartmet-library-newbase >= 22.5.18
 Requires: cairomm
 Requires: freetype
 Requires: gdal34
@@ -41,10 +41,10 @@ Requires: fmt >= 7.1.3
 #TestRequires: libjpeg
 #TestRequires: libpng
 #TestRequires: make
-#TestRequires: smartmet-library-newbase-devel >= 21.1.21
+#TestRequires: smartmet-library-newbase-devel >= 22.5.18
 #TestRequires: smartmet-library-regression
-#TestRequires: smartmet-library-macgyver-devel >= 21.1.21
-#TestRequires: smartmet-library-gis-devel >= 21.1.21
+#TestRequires: smartmet-library-macgyver-devel >= 22.3.28
+#TestRequires: smartmet-library-gis-devel >= 22.5.4
 #TestRequires: zlib
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4
@@ -88,6 +88,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Wed May 18 2022 Mika Heiskanen <mika.heiskanen@fmi.fi> - 22.5.18-1.fmi
+- Removed obsolete #ifdef WGS84 segments
+
 * Fri Jan 21 2022 Andris Pavēnis <andris.pavenis@fmi.fi> 22.1.21-1.fmi
 - Repackage due to upgrade of packages from PGDG repo: gdal-3.4, geos-3.10, proj-8.2
 

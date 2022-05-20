@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 22.5.18
+Version: 22.5.20
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -21,11 +21,11 @@ BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
 BuildRequires: fmt-devel >= 7.1.3
-BuildRequires: smartmet-library-newbase-devel >= 22.5.18
+BuildRequires: smartmet-library-newbase-devel >= 22.5.20
 BuildRequires: smartmet-library-macgyver-devel >= 22.3.28
 BuildRequires: smartmet-library-gis-devel >= 22.5.4
 BuildRequires: zlib-devel
-Requires: smartmet-library-newbase >= 22.5.18
+Requires: smartmet-library-newbase >= 22.5.20
 Requires: cairomm
 Requires: freetype
 Requires: gdal34
@@ -41,7 +41,7 @@ Requires: fmt >= 7.1.3
 #TestRequires: libjpeg
 #TestRequires: libpng
 #TestRequires: make
-#TestRequires: smartmet-library-newbase-devel >= 22.5.18
+#TestRequires: smartmet-library-newbase-devel >= 22.5.20
 #TestRequires: smartmet-library-regression
 #TestRequires: smartmet-library-macgyver-devel >= 22.3.28
 #TestRequires: smartmet-library-gis-devel >= 22.5.4
@@ -88,6 +88,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Fri May 20 2022 Mika Heiskanen <mika.heiskanen@fmi.fi> - 22.5.20-1.fmi
+- Repackaged due to newbase ABI change to LatLon methods
+
 * Wed May 18 2022 Mika Heiskanen <mika.heiskanen@fmi.fi> - 22.5.18-1.fmi
 - Removed obsolete #ifdef WGS84 segments
 

@@ -11,7 +11,17 @@ Group: Development/Libraries
 URL: https://github.com/fmidev/smartmet-library-imagine
 Source0: %{name}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires: boost169-devel
+
+%if 0%{?rhel} && 0%{rhel} < 9
+%define smartmet_boost boost169
+%else
+%define smartmet_boost boost
+%endif
+
+%define smartmet_fmt_min 8.1.1
+%define smartmet_fmt_max 8.2.0
+
+BuildRequires: %{smartmet_boost}-devel
 BuildRequires: cairomm-devel
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
@@ -20,31 +30,31 @@ BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
-BuildRequires: fmt-devel >= 7.1.3
-BuildRequires: smartmet-library-newbase-devel >= 22.5.24
-BuildRequires: smartmet-library-macgyver-devel >= 22.3.28
-BuildRequires: smartmet-library-gis-devel >= 22.5.4
+BuildRequires: fmt-devel >= %{smartmet_fmt_min}, fmt-devel < %{smartmet_fmt_max}
+BuildRequires: smartmet-library-newbase-devel >= 22.6.16
+BuildRequires: smartmet-library-macgyver-devel >= 22.6.16
+BuildRequires: smartmet-library-gis-devel >= 22.6.16
 BuildRequires: zlib-devel
-Requires: smartmet-library-newbase >= 22.5.24
+Requires: smartmet-library-newbase >= 22.6.16
 Requires: cairomm
 Requires: freetype
 Requires: gdal34
 Requires: libjpeg
 Requires: libpng
 Requires: zlib
-Requires: fmt >= 7.1.3
+Requires: fmt >= %{smartmet_fmt_min}, fmt < %{smartmet_fmt_max}
 #TestRequires: cairomm-devel
-#TestRequires: boost169-devel
+#TestRequires: %{smartmet_boost}-devel
 #TestRequires: bzip2-libs
 #TestRequires: freetype-devel
 #TestRequires: gcc-c++
 #TestRequires: libjpeg
 #TestRequires: libpng
 #TestRequires: make
-#TestRequires: smartmet-library-newbase-devel >= 22.5.24
+#TestRequires: smartmet-library-newbase-devel >= 22.6.16
 #TestRequires: smartmet-library-regression
-#TestRequires: smartmet-library-macgyver-devel >= 22.3.28
-#TestRequires: smartmet-library-gis-devel >= 22.5.4
+#TestRequires: smartmet-library-macgyver-devel >= 22.6.16
+#TestRequires: smartmet-library-gis-devel >= 22.6.16
 #TestRequires: zlib
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4

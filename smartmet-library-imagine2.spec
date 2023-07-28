@@ -31,11 +31,11 @@ BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
 BuildRequires: fmt-devel >= %{smartmet_fmt_min}, fmt-devel < %{smartmet_fmt_max}
-BuildRequires: smartmet-library-newbase-devel >= 23.7.10
-BuildRequires: smartmet-library-macgyver-devel >= 22.6.16
+BuildRequires: smartmet-library-newbase-devel >= 23.7.28
+BuildRequires: smartmet-library-macgyver-devel >= 23.7.28
 BuildRequires: smartmet-library-gis-devel >= 23.7.10
 BuildRequires: zlib-devel
-Requires: smartmet-library-newbase >= 23.7.10
+Requires: smartmet-library-newbase >= 23.7.28
 Requires: cairomm
 Requires: freetype
 Requires: gdal35
@@ -51,9 +51,9 @@ Requires: fmt >= %{smartmet_fmt_min}, fmt < %{smartmet_fmt_max}
 #TestRequires: libjpeg
 #TestRequires: libpng
 #TestRequires: make
-#TestRequires: smartmet-library-newbase-devel >= 23.7.10
+#TestRequires: smartmet-library-newbase-devel >= 23.7.28
 #TestRequires: smartmet-library-regression
-#TestRequires: smartmet-library-macgyver-devel >= 22.6.16
+#TestRequires: smartmet-library-macgyver-devel >= 23.7.28
 #TestRequires: smartmet-library-gis-devel >= 23.7.10
 #TestRequires: zlib
 Provides: %{LIBNAME}

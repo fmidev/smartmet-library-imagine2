@@ -36,6 +36,7 @@ LIBS +=  ../libsmartmet-imagine2.so \
 	$(REQUIRED_LIBS) \
 	-lsmartmet-newbase \
 	-lsmartmet-gis \
+	-lsmartmet-macgyver \
 	-lboost_regex \
 	-lboost_filesystem \
         -lboost_iostreams \

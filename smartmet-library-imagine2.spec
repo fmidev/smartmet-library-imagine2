@@ -25,7 +25,7 @@ BuildRequires: %{smartmet_boost}-devel
 BuildRequires: cairomm-devel
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
-BuildRequires: gdal35-devel
+BuildRequires: gdal38-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: make
@@ -38,7 +38,7 @@ BuildRequires: zlib-devel
 Requires: smartmet-library-newbase >= 24.2.23
 Requires: cairomm
 Requires: freetype
-Requires: gdal35
+Requires: gdal38
 Requires: libjpeg
 Requires: libpng
 Requires: zlib

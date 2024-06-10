@@ -38,7 +38,7 @@ BuildRequires: zlib-devel
 Requires: smartmet-library-newbase >= 24.2.23
 Requires: cairomm
 Requires: freetype
-Requires: gdal38
+Requires: gdal38-libs
 Requires: libjpeg
 Requires: libpng
 Requires: zlib

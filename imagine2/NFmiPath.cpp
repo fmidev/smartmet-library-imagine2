@@ -859,6 +859,7 @@ string NFmiPath::SVG(bool relative_moves, bool removeghostlines) const
               os += ((last_op == kFmiLineTo || last_op == kFmiGhostLineTo) ? " " : " L");
             else
               os += ' ';
+            break;
           case kFmiConicTo:
             os += (last_op == kFmiConicTo ? " " : " Q");
             break;

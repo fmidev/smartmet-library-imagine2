@@ -34,6 +34,7 @@ const double inside_out_limit = 1e8;
 //! The number identifying the region within the rectangle
 const int central_quadrant = 4;
 
+#if 0 // Not used
 //! Test the position of given point with respect to a rectangle.
 int quadrant(double x, double y, double x1, double y1, double x2, double y2, double margin)
 {
@@ -48,7 +49,9 @@ int quadrant(double x, double y, double x1, double y1, double x2, double y2, dou
     value += 3;
   return value;
 }
+#endif
 
+#if 0 // Not used
 //! Test whether two rectangles intersect
 bool intersects(
     double x1, double y1, double x2, double y2, double X1, double Y1, double X2, double Y2)
@@ -57,6 +60,7 @@ bool intersects(
   bool youtside = (y1 > Y2 || y2 < Y1);
   return (!xoutside && !youtside);
 }
+#endif
 
 std::string numstring(double value, int precision)
 {

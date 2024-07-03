@@ -715,7 +715,7 @@ std::ostream& operator<<(std::ostream& os, const NFmiPath& thePath)
 // If relative_moves=true, relative movements are preferred over
 // absolute moves. This usually generates shorter SVG.
 // Tulostetaan polku vain kolmen desimaalin tarkkuudella (kaksi desimaali
-// ei riittänyt, kun tuli pieni väli maiden välille?).
+// ei riittï¿½nyt, kun tuli pieni vï¿½li maiden vï¿½lille?).
 // ----------------------------------------------------------------------
 
 string NFmiPath::SVG(bool relative_moves, bool removeghostlines) const
@@ -742,7 +742,7 @@ string NFmiPath::SVG(bool relative_moves, bool removeghostlines) const
 
   for (; iter != Elements().end(); ++iter)
   {
-#ifdef _MSC_VER  // MSVC:n stringi on paska kun se täyttyy ei sitä kasvateta tarpeeksi
+#ifdef _MSC_VER  // MSVC:n stringi on paska kun se tï¿½yttyy ei sitï¿½ kasvateta tarpeeksi
     if (os.size() > 0.9 * os.capacity())
       os.reserve(os.size() * 2);
 #endif

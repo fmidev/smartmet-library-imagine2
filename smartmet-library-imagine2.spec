@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 24.2.23
+Version: 24.7.3
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -98,6 +98,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Wed Jul  3 2024 Andris Pavēnis <andris.pavenis@fmi.fi> 24.7.3-1.fmi
+- Fix missing break statement
+
 * Fri Feb 23 2024 Mika Heiskanen <mika.heiskanen@fmi.fi> 24.2.23-1.fmi
 - Full repackaging
 

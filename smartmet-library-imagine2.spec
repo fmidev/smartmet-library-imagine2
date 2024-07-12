@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 24.7.3
+Version: 24.7.12
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -98,6 +98,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Fri Jul 12 2024 Andris Pavēnis <andris.pavenis@fmi.fi> 24.7.12-1.fmi
+- Replace many boost library types with C++ standard library ones
+
 * Wed Jul  3 2024 Andris Pavēnis <andris.pavenis@fmi.fi> 24.7.3-1.fmi
 - Fix missing break statement
 

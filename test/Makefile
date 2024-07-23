@@ -32,16 +32,18 @@ INCLUDES += \
 	$(FT2_CFLAGS)
 
 
-LIBS +=  ../libsmartmet-imagine2.so \
+LIBS +=  \
+	../libsmartmet-imagine2.so \
+	$(PREFIX_LDFLAGS) \
 	$(REQUIRED_LIBS) \
 	-lsmartmet-newbase \
 	-lsmartmet-gis \
 	-lsmartmet-macgyver \
 	-lboost_regex \
 	-lboost_filesystem \
-        -lboost_iostreams \
-        -lboost_thread \
-        -lboost_system \
+	-lboost_iostreams \
+	-lboost_thread \
+	-lboost_system \
 	$(FT2_LIBS) \
 	-lpng -lz -lpthread -lrt
 

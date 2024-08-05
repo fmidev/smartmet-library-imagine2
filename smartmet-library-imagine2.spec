@@ -42,7 +42,7 @@ Requires: gdal38-libs
 Requires: libjpeg
 Requires: libpng
 Requires: zlib
-Requires: fmt-devel >= %{smartmet_fmt_min}, fmt-devel < %{smartmet_fmt_max}
+Requires: fmt-libs >= %{smartmet_fmt_min}, fmt-libs < %{smartmet_fmt_max}
 #TestRequires: cairomm-devel
 #TestRequires: %{smartmet_boost}-devel
 #TestRequires: bzip2-libs

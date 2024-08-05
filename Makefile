@@ -19,10 +19,10 @@ INCLUDES += \
 	-isystem $(includedir)/smartmet/newbase \
 	$(EXTRA_INCLUDES)
 
-LIBS += -L$(libdir) \
+LIBS += \
+	$(PREFIX_LDFLAGS) \
 	-lsmartmet-newbase \
 	-lsmartmet-macgyver \
-	-lboost_filesystem \
 	-lboost_regex \
 	-lboost_thread \
 	$(REQUIRED_LIBS) \
@@ -68,6 +68,7 @@ $(LIBFILE): $(OBJS)
 clean:
 	rm -f $(LIBFILE) *~ $(SUBNAME)/*~
 	rm -rf $(objdir)
+	$(MAKE) -C test $@
 
 format:
 	clang-format -i -style=file $(SUBNAME)/*.h $(SUBNAME)/*.cpp test/*.cpp

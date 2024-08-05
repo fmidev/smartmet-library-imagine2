@@ -34,6 +34,7 @@ const double inside_out_limit = 1e8;
 //! The number identifying the region within the rectangle
 const int central_quadrant = 4;
 
+#if 0 // Not used
 //! Test the position of given point with respect to a rectangle.
 int quadrant(double x, double y, double x1, double y1, double x2, double y2, double margin)
 {
@@ -48,7 +49,9 @@ int quadrant(double x, double y, double x1, double y1, double x2, double y2, dou
     value += 3;
   return value;
 }
+#endif
 
+#if 0 // Not used
 //! Test whether two rectangles intersect
 bool intersects(
     double x1, double y1, double x2, double y2, double X1, double Y1, double X2, double Y2)
@@ -57,6 +60,7 @@ bool intersects(
   bool youtside = (y1 > Y2 || y2 < Y1);
   return (!xoutside && !youtside);
 }
+#endif
 
 std::string numstring(double value, int precision)
 {
@@ -715,7 +719,7 @@ std::ostream& operator<<(std::ostream& os, const NFmiPath& thePath)
 // If relative_moves=true, relative movements are preferred over
 // absolute moves. This usually generates shorter SVG.
 // Tulostetaan polku vain kolmen desimaalin tarkkuudella (kaksi desimaali
-// ei riittänyt, kun tuli pieni väli maiden välille?).
+// ei riittï¿½nyt, kun tuli pieni vï¿½li maiden vï¿½lille?).
 // ----------------------------------------------------------------------
 
 string NFmiPath::SVG(bool relative_moves, bool removeghostlines) const
@@ -742,7 +746,7 @@ string NFmiPath::SVG(bool relative_moves, bool removeghostlines) const
 
   for (; iter != Elements().end(); ++iter)
   {
-#ifdef _MSC_VER  // MSVC:n stringi on paska kun se täyttyy ei sitä kasvateta tarpeeksi
+#ifdef _MSC_VER  // MSVC:n stringi on paska kun se tï¿½yttyy ei sitï¿½ kasvateta tarpeeksi
     if (os.size() > 0.9 * os.capacity())
       os.reserve(os.size() * 2);
 #endif
@@ -859,6 +863,7 @@ string NFmiPath::SVG(bool relative_moves, bool removeghostlines) const
               os += ((last_op == kFmiLineTo || last_op == kFmiGhostLineTo) ? " " : " L");
             else
               os += ' ';
+            break;
           case kFmiConicTo:
             os += (last_op == kFmiConicTo ? " " : " Q");
             break;

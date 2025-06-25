@@ -18,11 +18,24 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 %define smartmet_boost boost
 %endif
 
-%define smartmet_fmt_min 11.0.0
+%if 0%{?rhel} && 0%{rhel} <= 9
+%define smartmet_fmt_min 11.0.1
 %define smartmet_fmt_max 12.0.0
+%define smartmet_fmt fmt-libs >= %{smartmet_fmt_min}, fmt-libs < %{smartmet_fmt_max}
+%define smartmet_fmt_devel fmt-devel >= %{smartmet_fmt_min}, fmt-devel < %{smartmet_fmt_max}
+%else
+%define smartmet_fmt fmt
+%define smartmet_fmt_devel fmt-devel
+%endif
+
+%if 0%{?rhel} && 0%{rhel} == 10
+%define smartmet_cairomm cairomm1.16
+%else
+%define smartmet_cairomm cairomm
+%endif
 
 BuildRequires: %{smartmet_boost}-devel
-BuildRequires: cairomm-devel
+BuildRequires: %{smartmet_cairomm}-devel
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
 BuildRequires: gdal310-devel
@@ -30,19 +43,19 @@ BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
-BuildRequires: fmt-devel >= %{smartmet_fmt_min}, fmt-devel < %{smartmet_fmt_max}
+BuildRequires: %{smartmet_fmt_devel}
 BuildRequires: smartmet-library-newbase-devel >= 25.2.18
 BuildRequires: smartmet-library-macgyver-devel >= 25.2.18
 BuildRequires: smartmet-library-gis-devel >= 25.2.18
 BuildRequires: zlib-devel
 Requires: smartmet-library-newbase >= 25.2.18
-Requires: cairomm
+Requires: %{smartmet_cairomm}
 Requires: freetype
 Requires: gdal310-libs
 Requires: libjpeg
 Requires: libpng
 Requires: zlib
-Requires: fmt-libs >= %{smartmet_fmt_min}, fmt-libs < %{smartmet_fmt_max}
+Requires: %{smartmet_fmt}
 #TestRequires: cairomm-devel
 #TestRequires: %{smartmet_boost}-devel
 #TestRequires: bzip2-libs

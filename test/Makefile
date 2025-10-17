@@ -16,8 +16,8 @@ endif
 
 # Platform independent Freetype2 support
 
-FT2_LIBS= $(shell freetype-config --libs)
-FT2_FLAGS= $(shell freetype-config --cflags)
+FT2_LIBS= $(shell pkg-config --libs freetype2)
+FT2_FLAGS= $(shell pkg-config --cflags freetype2)
 
 # Platform independent Cairomm support
 

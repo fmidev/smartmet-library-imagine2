@@ -1402,7 +1402,7 @@ void NFmiContourTree::IntersectEdge(vector<float>& X,
   // The intersection coordinates
 
   float slo, shi;
-  float xlo, ylo, xhi, yhi;
+  float xlo = 0, ylo = 0, xhi = 0, yhi = 0;
   float dz = zz2 - zz1;
 
   if (c1 == kBelow || c2 == kBelow)

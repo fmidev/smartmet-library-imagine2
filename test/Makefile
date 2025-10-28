@@ -43,7 +43,6 @@ LIBS +=  \
 	-lboost_filesystem \
 	-lboost_iostreams \
 	-lboost_thread \
-	-lboost_system \
 	$(FT2_LIBS) \
 	-lpng -lz -lpthread -lrt
 

@@ -18,35 +18,29 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 %define smartmet_boost boost
 %endif
 
-%if 0%{?rhel} && 0%{rhel} <= 9
-%define smartmet_fmt_min 11.0.1
-%define smartmet_fmt_max 12.0.0
+%define smartmet_fmt_min 12.0.0
+%define smartmet_fmt_max 13.0.0
 %define smartmet_fmt fmt-libs >= %{smartmet_fmt_min}, fmt-libs < %{smartmet_fmt_max}
 %define smartmet_fmt_devel fmt-devel >= %{smartmet_fmt_min}, fmt-devel < %{smartmet_fmt_max}
-%else
-%define smartmet_fmt fmt
-%define smartmet_fmt_devel fmt-devel
-%endif
-
 
 BuildRequires: %{smartmet_boost}-devel
 BuildRequires: cairomm-devel
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
-BuildRequires: gdal310-devel
+BuildRequires: gdal312-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
 BuildRequires: %{smartmet_fmt_devel}
-BuildRequires: smartmet-library-newbase-devel >= 25.2.18
-BuildRequires: smartmet-library-macgyver-devel >= 25.2.18
-BuildRequires: smartmet-library-gis-devel >= 25.2.18
+BuildRequires: smartmet-library-newbase-devel >= 26.2.4
+BuildRequires: smartmet-library-macgyver-devel >= 26.2.4
+BuildRequires: smartmet-library-gis-devel >= 26.2.4
 BuildRequires: zlib-devel
-Requires: smartmet-library-newbase >= 25.2.18
+Requires: smartmet-library-newbase >= 26.2.4
 Requires: cairomm
 Requires: freetype
-Requires: gdal310-libs
+Requires: gdal312-libs
 Requires: libjpeg
 Requires: libpng
 Requires: zlib
@@ -59,10 +53,10 @@ Requires: %{smartmet_fmt}
 #TestRequires: libjpeg
 #TestRequires: libpng
 #TestRequires: make
-#TestRequires: smartmet-library-newbase-devel >= 25.2.18
+#TestRequires: smartmet-library-newbase-devel >= 26.2.4
 #TestRequires: smartmet-library-regression
-#TestRequires: smartmet-library-macgyver-devel >= 25.2.18
-#TestRequires: smartmet-library-gis-devel >= 25.2.18
+#TestRequires: smartmet-library-macgyver-devel >= 26.2.4
+#TestRequires: smartmet-library-gis-devel >= 26.2.4
 #TestRequires: zlib
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4

@@ -34,8 +34,8 @@ BuildRequires: make
 BuildRequires: rpm-build
 BuildRequires: %{smartmet_fmt_devel}
 BuildRequires: smartmet-library-newbase-devel >= 26.2.4
-BuildRequires: smartmet-library-macgyver-devel >= 26.2.4
-BuildRequires: smartmet-library-gis-devel >= 26.2.4
+BuildRequires: smartmet-library-macgyver-devel >= 26.4.13
+BuildRequires: smartmet-library-gis-devel >= 26.4.13
 BuildRequires: zlib-devel
 Requires: smartmet-library-newbase >= 26.2.4
 Requires: cairomm
@@ -55,8 +55,8 @@ Requires: %{smartmet_fmt}
 #TestRequires: make
 #TestRequires: smartmet-library-newbase-devel >= 26.2.4
 #TestRequires: smartmet-library-regression
-#TestRequires: smartmet-library-macgyver-devel >= 26.2.4
-#TestRequires: smartmet-library-gis-devel >= 26.2.4
+#TestRequires: smartmet-library-macgyver-devel >= 26.4.13
+#TestRequires: smartmet-library-gis-devel >= 26.4.13
 #TestRequires: zlib
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4

@@ -475,7 +475,7 @@ NFmiColorTools::Color NFmiColorTools::ToColor(const string &theColor)
 
   else if (theColor[0] < '0' || theColor[0] > '9')
   {
-    string::size_type pos = theColor.find(",");
+    string::size_type pos = theColor.find(',');
     if (pos == string::npos)
       return ColorValue(theColor);
     else

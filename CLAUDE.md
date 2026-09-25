@@ -4,6 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
+Full developer documentation: `docs/developer-guide.md`.
+
 `smartmet-library-imagine2` is a 2D graphics rendering library for the SmartMet Server ecosystem (Finnish Meteorological Institute). It is the Cairo-based successor to the original `imagine` library and produces `libsmartmet-imagine2.so`. Headers install to `smartmet/imagine2/`.
 
 ## Build commands

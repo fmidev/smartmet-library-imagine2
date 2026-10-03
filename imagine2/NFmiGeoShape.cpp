@@ -685,7 +685,7 @@ void NFmiGeoShape::WriteImageMapEsri(std::ostream &os, const string &theFieldNam
         int x = static_cast<int>((*iter)->X());
         int y = static_cast<int>((*iter)->Y());
 
-        os << '"' << fieldvalue << '"' << "=> " << '"' << x << ',' << y << '"' << endl;
+        os << '"' << fieldvalue << '"' << "=> " << '"' << x << ',' << y << '"' << '\n';
         break;
       }
 
@@ -698,7 +698,7 @@ void NFmiGeoShape::WriteImageMapEsri(std::ostream &os, const string &theFieldNam
         {
           int x = static_cast<int>(elem->Points()[i].X());
           int y = static_cast<int>(elem->Points()[i].Y());
-          os << '"' << fieldvalue << '"' << " => " << '"' << x << ',' << y << '"' << endl;
+          os << '"' << fieldvalue << '"' << " => " << '"' << x << ',' << y << '"' << '\n';
         }
         break;
       }
@@ -749,7 +749,7 @@ void NFmiGeoShape::WriteImageMapEsri(std::ostream &os, const string &theFieldNam
                 os << ' ';
               os << it->first << "," << it->second;
             }
-            os << '"' << endl;
+            os << '"' << '\n';
           }
         }
         break;

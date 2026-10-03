@@ -53,7 +53,7 @@ static const char *COLORNAME(NFmiColorTools::Color col)
 
 #define RULENAME(v) BlendName(v).c_str()
 
-static void Defaults(Cairo::RefPtr<Cairo::Context> cr)
+static void Defaults(const Cairo::RefPtr<Cairo::Context>& cr)
 {
   cr->set_line_width(DEFAULT_LINE_WIDTH);
 

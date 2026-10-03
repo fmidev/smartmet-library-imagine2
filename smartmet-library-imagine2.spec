@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 26.2.4
+Version: 26.10.3
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -33,11 +33,11 @@ BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
 BuildRequires: %{smartmet_fmt_devel}
-BuildRequires: smartmet-library-newbase-devel >= 26.2.4
-BuildRequires: smartmet-library-macgyver-devel >= 26.4.13
-BuildRequires: smartmet-library-gis-devel >= 26.4.13
+BuildRequires: smartmet-library-newbase-devel >= 26.10.3
+BuildRequires: smartmet-library-macgyver-devel >= 26.10.3
+BuildRequires: smartmet-library-gis-devel >= 26.10.3
 BuildRequires: zlib-devel
-Requires: smartmet-library-newbase >= 26.2.4
+Requires: smartmet-library-newbase >= 26.10.3
 Requires: cairomm
 Requires: freetype
 Requires: gdal312-libs
@@ -53,10 +53,10 @@ Requires: %{smartmet_fmt}
 #TestRequires: libjpeg
 #TestRequires: libpng
 #TestRequires: make
-#TestRequires: smartmet-library-newbase-devel >= 26.2.4
+#TestRequires: smartmet-library-newbase-devel >= 26.10.3
 #TestRequires: smartmet-library-regression
-#TestRequires: smartmet-library-macgyver-devel >= 26.4.13
-#TestRequires: smartmet-library-gis-devel >= 26.4.13
+#TestRequires: smartmet-library-macgyver-devel >= 26.10.3
+#TestRequires: smartmet-library-gis-devel >= 26.10.3
 #TestRequires: zlib
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4
@@ -100,6 +100,9 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
+* Sat Oct 03 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.10.3-1.fmi
+- Remove unnecessary copies found by clang-tidy performance checks
+
 * Wed Feb  4 2026 Andris Pavēnis <andris.pavenis@fmi.fi> 26.2.4-1.fmi
 - Update to proj-9.7, gdal-3.12, fmt-12
 

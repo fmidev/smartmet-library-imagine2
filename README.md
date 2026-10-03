@@ -17,6 +17,10 @@ The imagine2 library is the updated 2D graphics rendering library for SmartMet S
 
 Used by SmartMet Server rendering tools for weather map product generation.
 
+## Documentation
+
+- [Developer guide](docs/developer-guide.md): backend, colours, paths, contouring, shapefiles and pitfalls
+
 ## License
 
 MIT — see [LICENSE](LICENSE)

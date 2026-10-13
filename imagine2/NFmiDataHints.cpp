@@ -39,7 +39,7 @@ class NFmiDataHints::Pimple
  private:
   typedef std::shared_ptr<RecursiveInfo> node_type;
 
-  void recurse(node_type& theInfo,
+  void recurse(const node_type& theInfo,
                const NFmiDataMatrix<float>& theData,
                int x1,
                int y1,
@@ -80,7 +80,7 @@ NFmiDataHints::Pimple::Pimple(const NFmiDataMatrix<float>& theData, int theMaxSi
  */
 // ----------------------------------------------------------------------
 
-void NFmiDataHints::Pimple::recurse(node_type& theNode,
+void NFmiDataHints::Pimple::recurse(const node_type& theNode,
                                     const NFmiDataMatrix<float>& theData,
                                     int x1,
                                     int y1,

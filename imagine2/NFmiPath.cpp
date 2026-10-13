@@ -333,7 +333,7 @@ void NFmiPath::Add(const string& theString)
 // of different paths to be simplified.
 // ----------------------------------------------------------------------
 
-void NFmiPath::Simplify(double epsilon)
+void NFmiPath::Simplify(double epsilon) const
 {
   if (epsilon < 0.0)
     return;

@@ -13,6 +13,7 @@
 #include <macgyver/Exception.h>
 #include <macgyver/StringConversion.h>
 
+#include <cmath>
 #include <deque>
 #include <iostream>
 #include <stdexcept>
@@ -370,7 +371,7 @@ static inline NFmiColorTools::Color ARGB32_to_NFmiColor(int32_t v)
     double scale = 255.0 / double(a);  // range (1..255]
 
     int rgb = (int)(double(v & 0x00ffffff) * scale);
-    int a = (int)(scale / 2.0 + 0.5);  // 127=full alpha
+    int a = static_cast<int>(std::lround(scale / 2.0));  // 127=full alpha
 
     if (a == 127)
       a = 126;  // we don't come here with full alpha; neither should we leave
@@ -396,7 +397,7 @@ static inline int32_t /* ARGB_32 */ NFmiColor_to_ARGB32(NFmiColorTools::Color v)
     double scale = 255.0 / double(a);  // range (1..255]
 
     int rgb = (int)(double(v & 0x00ffffff) * scale);
-    int a = (int)(scale / 2.0 + 0.5);  // 127=full alpha
+    int a = static_cast<int>(std::lround(scale / 2.0));  // 127=full alpha
 
     if (a == 127)
       a = 126;  // we don't come here with full alpha; neither should we leave
@@ -676,7 +677,11 @@ bool ImagineXr::DrawFace(int x_,
     cr->get_text_extents(text, te);
 
     int x = x_, y = y_;
-    ApplyAlignment(alignment, x, y, (int)(te.width + 0.5), (int)(te.height + 0.5));
+    ApplyAlignment(alignment,
+                   x,
+                   y,
+                   static_cast<int>(std::lround(te.width)),
+                   static_cast<int>(std::lround(te.height)));
 
     // Paint a background box if set up so
     //

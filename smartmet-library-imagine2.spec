@@ -104,6 +104,7 @@ FMI %{DIRNAME} development files
 - Declare member functions and parameters const where nothing is modified (const correctness), no functional changes
 - NFmiImage::operator() const returns the color by value, modifying pixels requires a non-const image
 - Requires 26.10.13 versions of newbase due to their ABI changes
+- Round alpha values and text extents with std::lround
 
 * Sat Oct 03 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.10.3-1.fmi
 - Remove unnecessary copies found by clang-tidy performance checks

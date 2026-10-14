@@ -40,8 +40,8 @@ class NFmiEsriPolygonZ : public NFmiEsriPolygonM
   ~NFmiEsriPolygonZ(void) {}
   NFmiEsriPolygonZ(const NFmiEsriPolygonZ& thePolygon);
 
-  NFmiEsriPolygonZ(int theNumber = 0, NFmiEsriElementType theType = kFmiEsriPolygonZ)
-      : NFmiEsriPolygonM(theNumber, kFmiEsriPolygonZ), itsBox(), itsParts(), itsPoints()
+  NFmiEsriPolygonZ(int theNumber = 0, NFmiEsriElementType /*theType*/ = kFmiEsriPolygonZ)
+      : NFmiEsriPolygonM(theNumber, kFmiEsriPolygonZ)
   {
   }
 

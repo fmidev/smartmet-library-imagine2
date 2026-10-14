@@ -72,7 +72,7 @@ NFmiEsriElement* NFmiEsriPolyLineZ::Clone() const
 // ----------------------------------------------------------------------
 
 NFmiEsriPolyLineZ::NFmiEsriPolyLineZ(const string& theBuffer, int thePos, int theNumber)
-    : NFmiEsriPolyLineM(theNumber, kFmiEsriPolyLineZ), itsBox(), itsParts(), itsPoints()
+    : NFmiEsriPolyLineM(theNumber, kFmiEsriPolyLineZ)
 {
   int nparts = LittleEndianInt(theBuffer, thePos + 36);
   int npoints = LittleEndianInt(theBuffer, thePos + 40);

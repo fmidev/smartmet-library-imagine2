@@ -43,7 +43,7 @@ class NFmiEdgeTree
  public:
   // Constructors
 
-  NFmiEdgeTree() : itsLinesOnly(false), itsConvertGhostLines(false), itsEdges() {}
+  NFmiEdgeTree() {}
   // Destructors
 
   virtual ~NFmiEdgeTree() {}
@@ -75,8 +75,8 @@ class NFmiEdgeTree
   // modifying it.
 
   const EdgeTreeType& Edges() const { return itsEdges; };
-  bool itsLinesOnly;
-  bool itsConvertGhostLines;
+  bool itsLinesOnly = false;
+  bool itsConvertGhostLines = false;
   EdgeTreeType itsEdges;
   MultiEdgeTreeType itsMultiEdges;
 };

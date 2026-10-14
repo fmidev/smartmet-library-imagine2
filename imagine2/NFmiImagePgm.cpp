@@ -44,7 +44,7 @@ void NFmiImage::ReadPGM(FILE *in)
 
   // Then there are the dimensions X Y
 
-  int width, height;
+  int width = 0, height = 0;
   {
     istringstream input(buffer);
     input >> width >> height;
@@ -56,7 +56,7 @@ void NFmiImage::ReadPGM(FILE *in)
 
   // And the size of each color component (normally 255)
 
-  int colorsize;
+  int colorsize = 0;
   {
     fgets(buffer, maxbufsize, in);
     istringstream input(buffer);

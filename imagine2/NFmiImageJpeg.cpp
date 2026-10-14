@@ -145,7 +145,7 @@ void NFmiImage::ReadJPEG(FILE *in)
 
 void NFmiImage::WriteJPEG(FILE *out) const
 {
-  int i, j;
+  int i = 0, j = 0;
 
   // This struct contains the JPEG compression parameters and pointers to
   // working space (which is allocated as needed by the JPEG library).

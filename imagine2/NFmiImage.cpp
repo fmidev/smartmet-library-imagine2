@@ -333,7 +333,6 @@ static void Composite2(T theBlender,
 
 void NFmiImage::Destroy(void)
 {
-  if (itsPixels != nullptr)
     delete[] itsPixels;
   itsPixels = nullptr;
 }
@@ -547,7 +546,7 @@ void NFmiImage::WriteJpeg(const string &theFileName) const
   const string dir = NFmiFileSystem::DirName(theFileName);
   const string tmp = NFmiFileSystem::TemporaryFile(dir);
 
-  FILE *out;
+  FILE* out = nullptr;
   out = fopen(tmp.c_str(), "wb");
   if (out == nullptr)
     throw runtime_error("Failed to open '" + theFileName + "' for writing a JPEG");
@@ -571,7 +570,7 @@ void NFmiImage::WritePng(const string &theFileName) const
   const string dir = NFmiFileSystem::DirName(theFileName);
   const string tmp = NFmiFileSystem::TemporaryFile(dir);
 
-  FILE *out;
+  FILE* out = nullptr;
   out = fopen(tmp.c_str(), "wb");
   if (out == nullptr)
     throw runtime_error("Failed to open '" + theFileName + "' for writing a PNG");
@@ -595,7 +594,7 @@ void NFmiImage::WriteWbmp(const string &theFileName) const
   const string dir = NFmiFileSystem::DirName(theFileName);
   const string tmp = NFmiFileSystem::TemporaryFile(dir);
 
-  FILE *out;
+  FILE* out = nullptr;
   out = fopen(tmp.c_str(), "wb");
   if (out == nullptr)
     throw runtime_error("Failed to open '" + theFileName + "' for writing a WBMP");
@@ -617,7 +616,7 @@ void NFmiImage::WriteGif(const string &theFileName) const
   const string dir = NFmiFileSystem::DirName(theFileName);
   const string tmp = NFmiFileSystem::TemporaryFile(dir);
 
-  FILE *out;
+  FILE* out = nullptr;
   out = fopen(tmp.c_str(), "wb");
   if (out == nullptr)
     throw runtime_error("Failed to open '" + theFileName + "' for writing a GIF");
@@ -639,7 +638,7 @@ void NFmiImage::WritePnm(const string &theFileName) const
   const string dir = NFmiFileSystem::DirName(theFileName);
   const string tmp = NFmiFileSystem::TemporaryFile(dir);
 
-  FILE *out;
+  FILE* out = nullptr;
   out = fopen(tmp.c_str(), "wb");
   if (out == nullptr)
     throw runtime_error("Failed to open '" + theFileName + "' for writing a PNM");
@@ -661,7 +660,7 @@ void NFmiImage::WritePgm(const string &theFileName) const
   const string dir = NFmiFileSystem::DirName(theFileName);
   const string tmp = NFmiFileSystem::TemporaryFile(dir);
 
-  FILE *out;
+  FILE* out = nullptr;
   out = fopen(tmp.c_str(), "wb");
   if (out == nullptr)
     throw runtime_error("Failed to open '" + theFileName + "' for writing a PGM");
@@ -745,7 +744,7 @@ bool NFmiImage::IsFullyOpaqueOrTransparent(int threshold) const
   for (int i = 0; i < itsWidth * itsHeight; i++)
   {
     int alpha = NFmiColorTools::GetAlpha(itsPixels[i]);
-    if (!(alpha == NFmiColorTools::Opaque || alpha == NFmiColorTools::Transparent))
+    if (alpha != NFmiColorTools::Opaque && alpha != NFmiColorTools::Transparent)
       return false;
   }
   return true;
@@ -836,7 +835,7 @@ bool NFmiImage::AddColors(set<NFmiColorTools::Color> &theSet,
   NFmiColorTools::Color color3 = NFmiColorTools::NoColor;
   NFmiColorTools::Color color4 = NFmiColorTools::NoColor;
 
-  NFmiColorTools::Color color;
+  NFmiColorTools::Color color = 0;
 
   // Used when inserting a new color
 

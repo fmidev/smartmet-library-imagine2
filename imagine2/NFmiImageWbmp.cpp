@@ -25,6 +25,8 @@ namespace Imagine
  */
 // ----------------------------------------------------------------------
 
+namespace
+{
 void writembint(int theValue, FILE *out)
 {
   int cnt = 0;
@@ -35,6 +37,7 @@ void writembint(int theValue, FILE *out)
     fputc(0x80 | (theValue & 0x7f << 7 * l) >> 7 * l, out);
   fputc(theValue & 0x7f, out);
 }
+}  // namespace
 
 // ----------------------------------------------------------------------
 // Write WBMP image

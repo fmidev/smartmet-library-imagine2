@@ -198,6 +198,8 @@ NFmiDataHints::return_type NFmiDataHints::Pimple::rectangles(float theLoLimit,
  */
 // ----------------------------------------------------------------------
 
+namespace
+{
 bool rectangle_intersects(const NFmiDataHints::Rectangle& theRectangle,
                           float theLoLimit,
                           float theHiLimit)
@@ -237,12 +239,11 @@ bool rectangle_intersects(const NFmiDataHints::Rectangle& theRectangle,
     }
     else  // searched range: -inf..inf
     {
-      if (!nodemissing)
-        return true;
-      return false;
+      return !nodemissing;
     }
   }
 }
+}  // namespace
 
 // ----------------------------------------------------------------------
 /*!

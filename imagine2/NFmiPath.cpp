@@ -10,6 +10,7 @@
 
 #include <NFmiGrid.h>
 #include <NFmiValueString.h>
+#include <cmath>
 
 #ifdef IMAGINE_WITH_CAIRO
 #include "ImagineXr.h"
@@ -594,7 +595,7 @@ void NFmiPath::SimplifyLines(double theOffset)
   // Cached previous path element:
 
   NFmiPathOperation oper1, oper2, oper3;
-  double x1, y1, x2, y2, x3, y3;
+  double x1 = NAN, y1 = NAN, x2 = NAN, y2 = NAN, x3 = NAN, y3 = NAN;
 
   oper1 = oper2 = oper3 = kFmiMoveTo;
   x1 = y1 = x2 = y2 = x3 = y3 = kFloatMissing;
@@ -732,8 +733,8 @@ string NFmiPath::SVG(bool relative_moves, bool removeghostlines) const
 
   string os;
 
-  double last_x, last_y;
-  double last_out_x, last_out_y;
+  double last_x = NAN, last_y = NAN;
+  double last_out_x = NAN, last_out_y = NAN;
   NFmiPathOperation last_op = kFmiMoveTo;
 
   last_x = last_y = kFloatMissing;
@@ -1296,6 +1297,8 @@ NFmiPath NFmiPath::Clip(
 }
 #endif
 
+namespace
+{
 void add_cuts(NFmiContourTree& theTree, std::set<double>& theCuts, double theLon1, double theLon2)
 {
   std::set<double>::const_iterator iter = theCuts.begin();
@@ -1557,6 +1560,7 @@ void make_atlantic(const NFmiPath& thePath,
     lastY = Y;
   }
 }
+}  // namespace
 
 // ----------------------------------------------------------------------
 /*!

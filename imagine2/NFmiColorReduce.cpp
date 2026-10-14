@@ -50,10 +50,10 @@ namespace
 //! Histogram data
 struct ColorInfo
 {
-  ColorInfo(NFmiColorTools::Color c) : color(c), count(0), keeper(false) {}
+  ColorInfo(NFmiColorTools::Color c) : color(c) {}
   NFmiColorTools::Color color;
-  int count;
-  bool keeper;
+  int count = 0;
+  bool keeper = false;
 
   ColorInfo& operator++()
   {
@@ -195,11 +195,11 @@ class ColorTree
 
   std::shared_ptr<value_type> itsLeftObject;
   std::shared_ptr<value_type> itsRightObject;
-  float itsMaxLeft;
-  float itsMaxRight;
+  float itsMaxLeft = -1.0;
+  float itsMaxRight = -1.0;
   std::shared_ptr<ColorTree> itsLeftBranch;
   std::shared_ptr<ColorTree> itsRightBranch;
-  int itsCount;
+  int itsCount = 0;
 };
 
 // ----------------------------------------------------------------------
@@ -208,16 +208,7 @@ class ColorTree
  */
 // ----------------------------------------------------------------------
 
-ColorTree::ColorTree()
-    : itsLeftObject(),
-      itsRightObject(),
-      itsMaxLeft(-1.0),
-      itsMaxRight(-1.0),
-      itsLeftBranch(),
-      itsRightBranch(),
-      itsCount(0)
-{
-}
+ColorTree::ColorTree() {}
 
 // ----------------------------------------------------------------------
 /*!
@@ -337,7 +328,7 @@ void ColorTree::insert(ColorTree::value_type theColor)
 
 ColorTree::value_type ColorTree::nearest(ColorTree::value_type theColor)
 {
-  value_type bestcolor;
+  value_type bestcolor = 0;
   float radius = -1;
   if (!nearest(theColor, bestcolor, radius))
     throw runtime_error("Invalid use of color reduction tables");

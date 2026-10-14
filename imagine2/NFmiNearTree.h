@@ -105,6 +105,8 @@
 #pragma once
 
 #include <NFmiGlobals.h>
+#include <algorithm>
+#include <cmath>
 #include <vector>
 
 namespace Imagine
@@ -214,8 +216,7 @@ class NFmiNearTree
       // note that the next line assumes that itsMaxRight is
       // negative for a new node
 
-      if (itsMaxRight < dist_right)
-        itsMaxRight = dist_right;
+      itsMaxRight = std::max(itsMaxRight, dist_right);
 
       itsRightBranch->Insert(theObject);
     }
@@ -228,8 +229,7 @@ class NFmiNearTree
       // note that the next line assumes that itsMaxLeft is
       // negative for a new node
 
-      if (itsMaxLeft < dist_left)
-        itsMaxLeft = dist_left;
+      itsMaxLeft = std::max(itsMaxLeft, dist_left);
 
       itsLeftBranch->Insert(theObject);
     }
@@ -393,7 +393,7 @@ class NFmiNearTree
 
   bool Nearest(double& theRadius, T& theClosest, const T& thePoint) const
   {
-    double tmpradius;
+    double tmpradius = NAN;
     bool found = false;
 
     // first test each of the left and right positions to see if
@@ -452,7 +452,7 @@ class NFmiNearTree
 
   bool FindFarthest(double& theRadius, T& theFarthest, const T& thePoint) const
   {
-    double tmpradius;
+    double tmpradius = NAN;
     bool found = false;
 
     // first test each of the left and right positions to see if

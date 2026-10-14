@@ -28,6 +28,7 @@
 
 #include "NFmiContourTree.h"
 #include <gis/CoordinateMatrix.h>
+#include <cmath>
 #include <stdexcept>
 
 #ifndef square
@@ -1377,8 +1378,8 @@ void NFmiContourTree::IntersectEdge(vector<float>& X,
 
   // The sorted values for intersection calculations:
 
-  float xx1, yy1, zz1;
-  float xx2, yy2, zz2;
+  float xx1 = NAN, yy1 = NAN, zz1 = NAN;
+  float xx2 = NAN, yy2 = NAN, zz2 = NAN;
 
   if (x1 < x2 || (x1 == x2 && y1 < y2))
   {
@@ -1401,7 +1402,7 @@ void NFmiContourTree::IntersectEdge(vector<float>& X,
 
   // The intersection coordinates
 
-  float slo, shi;
+  float slo = NAN, shi = NAN;
   float xlo = 0, ylo = 0, xhi = 0, yhi = 0;
   float dz = zz2 - zz1;
 

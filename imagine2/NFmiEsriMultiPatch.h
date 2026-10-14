@@ -56,14 +56,7 @@ class NFmiEsriMultiPatch : public NFmiEsriElement
   // Constructors, destructors
 
   ~NFmiEsriMultiPatch(void) {}
-  NFmiEsriMultiPatch(int theNumber = 0)
-      : NFmiEsriElement(kFmiEsriMultiPatch, theNumber),
-        itsBox(),
-        itsParts(),
-        itsPartTypes(),
-        itsPoints()
-  {
-  }
+  NFmiEsriMultiPatch(int theNumber = 0) : NFmiEsriElement(kFmiEsriMultiPatch, theNumber) {}
 
   NFmiEsriMultiPatch(const NFmiEsriMultiPatch& theElement);
 

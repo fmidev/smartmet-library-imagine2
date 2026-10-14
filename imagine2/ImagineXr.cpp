@@ -54,7 +54,9 @@ static const char *COLORNAME(NFmiColorTools::Color col)
 
 #define RULENAME(v) BlendName(v).c_str()
 
-static void Defaults(const Cairo::RefPtr<Cairo::Context>& cr)
+namespace
+{
+void Defaults(const Cairo::RefPtr<Cairo::Context>& cr)
 {
   cr->set_line_width(DEFAULT_LINE_WIDTH);
 
@@ -67,6 +69,7 @@ static void Defaults(const Cairo::RefPtr<Cairo::Context>& cr)
   //
   // ANTIALIAS_DEFAULT / ANTIALIAS_NONE / ANTIALIAS_GRAY / ANTIALIAS_SUBPIXEL
 }
+}  // namespace
 
 ImagineXr::ImagineXr(int w, int h, const string &to_fn, const string &fmt_)
     : fn(to_fn), fmt(fmt_), width(w), height(h), face(0), font_bg_color(NFmiColorTools::NoColor)
@@ -74,7 +77,7 @@ ImagineXr::ImagineXr(int w, int h, const string &to_fn, const string &fmt_)
   USAGE(
       "ImagineXr(): format=%s, fn=%s width=%d, height=%d", fmt.c_str(), fn.c_str(), width, height);
 
-  if (fn == "")
+  if (fn.empty())
     throw runtime_error("No output filename given!");
 
   if (fmt == "pdf")
@@ -98,8 +101,8 @@ ImagineXr::ImagineXr(int w, int h, const string &to_fn, const string &fmt_)
   Defaults(cr = Cairo::Context::create(surf()));
 }
 
-ImagineXr::ImagineXr(const string &from_png_fn)
-    : fn(""), fmt("png"), face(0), font_bg_color(NFmiColorTools::NoColor)
+ImagineXr::ImagineXr(const string& from_png_fn)
+    : fmt("png"), face(0), font_bg_color(NFmiColorTools::NoColor)
 {
   USAGE("ImagineXr(): from_fn=%s", from_png_fn.c_str());
   image_surf = Cairo::ImageSurface::create_from_png(from_png_fn);
@@ -113,7 +116,7 @@ ImagineXr::ImagineXr(const string &from_png_fn)
  * Temporary image, not to be saved on disk.
  */
 ImagineXr::ImagineXr(int w, int h)
-    : fn(""), fmt("png"), width(w), height(h), face(0), font_bg_color(NFmiColorTools::NoColor)
+    : fmt("png"), width(w), height(h), face(0), font_bg_color(NFmiColorTools::NoColor)
 {
   USAGE("ImagineXr(): width=%d, height=%d", width, height);
 
@@ -346,6 +349,8 @@ const int32_t *ImagineXr::ARGB_32() const
   return (const int32_t *)image_surf->get_data();
 }
 
+namespace
+{
 /*
  * Cairo alpha:
  *   "Pre-multiplied alpha is used (50% transparent red is 0x80800000, not 0x80ff0000)"
@@ -356,7 +361,7 @@ const int32_t *ImagineXr::ARGB_32() const
  * NFmiColorTools::Color:
  *   0..0x7f alpha (0=opaque), separate of RGB (they always range 0..0xff)
  */
-static inline NFmiColorTools::Color ARGB32_to_NFmiColor(int32_t v)
+inline NFmiColorTools::Color ARGB32_to_NFmiColor(int32_t v)
 {
   int a = (v >> 24) & 0xff;
 
@@ -382,7 +387,7 @@ static inline NFmiColorTools::Color ARGB32_to_NFmiColor(int32_t v)
   }
 }
 
-static inline int32_t /* ARGB_32 */ NFmiColor_to_ARGB32(NFmiColorTools::Color v)
+inline int32_t /* ARGB_32 */ NFmiColor_to_ARGB32(NFmiColorTools::Color v)
 {
   int a = (v >> 24) & 0xff;
 
@@ -407,6 +412,7 @@ static inline int32_t /* ARGB_32 */ NFmiColor_to_ARGB32(NFmiColorTools::Color v)
     return a << 24 | rgb;
   }
 }
+}  // namespace
 
 const NFmiColorTools::Color *ImagineXr::NFmiColorBuf(NFmiColorTools::Color *buf) const
 {
@@ -626,7 +632,7 @@ void ImagineXr::MakeFace(const string &fontspec,
   vector<string> to_vec;
   boost::split(to_vec, fontspec, boost::is_any_of(":,"));
 
-  if (to_vec.size())
+  if (!to_vec.empty())
     throw Fmi::Exception(BCP, "Invalid fontspec: " + fontspec);
 
   if (strchr(to_vec[1].c_str(), 'x'))
@@ -726,7 +732,7 @@ bool ImagineXr::DrawFace(int x_,
  */
 void ImagineXr::Write() const
 {
-  if (fn == "")
+  if (fn.empty())
     throw runtime_error("Temporary image; not intended to be written");
 
   if (pdf_surf)

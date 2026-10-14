@@ -183,6 +183,7 @@
 #include "NFmiColorTools.h"
 
 #include <NFmiGlobals.h>
+#include <cmath>
 
 #include <algorithm>
 #include <map>
@@ -200,7 +201,9 @@ using namespace std;
  * A map is used due to the large number of known colour names.
  */
 
-static map<string, NFmiColorTools::Color> itsColorNames;
+namespace
+{
+map<string, NFmiColorTools::Color> itsColorNames;
 
 //! Map of recognized colour blending rule names.
 /*!
@@ -209,7 +212,8 @@ static map<string, NFmiColorTools::Color> itsColorNames;
  * A map is used due to the largish number of available rules.
  */
 
-static map<string, NFmiColorTools::NFmiBlendRule> itsBlendNames;
+map<string, NFmiColorTools::NFmiBlendRule> itsBlendNames;
+}  // namespace
 
 // ----------------------------------------------------------------------
 /*!
@@ -221,7 +225,7 @@ static map<string, NFmiColorTools::NFmiBlendRule> itsBlendNames;
 
 void NFmiColorTools::RGBtoHLS(int red, int green, int blue, double *h, double *l, double *s)
 {
-  double v, m, delta, l1, h1, r, g, b;
+  double v = NAN, m = NAN, delta = NAN, l1 = NAN, h1 = NAN, r = NAN, g = NAN, b = NAN;
 
   // Normalize input to range 0-1 for calculations
 
@@ -267,7 +271,7 @@ void NFmiColorTools::RGBtoHLS(int red, int green, int blue, double *h, double *l
 
 void NFmiColorTools::HLStoRGB(double h, double l, double s, int *r, int *g, int *b)
 {
-  double m1, m2;
+  double m1 = NAN, m2 = NAN;
 
   // handle greyscale separately
   if (s < 1e-10)
@@ -322,8 +326,8 @@ NFmiColorTools::Color NFmiColorTools::Interpolate(Color c1, Color c2, float frac
   if (fraction >= 1)
     return c2;
 
-  double h1, l1, s1, h2, l2, s2, h, l, s;
-  int r, g, b, a;
+  double h1 = NAN, l1 = NAN, s1 = NAN, h2 = NAN, l2 = NAN, s2 = NAN, h = NAN, l = NAN, s = NAN;
+  int r = 0, g = 0, b = 0, a = 0;
 
   // Covert to HLS space
 
@@ -373,7 +377,7 @@ NFmiColorTools::Color NFmiColorTools::Contrast(NFmiColorTools::Color theColor, i
 
   // Transform to hls space
 
-  double h, l, s;
+  double h = NAN, l = NAN, s = NAN;
   RGBtoHLS(r, g, b, &h, &l, &s);
 
   // Calculate adjustment

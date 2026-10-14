@@ -65,7 +65,7 @@ NFmiEsriElement* NFmiEsriMultiPointZ::Clone() const
 // ----------------------------------------------------------------------
 
 NFmiEsriMultiPointZ::NFmiEsriMultiPointZ(const string& theBuffer, int thePos, int theNumber)
-    : NFmiEsriMultiPointM(theNumber, kFmiEsriMultiPointZ), itsBox(), itsPoints()
+    : NFmiEsriMultiPointM(theNumber, kFmiEsriMultiPointZ)
 {
   int npoints = LittleEndianInt(theBuffer, thePos + 36);
 
@@ -122,7 +122,7 @@ std::ostream& NFmiEsriMultiPointZ::Write(ostream& os) const
      << LittleEndianDouble(Box().Ymin()) << LittleEndianDouble(Box().Xmax())
      << LittleEndianDouble(Box().Ymax()) << LittleEndianInt(NumPoints());
 
-  int i;
+  int i = 0;
   for (i = 0; i < NumPoints(); i++)
   {
     os << LittleEndianDouble(Points()[i].X()) << LittleEndianDouble(Points()[i].Y());

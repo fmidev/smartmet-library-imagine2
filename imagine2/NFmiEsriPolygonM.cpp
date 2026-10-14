@@ -65,7 +65,7 @@ NFmiEsriElement* NFmiEsriPolygonM::Clone() const
 // ----------------------------------------------------------------------
 
 NFmiEsriPolygonM::NFmiEsriPolygonM(const string& theBuffer, int thePos, int theNumber)
-    : NFmiEsriPolygon(theNumber, kFmiEsriPolygonM), itsBox(), itsParts(), itsPoints()
+    : NFmiEsriPolygon(theNumber, kFmiEsriPolygonM)
 {
   int nparts = LittleEndianInt(theBuffer, thePos + 36);
   int npoints = LittleEndianInt(theBuffer, thePos + 40);

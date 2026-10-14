@@ -79,7 +79,7 @@ class NFmiPath
 {
  public:
   virtual ~NFmiPath() {}
-  NFmiPath() : itsInsideOut(false), itsElements() {}
+  NFmiPath() : itsInsideOut(false) {}
   NFmiPath(const NFmiPathData &thePathData, bool theInsideOut = false)
       : itsInsideOut(theInsideOut), itsElements(thePathData)
   {

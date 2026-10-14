@@ -50,8 +50,7 @@ int NFmiEsriBuffer::BigEndianInt(const std::string &theBuffer, int thePos)
     tmp[3] = theBuffer[thePos];
     return *reinterpret_cast<uint32_t *>(tmp);
   }
-  else
-    return *reinterpret_cast<const uint32_t *>(theBuffer.data() + thePos);
+  return *reinterpret_cast<const uint32_t*>(theBuffer.data() + thePos);
 }
 
 // ----------------------------------------------------------------------
@@ -62,15 +61,13 @@ int NFmiEsriBuffer::LittleEndianInt(const std::string &theBuffer, int thePos)
 {
   if (IsCpuLittleEndian())
     return *reinterpret_cast<const int *>(theBuffer.data() + thePos);
-  else
-  {
-    unsigned char tmp[4];
-    tmp[0] = theBuffer[thePos + 3];
-    tmp[1] = theBuffer[thePos + 2];
-    tmp[2] = theBuffer[thePos + 1];
-    tmp[3] = theBuffer[thePos];
-    return *reinterpret_cast<uint32_t *>(tmp);
-  }
+
+  unsigned char tmp[4];
+  tmp[0] = theBuffer[thePos + 3];
+  tmp[1] = theBuffer[thePos + 2];
+  tmp[2] = theBuffer[thePos + 1];
+  tmp[3] = theBuffer[thePos];
+  return *reinterpret_cast<uint32_t*>(tmp);
 }
 
 // ----------------------------------------------------------------------

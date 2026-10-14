@@ -80,8 +80,8 @@ typedef map<NFmiColorTools::Color, NFmiColorTools::Color> ColorMap;
 
 void init_gamma_table(vector<float>& theTable, bool& theFlag)
 {
-  const float gamma = 2.2f;
-  const float coeff = 255 / (pow(255.f, gamma));
+  const float gamma = 2.2F;
+  const float coeff = 255 / (pow(255.F, gamma));
 
   for (int i = 0; i < 256; i++)
     theTable[i] = coeff * pow(static_cast<float>(i), gamma);
@@ -235,7 +235,7 @@ float ColorTree::distance(ColorTree::value_type theColor1, ColorTree::value_type
   const float a =
       static_cast<float>(NFmiColorTools::GetAlpha(theColor1) - NFmiColorTools::GetAlpha(theColor2));
 
-  return sqrt(3.0f * r * r + 4.0f * g * g + 2.0f * b * b + a * a);
+  return sqrt(3.0F * r * r + 4.0F * g * g + 2.0F * b * b + a * a);
 }
 
 // ----------------------------------------------------------------------
@@ -460,7 +460,7 @@ void build_tree(const NFmiImage& theImage,
                 float theQuality)
 {
   const float ratio = static_cast<float>(1.0 / (theImage.Width() * theImage.Height()));
-  const float factor = -theQuality / log(10.0f);
+  const float factor = -theQuality / log(10.0F);
 
   for (ColorHistogram::const_iterator it = theHistogram.begin(); it != theHistogram.end(); ++it)
   {
@@ -509,7 +509,7 @@ void build_tree(const NFmiImage& theImage,
   while (!done)
   {
     done = true;
-    const float factor = -theQuality / log(10.0f);
+    const float factor = -theQuality / log(10.0F);
 
     for (ColorHistogram::const_iterator it = theHistogram.begin(); it != theHistogram.end(); ++it)
     {

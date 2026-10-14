@@ -218,14 +218,12 @@ bool rectangle_intersects(const NFmiDataHints::Rectangle& theRectangle,
         return true;
       return false;
     }
-    else  // searched range: x..inf
-    {
-      if (nodemissing)
-        return false;
-      if (nodemax >= theLoLimit)
-        return true;
+    // searched range: x..inf
+    if (nodemissing)
       return false;
-    }
+    if (nodemax >= theLoLimit)
+      return true;
+    return false;
   }
   else
   {
@@ -237,10 +235,8 @@ bool rectangle_intersects(const NFmiDataHints::Rectangle& theRectangle,
         return true;
       return false;
     }
-    else  // searched range: -inf..inf
-    {
-      return !nodemissing;
-    }
+    // searched range: -inf..inf
+    return !nodemissing;
   }
 }
 }  // namespace
@@ -269,18 +265,16 @@ bool NFmiDataHints::Pimple::find(return_type& theValues,
   {
     return true;
   }
-  else
-  {
-    bool leftok = find(theValues, theNode->itsLeft, theLoLimit, theHiLimit);
-    bool rightok = find(theValues, theNode->itsRight, theLoLimit, theHiLimit);
-    if (leftok && rightok)
-      return true;
-    if (leftok)
-      theValues.push_back(theNode->itsLeft->itsRectangle);
-    if (rightok)
-      theValues.push_back(theNode->itsRight->itsRectangle);
-    return false;
-  }
+
+  bool leftok = find(theValues, theNode->itsLeft, theLoLimit, theHiLimit);
+  bool rightok = find(theValues, theNode->itsRight, theLoLimit, theHiLimit);
+  if (leftok && rightok)
+    return true;
+  if (leftok)
+    theValues.push_back(theNode->itsLeft->itsRectangle);
+  if (rightok)
+    theValues.push_back(theNode->itsRight->itsRectangle);
+  return false;
 }
 
 // ----------------------------------------------------------------------

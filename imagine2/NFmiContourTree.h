@@ -346,7 +346,7 @@ class NFmiContourTree : public NFmiEdgeTree
   {
     if (z < itsLoLimit && itsLoLimit != kFloatMissing)
       return kBelow;
-    else if (z > itsHiLimit && itsHiLimit != kFloatMissing)
+    if (z > itsHiLimit && itsHiLimit != kFloatMissing)
       return kAbove;
     else if (z == itsLoLimit && itsLoLimit != kFloatMissing)
       return (itsLoLimitExact ? kInside : kBelow);
@@ -368,7 +368,7 @@ class NFmiContourTree : public NFmiEdgeTree
   {
     if (itsLoLimit != kFloatMissing && z == itsLoLimit && itsLoLimitExact)
       return kLoLimit;
-    else if (itsHiLimit != kFloatMissing && z == itsHiLimit && itsHiLimitExact)
+    if (itsHiLimit != kFloatMissing && z == itsHiLimit && itsHiLimitExact)
       return kHiLimit;
     else
       return kNeither;

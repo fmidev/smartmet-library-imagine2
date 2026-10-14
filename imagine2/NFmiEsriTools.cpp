@@ -29,7 +29,9 @@ NFmiEsriShape* filter(const NFmiEsriShape& theShape, const std::string& theCondi
   comparisons.push_back(">");
   comparisons.push_back("=");
 
-  string fieldname, fieldvalue, fieldcomparison;
+  string fieldname;
+  string fieldvalue;
+  string fieldcomparison;
   list<string> words;
 
   for (list<string>::const_iterator it = comparisons.begin(); it != comparisons.end(); ++it)

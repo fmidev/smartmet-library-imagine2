@@ -271,7 +271,8 @@ const NFmiPath NFmiGeoShape::PathEsri() const
         const NFmiEsriPolyLine *elem = static_cast<const NFmiEsriPolyLine *>(*iter);
         for (int part = 0; part < elem->NumParts(); part++)
         {
-          int i1 = 0, i2 = 0;
+          int i1 = 0;
+          int i2 = 0;
           i1 = elem->Parts()[part];  // start of part
           if (part + 1 == elem->NumParts())
             i2 = elem->NumPoints() - 1;  // end of part
@@ -296,7 +297,8 @@ const NFmiPath NFmiGeoShape::PathEsri() const
         const NFmiEsriPolygon *elem = static_cast<const NFmiEsriPolygon *>(*iter);
         for (int part = 0; part < elem->NumParts(); part++)
         {
-          int i1 = 0, i2 = 0;
+          int i1 = 0;
+          int i2 = 0;
           i1 = elem->Parts()[part];  // start of part
           if (part + 1 == elem->NumParts())
             i2 = elem->NumPoints() - 1;  // end of part
@@ -319,7 +321,8 @@ const NFmiPath NFmiGeoShape::PathEsri() const
         const NFmiEsriMultiPatch *elem = static_cast<const NFmiEsriMultiPatch *>(*iter);
         for (int part = 0; part < elem->NumParts(); part++)
         {
-          int i1 = 0, i2 = 0;
+          int i1 = 0;
+          int i2 = 0;
           i1 = elem->Parts()[part];  // start of part
           if (part + 1 == elem->NumParts())
             i2 = elem->NumPoints() - 1;  // end of part
@@ -714,7 +717,8 @@ void NFmiGeoShape::WriteImageMapEsri(std::ostream &os, const string &theFieldNam
         {
           vector<pair<int, int> > points;
 
-          int i1 = 0, i2 = 0;
+          int i1 = 0;
+          int i2 = 0;
           i1 = elem->Parts()[part];  // start of part
           if (part + 1 == elem->NumParts())
             i2 = elem->NumPoints() - 1;  // end of part

@@ -110,7 +110,7 @@ std::pair<NFmiPath, NFmiPath> BezierSplit(const NFmiPath& thePath)
 
     return std::make_pair(left, right);
   }
-  else if (path.size() == 4)
+  if (path.size() == 4)
   {
     const double x1 = path[0].x;
     const double y1 = path[0].y;
@@ -180,13 +180,11 @@ double BezierLengthRecursion(const NFmiPath& thePath, double theRelativeAccuracy
   {
     return len;
   }
-  else
-  {
-    std::pair<NFmiPath, NFmiPath> parts = BezierSplit(thePath);
-    double l1 = BezierLengthRecursion(parts.first, 2 * theRelativeAccuracy);
-    double l2 = BezierLengthRecursion(parts.second, 2 * theRelativeAccuracy);
-    return l1 + l2;
-  }
+
+  std::pair<NFmiPath, NFmiPath> parts = BezierSplit(thePath);
+  double l1 = BezierLengthRecursion(parts.first, 2 * theRelativeAccuracy);
+  double l2 = BezierLengthRecursion(parts.second, 2 * theRelativeAccuracy);
+  return l1 + l2;
 }
 
 }  // namespace

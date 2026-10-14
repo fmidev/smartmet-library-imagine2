@@ -367,7 +367,7 @@ inline NFmiColorTools::Color ARGB32_to_NFmiColor(int32_t v)
 
   if (a == 0xff)
     return v & 0x00ffffff;  // fully opaque (RGB are non-scaled)
-  else if (a == 0)
+  if (a == 0)
     return 0x7f000000;  // fully transparent (no color information)
   else
   {
@@ -393,7 +393,7 @@ inline int32_t /* ARGB_32 */ NFmiColor_to_ARGB32(NFmiColorTools::Color v)
 
   if (a == 0)
     return v | 0xff000000;  // fully opaque (RGB are non-scaled)
-  else if (a == 0x7f)
+  if (a == 0x7f)
     return 0;  // fully transparent (no color information)
   else
   {
@@ -682,7 +682,8 @@ bool ImagineXr::DrawFace(int x_,
     TextExtents te;
     cr->get_text_extents(text, te);
 
-    int x = x_, y = y_;
+    int x = x_;
+    int y = y_;
     ApplyAlignment(alignment,
                    x,
                    y,

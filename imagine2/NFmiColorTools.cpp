@@ -225,7 +225,14 @@ map<string, NFmiColorTools::NFmiBlendRule> itsBlendNames;
 
 void NFmiColorTools::RGBtoHLS(int red, int green, int blue, double *h, double *l, double *s)
 {
-  double v = NAN, m = NAN, delta = NAN, l1 = NAN, h1 = NAN, r = NAN, g = NAN, b = NAN;
+  double v = NAN;
+  double m = NAN;
+  double delta = NAN;
+  double l1 = NAN;
+  double h1 = NAN;
+  double r = NAN;
+  double g = NAN;
+  double b = NAN;
 
   // Normalize input to range 0-1 for calculations
 
@@ -233,8 +240,8 @@ void NFmiColorTools::RGBtoHLS(int red, int green, int blue, double *h, double *l
   g = static_cast<double>(green) / MaxRGB;
   b = static_cast<double>(blue) / MaxRGB;
 
-  v = (r > g) ? ((r > b) ? r : b) : ((g > b) ? g : b);
-  m = (r < g) ? ((r < b) ? r : b) : ((g < b) ? g : b);
+  v = std::max({r, g, b});
+  m = std::min({r, g, b});
 
   l1 = (m + v) / 2;
   delta = v - m;
@@ -271,7 +278,8 @@ void NFmiColorTools::RGBtoHLS(int red, int green, int blue, double *h, double *l
 
 void NFmiColorTools::HLStoRGB(double h, double l, double s, int *r, int *g, int *b)
 {
-  double m1 = NAN, m2 = NAN;
+  double m1 = NAN;
+  double m2 = NAN;
 
   // handle greyscale separately
   if (s < 1e-10)
@@ -297,7 +305,7 @@ double NFmiColorTools::hls_to_rgb_util(double m1, double m2, double h)
     hue = hue + 360;
   if (hue < 60)
     return m1 + (m2 - m1) * hue / 60;
-  else if (hue < 180)
+  if (hue < 180)
     return m2;
   else if (hue < 240)
     return m1 + (m2 - m1) * (240 - hue) / 60;
@@ -326,8 +334,19 @@ NFmiColorTools::Color NFmiColorTools::Interpolate(Color c1, Color c2, float frac
   if (fraction >= 1)
     return c2;
 
-  double h1 = NAN, l1 = NAN, s1 = NAN, h2 = NAN, l2 = NAN, s2 = NAN, h = NAN, l = NAN, s = NAN;
-  int r = 0, g = 0, b = 0, a = 0;
+  double h1 = NAN;
+  double l1 = NAN;
+  double s1 = NAN;
+  double h2 = NAN;
+  double l2 = NAN;
+  double s2 = NAN;
+  double h = NAN;
+  double l = NAN;
+  double s = NAN;
+  int r = 0;
+  int g = 0;
+  int b = 0;
+  int a = 0;
 
   // Covert to HLS space
 
@@ -377,7 +396,9 @@ NFmiColorTools::Color NFmiColorTools::Contrast(NFmiColorTools::Color theColor, i
 
   // Transform to hls space
 
-  double h = NAN, l = NAN, s = NAN;
+  double h = NAN;
+  double l = NAN;
+  double s = NAN;
   RGBtoHLS(r, g, b, &h, &l, &s);
 
   // Calculate adjustment
@@ -477,7 +498,7 @@ NFmiColorTools::Color NFmiColorTools::ToColor(const string &theColor)
 
   // Handle ascii format
 
-  else if (theColor[0] < '0' || theColor[0] > '9')
+  if (theColor[0] < '0' || theColor[0] > '9')
   {
     string::size_type pos = theColor.find(',');
     if (pos == string::npos)
@@ -577,8 +598,7 @@ NFmiColorTools::Color NFmiColorTools::ColorValue(const string &theName)
 
   if (iter == itsColorNames.end())
     return MissingColor;
-  else
-    return iter->second;
+  return iter->second;
 }
 
 // ----------------------------------------------------------------------
@@ -785,8 +805,7 @@ NFmiColorTools::NFmiBlendRule NFmiColorTools::BlendValue(const string &theName)
 
   if (iter == itsBlendNames.end())
     return kFmiColorRuleMissing;
-  else
-    return iter->second;
+  return iter->second;
 }
 
 // ----------------------------------------------------------------------

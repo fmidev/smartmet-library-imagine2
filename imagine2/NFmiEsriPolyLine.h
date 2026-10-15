@@ -30,7 +30,7 @@ class NFmiEsriPolyLine : public NFmiEsriElement
  public:
   // Constructors, destructors
 
-  ~NFmiEsriPolyLine(void) {}
+  ~NFmiEsriPolyLine() {}
   NFmiEsriPolyLine(const NFmiEsriPolyLine& theLine);
 
   NFmiEsriPolyLine(int theNumber = 0, NFmiEsriElementType theType = kFmiEsriPolyLine)
@@ -48,11 +48,11 @@ class NFmiEsriPolyLine : public NFmiEsriElement
 
   // Data access
 
-  const NFmiEsriBox& Box(void) const { return itsBox; }
-  int NumPoints(void) const { return itsPoints.size(); }
-  int NumParts(void) const { return itsParts.size(); }
-  const std::vector<int>& Parts(void) const { return itsParts; }
-  const std::vector<NFmiEsriPoint>& Points(void) const { return itsPoints; }
+  const NFmiEsriBox& Box() const { return itsBox; }
+  int NumPoints() const { return itsPoints.size(); }
+  int NumParts() const { return itsParts.size(); }
+  const std::vector<int>& Parts() const { return itsParts; }
+  const std::vector<NFmiEsriPoint>& Points() const { return itsPoints; }
   // This is intended to be used by projection etc methods
 
   void Points(const std::vector<NFmiEsriPoint>& pts) { itsPoints = pts; }
@@ -81,7 +81,7 @@ class NFmiEsriPolyLine : public NFmiEsriElement
   void Update(NFmiEsriBox& theBox) const { theBox.Update(itsBox); }
   // String buffer size, write and string
 
-  int StringSize(void) const;
+  int StringSize() const;
   std::ostream& Write(std::ostream& os) const;
 
   // Projection

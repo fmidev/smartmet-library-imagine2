@@ -43,7 +43,7 @@ class ImagineXr
   Cairo::RefPtr<Cairo::SvgSurface> svg_surf;
   Cairo::RefPtr<Cairo::ImageSurface> image_surf;
 
-  const Cairo::RefPtr<Cairo::Surface> surf() const
+  Cairo::RefPtr<Cairo::Surface> surf() const
   {
     if (image_surf)
       return image_surf;
@@ -130,8 +130,8 @@ class ImagineXr
             NFmiBlendRule rule = kFmiColorCopy,
             float opaque = 1.0);
 
-  void MakeFace(const string &fontspec,
-                const NFmiColorTools::Color backcolor = NFmiColorTools::NoColor,
+  void MakeFace(const string& fontspec,
+                NFmiColorTools::Color backcolor = NFmiColorTools::NoColor,
                 int xm = 0,
                 int ym = 0);
 

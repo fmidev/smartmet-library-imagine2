@@ -71,8 +71,13 @@ void Defaults(const Cairo::RefPtr<Cairo::Context>& cr)
 }
 }  // namespace
 
-ImagineXr::ImagineXr(int w, int h, const string &to_fn, const string &fmt_)
-    : fn(to_fn), fmt(fmt_), width(w), height(h), face(0), font_bg_color(NFmiColorTools::NoColor)
+ImagineXr::ImagineXr(int w, int h, const string& to_fn, const string& fmt_)
+    : fn(to_fn),
+      fmt(fmt_),
+      width(w),
+      height(h),
+      face(nullptr),
+      font_bg_color(NFmiColorTools::NoColor)
 {
   USAGE(
       "ImagineXr(): format=%s, fn=%s width=%d, height=%d", fmt.c_str(), fn.c_str(), width, height);
@@ -102,7 +107,7 @@ ImagineXr::ImagineXr(int w, int h, const string &to_fn, const string &fmt_)
 }
 
 ImagineXr::ImagineXr(const string& from_png_fn)
-    : fmt("png"), face(0), font_bg_color(NFmiColorTools::NoColor)
+    : fmt("png"), face(nullptr), font_bg_color(NFmiColorTools::NoColor)
 {
   USAGE("ImagineXr(): from_fn=%s", from_png_fn.c_str());
   image_surf = Cairo::ImageSurface::create_from_png(from_png_fn);
@@ -116,7 +121,7 @@ ImagineXr::ImagineXr(const string& from_png_fn)
  * Temporary image, not to be saved on disk.
  */
 ImagineXr::ImagineXr(int w, int h)
-    : fmt("png"), width(w), height(h), face(0), font_bg_color(NFmiColorTools::NoColor)
+    : fmt("png"), width(w), height(h), face(nullptr), font_bg_color(NFmiColorTools::NoColor)
 {
   USAGE("ImagineXr(): width=%d, height=%d", width, height);
 
@@ -124,7 +129,7 @@ ImagineXr::ImagineXr(int w, int h)
   Defaults(cr = Cairo::Context::create(surf()));
 }
 
-ImagineXr::ImagineXr(const ImagineXr &o)
+ImagineXr::ImagineXr(const ImagineXr& o)
     : pdf_surf(o.pdf_surf),
       ps_surf(o.ps_surf),
       svg_surf(o.svg_surf),
@@ -133,7 +138,7 @@ ImagineXr::ImagineXr(const ImagineXr &o)
       fmt(o.fmt),
       width(o.width),
       height(o.height),
-      face(0),
+      face(nullptr),
       font_bg_color(NFmiColorTools::NoColor)
 {
   USAGE0("ImagineXr(): copy");

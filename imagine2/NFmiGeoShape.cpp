@@ -102,7 +102,7 @@ void NFmiGeoShape::ProjectXY(const NFmiArea &theArea)
 // an empty path is returned.
 // ----------------------------------------------------------------------
 
-const NFmiPath NFmiGeoShape::Path() const
+NFmiPath NFmiGeoShape::Path() const
 {
   NFmiPath out;
   switch (Type())
@@ -219,7 +219,7 @@ void NFmiGeoShape::WriteImageMap(std::ostream &os, const string &theFieldName) c
 //
 // ----------------------------------------------------------------------
 
-const NFmiPath NFmiGeoShape::PathEsri() const
+NFmiPath NFmiGeoShape::PathEsri() const
 {
   // The result is a single path containing all the moves
 
@@ -741,7 +741,7 @@ void NFmiGeoShape::WriteImageMapEsri(std::ostream &os, const string &theFieldNam
                 continue;
               lastx = x;
               lasty = y;
-              points.push_back(make_pair(x, y));
+              points.emplace_back(x, y);
             }
           }
 

@@ -604,7 +604,7 @@ NFmiPath GenerateBezier(const NFmiPathData& thePath,
   {
     const NFmiPoint v1 = ScaleTangent(theTangent1, B1(theU[i]));
     const NFmiPoint v2 = ScaleTangent(theTangent2, B2(theU[i]));
-    A.push_back(make_pair(v1, v2));
+    A.emplace_back(v1, v2);
   }
 
   // Create the C and X matrices
@@ -869,7 +869,7 @@ namespace NFmiApproximateBezierFit
  */
 // ----------------------------------------------------------------------
 
-const NFmiPath Fit(const NFmiPath& thePath, double theMaxError)
+NFmiPath Fit(const NFmiPath& thePath, double theMaxError)
 {
   using namespace NFmiBezierTools;
 
@@ -915,7 +915,7 @@ const NFmiPath Fit(const NFmiPath& thePath, double theMaxError)
  */
 // ----------------------------------------------------------------------
 
-const NFmiPaths Fit(const NFmiPaths& thePaths, double theMaxError)
+NFmiPaths Fit(const NFmiPaths& thePaths, double theMaxError)
 {
   using namespace NFmiBezierTools;
 

@@ -146,7 +146,7 @@ class NFmiNearTree
   //
   //=======================================================================
 
-  NFmiNearTree(void)
+  NFmiNearTree()
   {
     itsLeftObject = 0;
     itsRightObject = 0;
@@ -163,7 +163,7 @@ class NFmiNearTree
   //
   //=======================================================================
 
-  ~NFmiNearTree(void)
+  ~NFmiNearTree()
   {
     delete itsLeftBranch;
     itsLeftBranch = 0;

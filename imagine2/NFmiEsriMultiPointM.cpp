@@ -88,7 +88,7 @@ NFmiEsriMultiPointM::NFmiEsriMultiPointM(const string& theBuffer, int thePos, in
 // Calculating string buffer size
 // ----------------------------------------------------------------------
 
-int NFmiEsriMultiPointM::StringSize(void) const
+int NFmiEsriMultiPointM::StringSize() const
 {
   return (4                      // the type	: 1 int
           + 4 * 8                // bounding box : 4 doubles

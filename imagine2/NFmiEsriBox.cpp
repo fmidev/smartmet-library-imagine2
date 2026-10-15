@@ -14,7 +14,7 @@ namespace Imagine
  */
 // ----------------------------------------------------------------------
 
-NFmiEsriBox::NFmiEsriBox(void) {}
+NFmiEsriBox::NFmiEsriBox() {}
 
 // ----------------------------------------------------------------------
 /*!
@@ -22,7 +22,7 @@ NFmiEsriBox::NFmiEsriBox(void) {}
  */
 // ----------------------------------------------------------------------
 
-void NFmiEsriBox::Init(void)
+void NFmiEsriBox::Init()
 {
   itsXmin = 0.0;
   itsXmax = 0.0;

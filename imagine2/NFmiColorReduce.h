@@ -21,7 +21,7 @@ namespace NFmiColorReduce
 //! A Histogram container
 typedef std::multimap<int, NFmiColorTools::Color, std::greater<int> > Histogram;
 
-const Histogram CalcHistogram(const NFmiImage& theImage);
+Histogram CalcHistogram(const NFmiImage& theImage);
 void AdaptiveReduce(NFmiImage& theImage, float theQuality = 10);
 void AdaptiveReduce(NFmiImage& theImage, float theQuality, int theMaxColors, float theErrorFactor);
 

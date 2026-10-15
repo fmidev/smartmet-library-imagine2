@@ -168,11 +168,11 @@ class NFmiContourTree : public NFmiEdgeTree
 
   /// Convert interpolation method enum to a name
 
-  static const std::string ContourInterpolationName(NFmiContourInterpolation theInterpolation);
+  static std::string ContourInterpolationName(NFmiContourInterpolation theInterpolation);
 
   /// Destructor
 
-  ~NFmiContourTree(void) {}
+  ~NFmiContourTree() {}
   /// Constructor.
 
   /*!
@@ -205,34 +205,34 @@ class NFmiContourTree : public NFmiEdgeTree
 
   /// Returns the active (read-only) \em low limit of the contoured interval
 
-  float LoLimit(void) const { return itsLoLimit; }
+  float LoLimit() const { return itsLoLimit; }
   /// Returns the active (read-only) \em high limit of the contoured interval
 
-  float HiLimit(void) const { return itsHiLimit; }
+  float HiLimit() const { return itsHiLimit; }
   /// Returns \c true, if \c itsLoLimit is included in the contoured interval.
 
-  bool LoLimitExact(void) const { return itsLoLimitExact; }
+  bool LoLimitExact() const { return itsLoLimitExact; }
   /// Returns \c true, if \c itsHiLimit is included in the contoured interval.
 
-  bool HiLimitExact(void) const { return itsHiLimitExact; }
+  bool HiLimitExact() const { return itsHiLimitExact; }
   /// Returns \c true, if a \em missing value has been specified.
 
-  bool HasMissingValue(void) const { return itHasMissingValue; }
+  bool HasMissingValue() const { return itHasMissingValue; }
   /// Returns the missing value used in contouring data.
 
-  float MissingValue(void) const { return itsMissingValue; }
+  float MissingValue() const { return itsMissingValue; }
   /// Returns \c true, if the data has a \em low limit for valid data
 
-  bool HasDataLoLimit(void) const { return itHasDataLoLimit; }
+  bool HasDataLoLimit() const { return itHasDataLoLimit; }
   /// Returns \c true, if the data has a \em high limit for valid data
 
-  bool HasDataHiLimit(void) const { return itHasDataHiLimit; }
+  bool HasDataHiLimit() const { return itHasDataHiLimit; }
   /// Returns the \em low limit of valid data, if one has been set.
 
-  float DataLoLimit(void) const { return itsDataLoLimit; }
+  float DataLoLimit() const { return itsDataLoLimit; }
   /// Returns the \em high limit of valid data, if one has been set.
 
-  float DataHiLimit(void) const { return itsDataHiLimit; }
+  float DataHiLimit() const { return itsDataHiLimit; }
   /// Sets the value which indicates a \em missing value in contour data.
 
   void MissingValue(float value)
@@ -303,7 +303,7 @@ class NFmiContourTree : public NFmiEdgeTree
                const NFmiDataHints& theHelper,
                const NFmiContourInterpolation& theInterpolation);
 
-  NFmiPath Path(void) const;
+  NFmiPath Path() const;
 
   /// Possible equality conditions of a value with respect to contour limits.
 
@@ -321,7 +321,7 @@ class NFmiContourTree : public NFmiEdgeTree
    * We always require atleast a contour interval in the constructor.
    */
 
-  NFmiContourTree(void);
+  NFmiContourTree();
 
   /// Possible locations of a value with respect to contour limits.
 
@@ -378,7 +378,7 @@ class NFmiContourTree : public NFmiEdgeTree
 
   //! Test whether we're contouring missing values
 
-  bool ContouringMissing(void) const
+  bool ContouringMissing() const
   {
     return (LoLimit() == kFloatMissing && HiLimit() == kFloatMissing);
   }
@@ -495,7 +495,7 @@ class NFmiContourTree : public NFmiEdgeTree
 
   /// A utility function used by the constructor to check the limits.
 
-  void PrepareLimits(void);
+  void PrepareLimits();
 
   /// Calculate contour intersections at an edge.
 

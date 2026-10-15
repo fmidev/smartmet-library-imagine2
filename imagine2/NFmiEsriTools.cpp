@@ -21,13 +21,13 @@ NFmiEsriShape* filter(const NFmiEsriShape& theShape, const std::string& theCondi
   // Parse the relevant option
 
   list<string> comparisons;
-  comparisons.push_back("==");
-  comparisons.push_back("<=");
-  comparisons.push_back(">=");
-  comparisons.push_back("<>");
-  comparisons.push_back("<");
-  comparisons.push_back(">");
-  comparisons.push_back("=");
+  comparisons.emplace_back("==");
+  comparisons.emplace_back("<=");
+  comparisons.emplace_back(">=");
+  comparisons.emplace_back("<>");
+  comparisons.emplace_back("<");
+  comparisons.emplace_back(">");
+  comparisons.emplace_back("=");
 
   string fieldname;
   string fieldvalue;
@@ -52,7 +52,7 @@ NFmiEsriShape* filter(const NFmiEsriShape& theShape, const std::string& theCondi
   // Fetch the attribute name
 
   const NFmiEsriAttributeName* name = theShape.AttributeName(fieldname);
-  if (name == 0)
+  if (name == nullptr)
     throw runtime_error("The shape does not have a field named '" + fieldname + "'");
   // Preparse the desired field value
 
@@ -91,7 +91,7 @@ NFmiEsriShape* filter(const NFmiEsriShape& theShape, const std::string& theCondi
        ++it)
   {
     // Skip empty elements
-    if (*it == 0)
+    if (*it == nullptr)
       continue;
 
     // Check if the value is correct

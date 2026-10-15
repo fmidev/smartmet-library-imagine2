@@ -15,10 +15,10 @@ class NFmiPath;
 
 namespace NFmiCardinalBezierFit
 {
-const NFmiPath Fit(const NFmiPath& thePath, double theSmoothness);
+NFmiPath Fit(const NFmiPath& thePath, double theSmoothness);
 
 typedef NFmiBezierTools::NFmiPaths NFmiPaths;
-const NFmiPaths Fit(const NFmiPaths& thePaths, double theMaxError);
+NFmiPaths Fit(const NFmiPaths& thePaths, double theMaxError);
 
 }  // namespace NFmiCardinalBezierFit
 }  // namespace Imagine

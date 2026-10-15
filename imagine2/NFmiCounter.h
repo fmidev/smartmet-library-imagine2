@@ -64,13 +64,13 @@ class NFmiCounter
   typedef typename NFmiCounterData::const_iterator const_iterator;
 
   //! Constructor
-  NFmiCounter(void) {}
+  NFmiCounter() {}
   //! Destructor
-  ~NFmiCounter(void) {}
+  ~NFmiCounter() {}
   NFmiCounter(const NFmiCounter&) = default;
   NFmiCounter& operator=(const NFmiCounter&) = default;
   //! Reset the counter to contain no data
-  void Clear(void) { itsData.clear(); }
+  void Clear() { itsData.clear(); }
   //! Add a new object to the counter.
   /*!
    * This adds the object to a map with the object as a key.

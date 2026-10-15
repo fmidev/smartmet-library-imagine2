@@ -25,7 +25,7 @@ class NFmiEsriPoint : public NFmiEsriElement
  public:
   // Constructors, destructors
 
-  ~NFmiEsriPoint(void) {}
+  ~NFmiEsriPoint() {}
   NFmiEsriPoint(const NFmiEsriPoint& thePoint);
 
   NFmiEsriPoint(double theX,
@@ -46,8 +46,8 @@ class NFmiEsriPoint : public NFmiEsriElement
 
   // Data access
 
-  double X(void) const { return itsX; }
-  double Y(void) const { return itsY; }
+  double X() const { return itsX; }
+  double Y() const { return itsY; }
   void X(double theX) { itsX = theX; }
   void Y(double theY) { itsY = theY; }
   // Updating bounding boxes
@@ -55,7 +55,7 @@ class NFmiEsriPoint : public NFmiEsriElement
   void Update(NFmiEsriBox& theBox) const { theBox.Update(itsX, itsY); }
   // String buffer size, write and string
 
-  int StringSize(void) const;
+  int StringSize() const;
   std::ostream& Write(std::ostream& os) const;
 
   // Projection
@@ -63,7 +63,7 @@ class NFmiEsriPoint : public NFmiEsriElement
   void Project(const NFmiEsriProjector& theProjector);
 
  private:
-  NFmiEsriPoint(void);
+  NFmiEsriPoint();
 
   double itsX;  // X coordinate
   double itsY;  // Y coordinate

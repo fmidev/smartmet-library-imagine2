@@ -606,7 +606,7 @@ NFmiColorTools::Color NFmiColorTools::ColorValue(const string &theName)
 // Returns a MissingColorName if the name is unknown
 // ----------------------------------------------------------------------
 
-const string NFmiColorTools::ColorName(const NFmiColorTools::Color &theColor)
+string NFmiColorTools::ColorName(const NFmiColorTools::Color& theColor)
 {
   ColorNamesInit();
 
@@ -628,7 +628,7 @@ const string NFmiColorTools::ColorName(const NFmiColorTools::Color &theColor)
 // See: http://www.w3.org/TR/SVG/types.html#ColorKeyWords
 // ----------------------------------------------------------------------
 
-void NFmiColorTools::ColorNamesInit(void)
+void NFmiColorTools::ColorNamesInit()
 {
   // Abort if already initialized
 
@@ -813,7 +813,7 @@ NFmiColorTools::NFmiBlendRule NFmiColorTools::BlendValue(const string &theName)
 // Returns a MissingBlendName if the name is unknown
 // ----------------------------------------------------------------------
 
-const string NFmiColorTools::BlendName(const NFmiColorTools::NFmiBlendRule &theRule)
+string NFmiColorTools::BlendName(const NFmiColorTools::NFmiBlendRule& theRule)
 {
   BlendNamesInit();
 
@@ -834,7 +834,7 @@ const string NFmiColorTools::BlendName(const NFmiColorTools::NFmiBlendRule &theR
 // See the header file for the respective enum
 // ----------------------------------------------------------------------
 
-void NFmiColorTools::BlendNamesInit(void)
+void NFmiColorTools::BlendNamesInit()
 {
   // Abort if already initialized
 

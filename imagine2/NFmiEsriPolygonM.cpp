@@ -97,7 +97,7 @@ NFmiEsriPolygonM::NFmiEsriPolygonM(const string& theBuffer, int thePos, int theN
 // Calculating string buffer size
 // ----------------------------------------------------------------------
 
-int NFmiEsriPolygonM::StringSize(void) const
+int NFmiEsriPolygonM::StringSize() const
 {
   return (4                      // the type	: 1 int
           + 4 * 8                // bounding box : 4 doubles

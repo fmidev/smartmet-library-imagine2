@@ -69,7 +69,7 @@ NFmiEsriPointZ::NFmiEsriPointZ(const string& theBuffer, int thePos, int theNumbe
 // Calculating string buffer size
 // ----------------------------------------------------------------------
 
-int NFmiEsriPointZ::StringSize(void) const
+int NFmiEsriPointZ::StringSize() const
 {
   return (4 + 4 * 8);  // int + 4 doubles
 }

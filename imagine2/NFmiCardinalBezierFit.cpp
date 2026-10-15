@@ -208,7 +208,7 @@ namespace NFmiCardinalBezierFit
  */
 // ----------------------------------------------------------------------
 
-const NFmiPath Fit(const NFmiPath& thePath, double theSmoothness)
+NFmiPath Fit(const NFmiPath& thePath, double theSmoothness)
 {
   using namespace NFmiBezierTools;
 
@@ -254,7 +254,7 @@ const NFmiPath Fit(const NFmiPath& thePath, double theSmoothness)
  */
 // ----------------------------------------------------------------------
 
-const NFmiPaths Fit(const NFmiPaths& thePaths, double theSmoothness)
+NFmiPaths Fit(const NFmiPaths& thePaths, double theSmoothness)
 {
   using namespace NFmiBezierTools;
 

@@ -51,7 +51,7 @@ NFmiEsriAttributeType NFmiEsriElement::GetType(const string& theName) const
 // Return string value of attribute
 // ----------------------------------------------------------------------
 
-const std::string NFmiEsriElement::GetString(const string& theName) const
+std::string NFmiEsriElement::GetString(const string& theName) const
 {
   list<NFmiEsriAttribute>::const_iterator begin = itsAttributes.begin();
   list<NFmiEsriAttribute>::const_iterator end = itsAttributes.end();

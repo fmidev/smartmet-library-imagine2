@@ -43,7 +43,7 @@ class NFmiEsriBox;
 class NFmiEsriElement
 {
  public:
-  virtual ~NFmiEsriElement(void) {}
+  virtual ~NFmiEsriElement() {}
   NFmiEsriElement(NFmiEsriElementType theType, int theNumber = 0)
       : itsType(theType), itsNumber(theNumber)
   {
@@ -58,7 +58,7 @@ class NFmiEsriElement
   void Add(const NFmiEsriAttribute& theAttribute) { itsAttributes.push_back(theAttribute); }
   // Returning an attribute value
 
-  const std::string GetString(const std::string& theName) const;
+  std::string GetString(const std::string& theName) const;
   int GetInteger(const std::string& theName) const;
   double GetDouble(const std::string& theName) const;
   NFmiEsriAttributeType GetType(const std::string& theName) const;
@@ -72,23 +72,23 @@ class NFmiEsriElement
   virtual std::ostream& Write(std::ostream& os) const { return os; }
   // Return only the size the character buffer would take
 
-  virtual int StringSize(void) const { return 0; }
+  virtual int StringSize() const { return 0; }
   // Data access
 
-  virtual NFmiEsriElementType Type(void) const { return itsType; }
-  virtual int Number(void) const { return itsNumber; }
-  virtual double X(void) const { return -999.0; }
-  virtual double Y(void) const { return -999.0; }
-  virtual double Z(void) const { return -999.0; }
-  virtual double M(void) const { return -999.0; }
-  virtual int NumParts(void) const { return -1; }
-  virtual int NumPoints(void) const { return -1; }
+  virtual NFmiEsriElementType Type() const { return itsType; }
+  virtual int Number() const { return itsNumber; }
+  virtual double X() const { return -999.0; }
+  virtual double Y() const { return -999.0; }
+  virtual double Z() const { return -999.0; }
+  virtual double M() const { return -999.0; }
+  virtual int NumParts() const { return -1; }
+  virtual int NumPoints() const { return -1; }
   // Projection
 
   virtual void Project(const NFmiEsriProjector& theProjector) = 0;
 
  protected:
-  NFmiEsriElement(void);
+  NFmiEsriElement();
   NFmiEsriElement(const NFmiEsriElement& theElement)
       : itsType(theElement.itsType),
         itsNumber(theElement.itsNumber),

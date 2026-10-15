@@ -331,7 +331,7 @@ static void Composite2(T theBlender,
 // Destructor
 // ----------------------------------------------------------------------
 
-void NFmiImage::Destroy(void)
+void NFmiImage::Destroy()
 {
     delete[] itsPixels;
   itsPixels = nullptr;
@@ -392,7 +392,7 @@ NFmiImage::NFmiImage(int w, int h, const NFmiColorTools::Color *data)
 // Image default options
 // ----------------------------------------------------------------------
 
-void NFmiImage::DefaultOptions(void)
+void NFmiImage::DefaultOptions()
 {
   itsType = "";
 #ifdef IMAGINE_FORMAT_JPEG
@@ -767,7 +767,7 @@ bool NFmiImage::IsFullyOpaqueOrTransparent(int threshold) const
 //
 // ----------------------------------------------------------------------
 
-NFmiColorTools::Color NFmiImage::UnusedColor(void) const
+NFmiColorTools::Color NFmiImage::UnusedColor() const
 {
   // Semi-eternal loop until a missing RGB triple is found
 

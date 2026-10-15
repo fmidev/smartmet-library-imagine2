@@ -23,7 +23,7 @@ class NFmiEsriNull : public NFmiEsriElement
  public:
   // Constructors, destructors
 
-  ~NFmiEsriNull(void) {}
+  ~NFmiEsriNull() {}
   NFmiEsriNull(const NFmiEsriNull& theNull) : NFmiEsriElement(theNull) {}
   NFmiEsriNull(int theNumber = 0) : NFmiEsriElement(kFmiEsriNull, theNumber) {}
   // Copying
@@ -50,10 +50,10 @@ class NFmiEsriNull : public NFmiEsriElement
 
   // Conversion to string buffer
 
-  const std::string ToString(void) const { return LittleEndianInt(kFmiEsriNull); }
+  std::string ToString() const { return LittleEndianInt(kFmiEsriNull); }
   // Calculating string buffer size
 
-  int StringSize(void) const { return 4; }  // the type takes 4
+  int StringSize() const { return 4; }  // the type takes 4
 };
 
 }  // namespace Imagine

@@ -57,11 +57,11 @@ class NFmiGeoShape
 {
  public:
   // Constructor
-  NFmiGeoShape() : itsType(kFmiGeoShapeEsri), itsEsriShape(0) {}
-  NFmiGeoShape(const std::string &theFilename,
+  NFmiGeoShape() : itsType(kFmiGeoShapeEsri), itsEsriShape(nullptr) {}
+  NFmiGeoShape(const std::string& theFilename,
                NFmiGeoShapeType theType = kFmiGeoShapeEsri,
-               const std::string &theFilter = "")
-      : itsType(theType), itsEsriShape(0)
+               const std::string& theFilter = "")
+      : itsType(theType), itsEsriShape(nullptr)
   {
     Read(theFilename, theType, theFilter);
   }
@@ -80,7 +80,7 @@ class NFmiGeoShape
 
   // Create a path from the map data
 
-  const NFmiPath Path() const;
+  NFmiPath Path() const;
 
 // Add the data to a fill map
 #ifndef IMAGINE_WITH_CAIRO
@@ -122,7 +122,7 @@ class NFmiGeoShape
   void Read(const std::string &theFilename, NFmiGeoShapeType theType, const std::string &theFilter)
   {
     delete itsEsriShape;
-    itsEsriShape = 0;
+    itsEsriShape = nullptr;
     itsType = theType;
     switch (itsType)
     {
@@ -162,7 +162,7 @@ class NFmiGeoShape
  private:
   // Path creation
 
-  const NFmiPath PathEsri() const;
+  NFmiPath PathEsri() const;
 
   // Stroking
 

@@ -49,7 +49,7 @@ namespace Imagine
  */
 // ----------------------------------------------------------------------
 
-NFmiPath NFmiContourTree::Path(void) const
+NFmiPath NFmiContourTree::Path() const
 {
   NFmiPath path = NFmiEdgeTree::Path();
 
@@ -1535,7 +1535,7 @@ NFmiContourTree::NFmiContourInterpolation NFmiContourTree::ContourInterpolationV
  */
 // ----------------------------------------------------------------------
 
-const string NFmiContourTree::ContourInterpolationName(
+string NFmiContourTree::ContourInterpolationName(
     NFmiContourTree::NFmiContourInterpolation theInterpolation)
 {
   switch (theInterpolation)

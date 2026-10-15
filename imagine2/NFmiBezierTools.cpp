@@ -223,7 +223,7 @@ bool IsClosed(const NFmiPath& thePath)
  */
 // ----------------------------------------------------------------------
 
-const NFmiCounter<NFmiPoint> VertexCounts(const NFmiPaths& thePaths)
+NFmiCounter<NFmiPoint> VertexCounts(const NFmiPaths& thePaths)
 {
   NFmiCounter<NFmiPoint> counts;
 
@@ -275,7 +275,7 @@ const NFmiCounter<NFmiPoint> VertexCounts(const NFmiPaths& thePaths)
  */
 // ----------------------------------------------------------------------
 
-const Segments SplitSegments(const NFmiPath& thePath)
+Segments SplitSegments(const NFmiPath& thePath)
 {
   Segments out;
 
@@ -298,7 +298,7 @@ const Segments SplitSegments(const NFmiPath& thePath)
       if (outpath.Size() <= 3)
         isregular = false;
       // flush
-      out.push_back(std::make_pair(outpath, isregular));
+      out.emplace_back(outpath, isregular);
       outpath.Clear();
     }
 
@@ -326,7 +326,7 @@ const Segments SplitSegments(const NFmiPath& thePath)
   }
 
   if (!outpath.Empty())
-    out.push_back(std::make_pair(outpath, isregular));
+    out.emplace_back(outpath, isregular);
 
   return out;
 }
@@ -343,7 +343,7 @@ const Segments SplitSegments(const NFmiPath& thePath)
  */
 // ----------------------------------------------------------------------
 
-const PathList SplitPath(const NFmiPath& thePath)
+PathList SplitPath(const NFmiPath& thePath)
 {
   PathList out;
 
@@ -385,7 +385,7 @@ const PathList SplitPath(const NFmiPath& thePath)
  */
 // ----------------------------------------------------------------------
 
-const PathList SplitPath(const NFmiPath& thePath, const NFmiCounter<NFmiPoint>& theCounts)
+PathList SplitPath(const NFmiPath& thePath, const NFmiCounter<NFmiPoint>& theCounts)
 {
   PathList out;
 

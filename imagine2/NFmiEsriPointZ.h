@@ -25,7 +25,7 @@ class NFmiEsriPointZ : public NFmiEsriPointM
  public:
   // Constructors, destructors
 
-  ~NFmiEsriPointZ(void) {}
+  ~NFmiEsriPointZ() {}
   NFmiEsriPointZ(const NFmiEsriPointZ& thePoint);
 
   NFmiEsriPointZ(double theX,
@@ -48,18 +48,18 @@ class NFmiEsriPointZ : public NFmiEsriPointM
 
   // Data access
 
-  double Z(void) const { return itsZ; }
+  double Z() const { return itsZ; }
   void Z(double theZ) { itsZ = theZ; }
   // Updating bounding boxes
 
   void Update(NFmiEsriBox& theBox) const { theBox.Update(X(), Y(), Z(), M()); }
   // String buffer size, write and string
 
-  int StringSize(void) const;
+  int StringSize() const;
   std::ostream& Write(std::ostream& os) const;
 
  private:
-  NFmiEsriPointZ(void);
+  NFmiEsriPointZ();
 
   double itsZ;  // Z-coordinate
 };

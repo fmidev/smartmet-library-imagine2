@@ -114,7 +114,7 @@ class NFmiEsriMultiPatch : public NFmiEsriElement
   void Project(const NFmiEsriProjector& theProjector);
 
  private:
-  NFmiEsriMultiPatch();
+  NFmiEsriMultiPatch() = delete;
 
   NFmiEsriBox itsBox;  // Bounding box
   // int	itsNumParts;	// Number of parts = size of itsParts

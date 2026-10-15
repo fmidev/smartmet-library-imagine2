@@ -307,7 +307,7 @@ double NFmiColorTools::hls_to_rgb_util(double m1, double m2, double h)
     return m1 + (m2 - m1) * hue / 60;
   if (hue < 180)
     return m2;
-  else if (hue < 240)
+  if (hue < 240)
     return m1 + (m2 - m1) * (240 - hue) / 60;
   else
     return m1;
@@ -503,26 +503,24 @@ NFmiColorTools::Color NFmiColorTools::ToColor(const string &theColor)
     string::size_type pos = theColor.find(',');
     if (pos == string::npos)
       return ColorValue(theColor);
-    else
+
+    int value = -1;
+    for (size_t i = pos + 1; i < theColor.length(); i++)
     {
-      int value = -1;
-      for (size_t i = pos + 1; i < theColor.length(); i++)
+      if (theColor[i] >= '0' && theColor[i] <= '9')
       {
-        if (theColor[i] >= '0' && theColor[i] <= '9')
-        {
-          if (value < 0)
-            value = theColor[i] - '0';
-          else
-            value = value * 10 + theColor[i] - '0';
-        }
+        if (value < 0)
+          value = theColor[i] - '0';
         else
-          return MissingColor;
+          value = value * 10 + theColor[i] - '0';
       }
-      if (value < 0)
+      else
         return MissingColor;
-      Color tmp = ColorValue(theColor.substr(0, pos));
-      return ReplaceAlpha(tmp, value);
     }
+    if (value < 0)
+      return MissingColor;
+    Color tmp = ColorValue(theColor.substr(0, pos));
+    return ReplaceAlpha(tmp, value);
   }
 
   // Handle decimal format
@@ -553,7 +551,7 @@ NFmiColorTools::Color NFmiColorTools::ToColor(const string &theColor)
 
     if (tmp.size() == 3)
       return MakeColor(tmp[0], tmp[1], tmp[2], 0);
-    else if (tmp.size() == 4)
+    if (tmp.size() == 4)
       return MakeColor(tmp[0], tmp[1], tmp[2], tmp[3]);
     else
       return MissingColor;

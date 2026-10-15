@@ -36,7 +36,7 @@ class NFmiEdge
       itsY1 = theY2;
       itsY2 = theY1;
     }
-  };
+  }
 
   // Getting data values
 
@@ -76,7 +76,7 @@ class NFmiEdge
  private:
   // Protect from misuse
 
-  NFmiEdge();
+  NFmiEdge() = delete;
 
   // Data elements
 

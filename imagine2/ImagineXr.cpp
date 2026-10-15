@@ -107,11 +107,14 @@ ImagineXr::ImagineXr(int w, int h, const string& to_fn, const string& fmt_)
 }
 
 ImagineXr::ImagineXr(const string& from_png_fn)
-    : fmt("png"), face(nullptr), font_bg_color(NFmiColorTools::NoColor)
+    : fmt("png"),
+      width(image_surf->get_width()),
+      face(nullptr),
+      font_bg_color(NFmiColorTools::NoColor)
 {
   USAGE("ImagineXr(): from_fn=%s", from_png_fn.c_str());
   image_surf = Cairo::ImageSurface::create_from_png(from_png_fn);
-  width = image_surf->get_width();
+
   height = image_surf->get_height();
 
   Defaults(cr = Cairo::Context::create(image_surf));
@@ -374,22 +377,20 @@ inline NFmiColorTools::Color ARGB32_to_NFmiColor(int32_t v)
     return v & 0x00ffffff;  // fully opaque (RGB are non-scaled)
   if (a == 0)
     return 0x7f000000;  // fully transparent (no color information)
-  else
-  {
-    // Transparency 1..0xfe; need to scale up RGB
-    //
-    double scale = 255.0 / double(a);  // range (1..255]
 
-    int rgb = (int)(double(v & 0x00ffffff) * scale);
-    int a = static_cast<int>(std::lround(scale / 2.0));  // 127=full alpha
+  // Transparency 1..0xfe; need to scale up RGB
+  //
+  double scale = 255.0 / double(a);  // range (1..255]
 
-    if (a == 127)
-      a = 126;  // we don't come here with full alpha; neither should we leave
-    else if (a == 0)
-      a = 1;  // nor opaqueness
+  int rgb = (int)(double(v & 0x00ffffff) * scale);
+  int alpha = static_cast<int>(std::lround(scale / 2.0));  // 127=full alpha
 
-    return a << 24 | rgb;
-  }
+  if (alpha == 127)
+    alpha = 126;  // we don't come here with full alpha; neither should we leave
+  else if (alpha == 0)
+    alpha = 1;  // nor opaqueness
+
+  return alpha << 24 | rgb;
 }
 
 inline int32_t /* ARGB_32 */ NFmiColor_to_ARGB32(NFmiColorTools::Color v)
@@ -400,22 +401,20 @@ inline int32_t /* ARGB_32 */ NFmiColor_to_ARGB32(NFmiColorTools::Color v)
     return v | 0xff000000;  // fully opaque (RGB are non-scaled)
   if (a == 0x7f)
     return 0;  // fully transparent (no color information)
-  else
-  {
-    // Transparency 1..0x7e; need to scale up RGB
-    //
-    double scale = 255.0 / double(a);  // range (1..255]
 
-    int rgb = (int)(double(v & 0x00ffffff) * scale);
-    int a = static_cast<int>(std::lround(scale / 2.0));  // 127=full alpha
+  // Transparency 1..0x7e; need to scale up RGB
+  //
+  double scale = 255.0 / double(a);  // range (1..255]
 
-    if (a == 127)
-      a = 126;  // we don't come here with full alpha; neither should we leave
-    else if (a == 0)
-      a = 1;  // (nor opaqueness)
+  int rgb = (int)(double(v & 0x00ffffff) * scale);
+  int alpha = static_cast<int>(std::lround(scale / 2.0));  // 127=full alpha
 
-    return a << 24 | rgb;
-  }
+  if (alpha == 127)
+    alpha = 126;  // we don't come here with full alpha; neither should we leave
+  else if (alpha == 0)
+    alpha = 1;  // (nor opaqueness)
+
+  return alpha << 24 | rgb;
 }
 }  // namespace
 

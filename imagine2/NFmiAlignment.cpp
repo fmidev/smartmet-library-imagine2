@@ -26,7 +26,7 @@ NFmiAlignment AlignmentValue(const string& theName)
     return kFmiAlignCenter;
   if (theName == "NorthWest")
     return kFmiAlignNorthWest;
-  else if (theName == "North")
+  if (theName == "North")
     return kFmiAlignNorth;
   else if (theName == "NortEast")
     return kFmiAlignNorthEast;

@@ -57,7 +57,7 @@ class NFmiEsriPointM : public NFmiEsriPoint
   std::ostream& Write(std::ostream& os) const;
 
  private:
-  NFmiEsriPointM();
+  NFmiEsriPointM() = delete;
 
   double itsM;  // measure
 };

@@ -22,7 +22,7 @@ class NFmiEsriBox;
 class NFmiEsriProjector
 {
  public:
-  virtual ~NFmiEsriProjector() {};
+  virtual ~NFmiEsriProjector() {}
   NFmiEsriProjector() {}
   NFmiEsriProjector(const NFmiEsriProjector&) = default;
   NFmiEsriProjector& operator=(const NFmiEsriProjector&) = default;

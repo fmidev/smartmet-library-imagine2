@@ -55,9 +55,9 @@ class NFmiDataHints::Pimple
 
   node_type itsRoot;
 
-  Pimple();
-  Pimple(const Pimple& thePimple);
-  Pimple& operator=(const Pimple& thePimple);
+  Pimple() = delete;
+  Pimple(const Pimple& thePimple) = delete;
+  Pimple& operator=(const Pimple& thePimple) = delete;
 };
 
 // ----------------------------------------------------------------------
@@ -226,19 +226,17 @@ bool rectangle_intersects(const NFmiDataHints::Rectangle& theRectangle,
       return true;
     return false;
   }
-  else
+
+  if (theHiLimit != kFloatMissing)  // searched range: -inf..y
   {
-    if (theHiLimit != kFloatMissing)  // searched range: -inf..y
-    {
-      if (nodemissing)
-        return false;
-      if (nodemin <= theHiLimit)
-        return true;
+    if (nodemissing)
       return false;
-    }
-    // searched range: -inf..inf
-    return !nodemissing;
+    if (nodemin <= theHiLimit)
+    return true;
+    return false;
   }
+  // searched range: -inf..inf
+  return !nodemissing;
 }
 }  // namespace
 

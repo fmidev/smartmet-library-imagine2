@@ -148,8 +148,7 @@ std::pair<NFmiPath, NFmiPath> BezierSplit(const NFmiPath& thePath)
 
     return std::make_pair(left, right);
   }
-  else
-    throw std::runtime_error("BezierSplit does not support arbitrary Bezier degrees");
+  throw std::runtime_error("BezierSplit does not support arbitrary Bezier degrees");
 }
 
 // ----------------------------------------------------------------------

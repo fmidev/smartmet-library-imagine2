@@ -1522,7 +1522,7 @@ NFmiContourTree::NFmiContourInterpolation NFmiContourTree::ContourInterpolationV
     return kFmiContourNearest;
   if (theName == "Linear")
     return kFmiContourLinear;
-  else if (theName == "Discrete")
+  if (theName == "Discrete")
     return kFmiContourDiscrete;
   else
     return kFmiContourMissingInterpolation;

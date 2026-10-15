@@ -200,6 +200,8 @@ class NFmiContourTree : public NFmiEdgeTree
         itsSubTrianglesOn(true)
   {
   }
+  NFmiContourTree(const NFmiContourTree&) = default;
+  NFmiContourTree& operator=(const NFmiContourTree&) = default;
 
   /// Returns the active (read-only) \em low limit of the contoured interval
 

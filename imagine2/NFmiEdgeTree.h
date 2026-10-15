@@ -47,6 +47,8 @@ class NFmiEdgeTree
   // Destructors
 
   virtual ~NFmiEdgeTree() {}
+  NFmiEdgeTree(const NFmiEdgeTree&) = default;
+  NFmiEdgeTree& operator=(const NFmiEdgeTree&) = default;
   // Adding a single edge
 
   void Add(const NFmiEdge& theEdge);

@@ -61,6 +61,7 @@ class NFmiEsriMultiPatch : public NFmiEsriElement
   NFmiEsriMultiPatch(const NFmiEsriMultiPatch& theElement);
 
   NFmiEsriMultiPatch(const std::string& theBuffer, int thePos = 0, int theNumber = 0);
+  NFmiEsriMultiPatch& operator=(const NFmiEsriMultiPatch&) = default;
 
   // Copying
 
@@ -83,6 +84,7 @@ class NFmiEsriMultiPatch : public NFmiEsriElement
   {
     itsPoints.push_back(thePoint);
     itsBox.Update(thePoint.X(), thePoint.Y(), thePoint.Z(), thePoint.M());
+    // codechecker_intentional [optin.cplusplus.VirtualCall] intended in construction
     if (NumParts() == 0)
     {
       itsParts.push_back(0);

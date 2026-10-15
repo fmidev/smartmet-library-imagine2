@@ -68,8 +68,8 @@ class ImagineXr
   Cairo::RefPtr<Cairo::FontFace> face;
 
   NFmiColorTools::Color font_bg_color;  // color behind a text, or 'NFmiColorTools::NoColor'
-  int font_bg_mx;                       // margin x,y
-  int font_bg_my;
+  int font_bg_mx = 0;                       // margin x,y
+  int font_bg_my = 0;
 
   void SetRGB(NFmiColorTools::Color col);
 
@@ -95,6 +95,7 @@ class ImagineXr
   ImagineXr(const ImagineXr &o);
 
   ~ImagineXr();
+  ImagineXr& operator=(const ImagineXr&) = default;
 
   int Width() const { return width; }
   int Height() const { return height; }

@@ -174,6 +174,8 @@ class NFmiNearTree
     delete itsRightObject;
     itsRightObject = 0;
   }
+  NFmiNearTree(const NFmiNearTree&) = delete;
+  NFmiNearTree& operator=(const NFmiNearTree&) = delete;
 
   //=======================================================================
   //  void Insert ( const T & theObject )

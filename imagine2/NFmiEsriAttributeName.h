@@ -83,6 +83,8 @@ class NFmiEsriAttributeName
         itsLength(-1)
   {
   }
+  NFmiEsriAttributeName(const NFmiEsriAttributeName&) = default;
+  NFmiEsriAttributeName& operator=(const NFmiEsriAttributeName&) = default;
 
   // Data-access
 

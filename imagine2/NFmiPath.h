@@ -84,6 +84,8 @@ class NFmiPath
       : itsInsideOut(theInsideOut), itsElements(thePathData)
   {
   }
+  NFmiPath(const NFmiPath&) = default;
+  NFmiPath& operator=(const NFmiPath&) = default;
 
   // Tulostusoperaattorin ylikuormitus
 

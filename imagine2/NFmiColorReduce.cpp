@@ -179,6 +179,7 @@ class ColorTree
   typedef NFmiColorTools::Color value_type;
 
   ColorTree();
+  ~ColorTree() = default;
   void insert(value_type theColor);
   int size() const;
   void clear();

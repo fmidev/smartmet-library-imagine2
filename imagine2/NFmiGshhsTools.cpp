@@ -153,8 +153,8 @@ const NFmiPath ReadPath(const std::string &theFilename,
     throw std::runtime_error("Failed to open " + theFilename + " for reading");
 
   // Read the first header
-  GSHHS header;
-  POINT point;
+  GSHHS header{};
+  POINT point{};
   int n_read = fread(static_cast<void *>(&header), size_t(sizeof(struct GSHHS)), size_t(1), fp);
 
   // Establish whether byteswapping is needed from first header

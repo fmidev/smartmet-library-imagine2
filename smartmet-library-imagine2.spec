@@ -4,7 +4,7 @@
 %define DEVELNAME %{SPECNAME}-devel
 Summary: imagine2 library
 Name: %{SPECNAME}
-Version: 26.10.13
+Version: 26.10.15
 Release: 1%{?dist}.fmi
 License: MIT
 Group: Development/Libraries
@@ -33,11 +33,11 @@ BuildRequires: libpng-devel
 BuildRequires: make
 BuildRequires: rpm-build
 BuildRequires: %{smartmet_fmt_devel}
-BuildRequires: smartmet-library-newbase-devel >= 26.10.13
-BuildRequires: smartmet-library-macgyver-devel >= 26.10.3
-BuildRequires: smartmet-library-gis-devel >= 26.10.3
+BuildRequires: smartmet-library-newbase-devel >= 26.10.15
+BuildRequires: smartmet-library-macgyver-devel >= 26.10.15
+BuildRequires: smartmet-library-gis-devel >= 26.10.15
 BuildRequires: zlib-devel
-Requires: smartmet-library-newbase >= 26.10.13
+Requires: smartmet-library-newbase >= 26.10.15
 Requires: cairomm
 Requires: freetype
 Requires: gdal312-libs
@@ -53,10 +53,10 @@ Requires: %{smartmet_fmt}
 #TestRequires: libjpeg
 #TestRequires: libpng
 #TestRequires: make
-#TestRequires: smartmet-library-newbase-devel >= 26.10.13
+#TestRequires: smartmet-library-newbase-devel >= 26.10.15
 #TestRequires: smartmet-library-regression
-#TestRequires: smartmet-library-macgyver-devel >= 26.10.3
-#TestRequires: smartmet-library-gis-devel >= 26.10.3
+#TestRequires: smartmet-library-macgyver-devel >= 26.10.15
+#TestRequires: smartmet-library-gis-devel >= 26.10.15
 #TestRequires: zlib
 Provides: %{LIBNAME}
 Obsoletes: libsmartmet-imagine2 < 17.1.4
@@ -100,10 +100,10 @@ FMI %{DIRNAME} development files
 %{_includedir}/smartmet/%{DIRNAME}/*.h
 
 %changelog
-* Tue Oct 13 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.10.13-1.fmi
+* Thu Oct 15 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.10.15-1.fmi
 - Declare member functions and parameters const where nothing is modified (const correctness), no functional changes
 - NFmiImage::operator() const returns the color by value, modifying pixels requires a non-const image
-- Requires 26.10.13 versions of newbase due to their ABI changes
+- Requires 26.10.15 versions of newbase due to their ABI changes
 - Round alpha values and text extents with std::lround
 - Fixed mechanical clang-tidy findings (internal linkage, unused parameters, initialization, redundant code), no functional changes
 - Fixed clang-tidy style findings (loops, nested conditionals, dead code)

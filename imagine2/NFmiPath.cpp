@@ -33,7 +33,6 @@ namespace
 const double inside_out_limit = 1e8;
 
 //! The number identifying the region within the rectangle
-const int central_quadrant = 4;
 
 #if 0 // Not used
 //! Test the position of given point with respect to a rectangle.
@@ -750,7 +749,6 @@ string NFmiPath::SVG(bool relative_moves, bool removeghostlines) const
   last_out_x = last_out_y = kFloatMissing;
 
   int count_conic = 0;
-  int count_cubic = 0;
 
   NFmiPathData::const_iterator iter = Elements().begin();
 
@@ -767,16 +765,13 @@ string NFmiPath::SVG(bool relative_moves, bool removeghostlines) const
     switch (op)
     {
       case kFmiConicTo:
-        count_cubic = 0;
         count_conic++;
         break;
       case kFmiCubicTo:
         count_conic = 0;
-        count_cubic++;
         break;
       default:
         count_conic = 0;
-        count_cubic = 0;
     }
 
     // Special code for first move

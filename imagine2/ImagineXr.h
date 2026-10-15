@@ -95,7 +95,7 @@ class ImagineXr
   ImagineXr(const ImagineXr &o);
 
   ~ImagineXr();
-  ImagineXr& operator=(const ImagineXr&) = default;
+  ImagineXr& operator=(const ImagineXr&) = delete;
 
   int Width() const { return width; }
   int Height() const { return height; }

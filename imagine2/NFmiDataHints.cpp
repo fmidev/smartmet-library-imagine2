@@ -232,7 +232,7 @@ bool rectangle_intersects(const NFmiDataHints::Rectangle& theRectangle,
     if (nodemissing)
       return false;
     if (nodemin <= theHiLimit)
-    return true;
+      return true;
     return false;
   }
   // searched range: -inf..inf

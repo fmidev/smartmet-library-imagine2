@@ -1718,6 +1718,7 @@ bool NFmiPath::IsPacificView() const
           break;
         }
       }
+      break;
       default:
         break;
     }

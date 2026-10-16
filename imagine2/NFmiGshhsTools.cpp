@@ -249,7 +249,15 @@ NFmiPath ReadPath(const std::string &theFilename,
     }
     else
     {
-      read_polygon(fp, header, flip, max, ret, theFilename);
+      try
+      {
+        read_polygon(fp, header, flip, max, ret, theFilename);
+      }
+      catch (...)
+      {
+        fclose(fp);
+        throw;
+      }
     }
 
     max = 180000000;  // only Eurasiafrica needs 270

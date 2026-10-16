@@ -23,8 +23,8 @@ class NFmiEsriNull : public NFmiEsriElement
  public:
   // Constructors, destructors
 
-  ~NFmiEsriNull() {}
-  NFmiEsriNull(const NFmiEsriNull& theNull) : NFmiEsriElement(theNull) {}
+  ~NFmiEsriNull() = default;
+  NFmiEsriNull(const NFmiEsriNull& theNull) = default;
   NFmiEsriNull(int theNumber = 0) : NFmiEsriElement(kFmiEsriNull, theNumber) {}
   // Copying
 

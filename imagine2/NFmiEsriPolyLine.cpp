@@ -28,12 +28,8 @@ namespace Imagine
 // ----------------------------------------------------------------------
 
 NFmiEsriPolyLine::NFmiEsriPolyLine(const NFmiEsriPolyLine& theLine)
-    : NFmiEsriElement(theLine),
-      itsBox(theLine.itsBox),
-      itsParts(theLine.itsParts),
-      itsPoints(theLine.itsPoints)
-{
-}
+
+    = default;
 
 // ----------------------------------------------------------------------
 // Assignment operator

@@ -89,7 +89,7 @@ class ImagineXr
 
   /*******************/
  public:
-  ImagineXr(int width, int height, const string &to_filename, const string &fmt);
+  ImagineXr(int width, int height, string to_filename, string fmt);
   ImagineXr(const string &from_png_filename);  // reads a PNG file as base image
   ImagineXr(int w, int h);
   ImagineXr(const ImagineXr &o);

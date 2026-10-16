@@ -172,7 +172,7 @@ class NFmiContourTree : public NFmiEdgeTree
 
   /// Destructor
 
-  ~NFmiContourTree() {}
+  ~NFmiContourTree() = default;
   /// Constructor.
 
   /*!

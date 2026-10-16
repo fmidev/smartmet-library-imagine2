@@ -33,9 +33,8 @@ namespace Imagine
 // ----------------------------------------------------------------------
 
 NFmiEsriMultiPointZ::NFmiEsriMultiPointZ(const NFmiEsriMultiPointZ& thePoints)
-    : NFmiEsriMultiPointM(thePoints), itsBox(thePoints.itsBox), itsPoints(thePoints.itsPoints)
-{
-}
+
+    = default;
 
 // ----------------------------------------------------------------------
 // Assignment operator

@@ -37,7 +37,7 @@ namespace Imagine
  */
 // ----------------------------------------------------------------------
 
-NFmiAffine::~NFmiAffine() {}
+NFmiAffine::~NFmiAffine() = default;
 // ----------------------------------------------------------------------
 /*!
  * \brief Default constructor creates an identify transformation

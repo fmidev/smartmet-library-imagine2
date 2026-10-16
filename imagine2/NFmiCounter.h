@@ -64,9 +64,9 @@ class NFmiCounter
   typedef typename NFmiCounterData::const_iterator const_iterator;
 
   //! Constructor
-  NFmiCounter() {}
+  NFmiCounter() = default;
   //! Destructor
-  ~NFmiCounter() {}
+  ~NFmiCounter() = default;
   NFmiCounter(const NFmiCounter&) = default;
   NFmiCounter& operator=(const NFmiCounter&) = default;
   //! Reset the counter to contain no data

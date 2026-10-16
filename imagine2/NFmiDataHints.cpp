@@ -282,7 +282,7 @@ bool NFmiDataHints::Pimple::find(return_type& theValues,
  */
 // ----------------------------------------------------------------------
 
-NFmiDataHints::~NFmiDataHints() {}
+NFmiDataHints::~NFmiDataHints() = default;
 // ----------------------------------------------------------------------
 /*!
  * \brief Constructor

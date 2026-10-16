@@ -24,9 +24,8 @@ namespace Imagine
 // ----------------------------------------------------------------------
 
 NFmiEsriPointM::NFmiEsriPointM(const NFmiEsriPointM& thePoint)
-    : NFmiEsriPoint(thePoint), itsM(thePoint.itsM)
-{
-}
+
+    = default;
 
 // ----------------------------------------------------------------------
 // Copying

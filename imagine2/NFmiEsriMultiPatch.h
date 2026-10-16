@@ -55,7 +55,7 @@ class NFmiEsriMultiPatch : public NFmiEsriElement
  public:
   // Constructors, destructors
 
-  ~NFmiEsriMultiPatch() {}
+  ~NFmiEsriMultiPatch() = default;
   NFmiEsriMultiPatch(int theNumber = 0) : NFmiEsriElement(kFmiEsriMultiPatch, theNumber) {}
 
   NFmiEsriMultiPatch(const NFmiEsriMultiPatch& theElement);

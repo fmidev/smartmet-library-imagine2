@@ -17,6 +17,7 @@
 
 #include <NFmiGlobals.h>
 #include <string>
+#include <utility>
 
 namespace Imagine
 {
@@ -32,13 +33,13 @@ class NFmiEsriAttributeName
  public:
   // Constructor, destructor
 
-  ~NFmiEsriAttributeName() {}
-  NFmiEsriAttributeName(const std::string& theName,
+  ~NFmiEsriAttributeName() = default;
+  NFmiEsriAttributeName(std::string theName,
                         NFmiEsriAttributeType theType,
                         int theFieldLength = -1,
                         int theDecimalCount = -1,
                         int theLength = -1)
-      : itsName(theName),
+      : itsName(std::move(theName)),
         itsType(theType),
         itsFieldLength(static_cast<short>(theFieldLength)),
         itsDecimalCount(static_cast<short>(theDecimalCount)),
@@ -49,10 +50,8 @@ class NFmiEsriAttributeName
   // Special helper constructors based on the associated data type
   // The idea is to avoid switch statements when calling the constructor
 
-  NFmiEsriAttributeName(const std::string& theName,
-                        const std::string& /* theValue */,
-                        int theLength = -1)
-      : itsName(theName),
+  NFmiEsriAttributeName(std::string theName, const std::string& /* theValue */, int theLength = -1)
+      : itsName(std::move(theName)),
         itsType(kFmiEsriString),
         itsFieldLength(-1),
         itsDecimalCount(-1),
@@ -60,11 +59,11 @@ class NFmiEsriAttributeName
   {
   }
 
-  NFmiEsriAttributeName(const std::string& theName,
+  NFmiEsriAttributeName(std::string theName,
                         int /* theValue */,
                         int theFieldLength = -1,
                         int theDecimalCount = -1)
-      : itsName(theName),
+      : itsName(std::move(theName)),
         itsType(kFmiEsriInteger),
         itsFieldLength(static_cast<short>(theFieldLength)),
         itsDecimalCount(static_cast<short>(theDecimalCount)),
@@ -72,11 +71,11 @@ class NFmiEsriAttributeName
   {
   }
 
-  NFmiEsriAttributeName(const std::string& theName,
+  NFmiEsriAttributeName(std::string theName,
                         double /* theValue */,
                         int theFieldLength = -1,
                         int theDecimalCount = -1)
-      : itsName(theName),
+      : itsName(std::move(theName)),
         itsType(kFmiEsriDouble),
         itsFieldLength(static_cast<short>(theFieldLength)),
         itsDecimalCount(static_cast<short>(theDecimalCount)),

@@ -107,7 +107,7 @@ class NFmiEsriShape
   // Constructor, destructor
 
   NFmiEsriShape(NFmiEsriElementType theType) : itsShapeType(theType) {}
-  NFmiEsriShape() {}
+  NFmiEsriShape() = default;
   ~NFmiEsriShape() { Init(); }
   // Access to data members
 

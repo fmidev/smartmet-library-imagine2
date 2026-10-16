@@ -59,6 +59,7 @@
 #include <string>
 
 #include <iostream>  // << is overloaded
+#include <utility>
 
 class NFmiGrid;
 
@@ -78,10 +79,10 @@ class NFmiPath
 #endif
 {
  public:
-  virtual ~NFmiPath() {}
+  virtual ~NFmiPath() = default;
   NFmiPath() : itsInsideOut(false) {}
-  NFmiPath(const NFmiPathData &thePathData, bool theInsideOut = false)
-      : itsInsideOut(theInsideOut), itsElements(thePathData)
+  NFmiPath(NFmiPathData thePathData, bool theInsideOut = false)
+      : itsInsideOut(theInsideOut), itsElements(std::move(thePathData))
   {
   }
   NFmiPath(const NFmiPath&) = default;

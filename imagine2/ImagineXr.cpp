@@ -19,6 +19,7 @@
 #include <stdexcept>
 
 #include <boost/algorithm/string.hpp>
+#include <utility>
 
 #define DEFAULT_LINE_WIDTH \
   0.4  // Cairo itself has 2.0 as default
@@ -71,9 +72,9 @@ void Defaults(const Cairo::RefPtr<Cairo::Context>& cr)
 }
 }  // namespace
 
-ImagineXr::ImagineXr(int w, int h, const string& to_fn, const string& fmt_)
-    : fn(to_fn),
-      fmt(fmt_),
+ImagineXr::ImagineXr(int w, int h, string to_fn, string fmt_)
+    : fn(std::move(to_fn)),
+      fmt(std::move(fmt_)),
       width(w),
       height(h),
       face(nullptr),
@@ -151,7 +152,7 @@ ImagineXr::ImagineXr(const ImagineXr& o)
 /*
  * Destructor: do nothing
  */
-ImagineXr::~ImagineXr() {}
+ImagineXr::~ImagineXr() = default;
 void ImagineXr::SetRGB(NFmiColorTools::Color col)
 {
   if (col == NFmiColorTools::NoColor)

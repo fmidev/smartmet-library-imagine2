@@ -22,8 +22,8 @@ class NFmiEsriBox;
 class NFmiEsriProjector
 {
  public:
-  virtual ~NFmiEsriProjector() {}
-  NFmiEsriProjector() {}
+  virtual ~NFmiEsriProjector() = default;
+  NFmiEsriProjector() = default;
   NFmiEsriProjector(const NFmiEsriProjector&) = default;
   NFmiEsriProjector& operator=(const NFmiEsriProjector&) = default;
   virtual NFmiEsriPoint operator()(const NFmiEsriPoint& thePoint) const = 0;

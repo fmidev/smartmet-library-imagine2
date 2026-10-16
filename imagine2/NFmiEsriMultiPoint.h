@@ -26,7 +26,7 @@ class NFmiEsriMultiPoint : public NFmiEsriElement
  public:
   // Constructors, destructors
 
-  ~NFmiEsriMultiPoint() {}
+  ~NFmiEsriMultiPoint() = default;
   NFmiEsriMultiPoint(const NFmiEsriMultiPoint& thePoints);
 
   NFmiEsriMultiPoint(int theNumber = 0, NFmiEsriElementType theType = kFmiEsriMultiPoint)

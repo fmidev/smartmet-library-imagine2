@@ -43,10 +43,10 @@ class NFmiEdgeTree
  public:
   // Constructors
 
-  NFmiEdgeTree() {}
+  NFmiEdgeTree() = default;
   // Destructors
 
-  virtual ~NFmiEdgeTree() {}
+  virtual ~NFmiEdgeTree() = default;
   NFmiEdgeTree(const NFmiEdgeTree&) = default;
   NFmiEdgeTree& operator=(const NFmiEdgeTree&) = default;
   // Adding a single edge

@@ -28,7 +28,7 @@ class NFmiEsriPolygon : public NFmiEsriElement
  public:
   // Constructors, destructors
 
-  ~NFmiEsriPolygon() {}
+  ~NFmiEsriPolygon() = default;
   NFmiEsriPolygon(const NFmiEsriPolygon& thePolygon);
 
   NFmiEsriPolygon(int theNumber = 0, NFmiEsriElementType theType = kFmiEsriPolygon)

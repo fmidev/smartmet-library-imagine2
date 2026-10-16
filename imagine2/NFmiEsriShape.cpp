@@ -217,6 +217,32 @@ void NFmiEsriShape::Add(NFmiEsriAttributeName *theAttributeName)
   itsAttributeNames.push_back(theAttributeName);
 }
 
+namespace
+{
+// Set the spatial reference. We assume WGS84 unless a .fmi or .ykj file exists.
+void SetSpatialReference(OGRSpatialReference &theSpatialReference,
+                         const string &theFilename,
+                         const string &shapes_path)
+{
+  // We do not parse .proj files. We assume WGS84, unless one of the following files exists:
+  string fmifilename = NFmiFileSystem::FileComplete(theFilename + ".fmi", shapes_path);
+  string ykjfilename = NFmiFileSystem::FileComplete(theFilename + ".ykj", shapes_path);
+
+  std::string proj4 = "WGS84";
+  if (NFmiFileSystem::FileExists(fmifilename))
+    proj4 = fmt::format("+proj=longlat +R={:.0f} +over +no_defs +towgs84=0,0,0", kRearth);
+  else if (NFmiFileSystem::FileExists(ykjfilename))
+    proj4 =
+        "+proj=tmerc +lat_0=0 +lon_0=27 +k=1 +x_0=3500000 +y_0=0 +ellps=intl +units=m +wktext "
+        "+towgs84=-96.0617,-82.4278,-121.7535,4.80107,0.34543,-1.37646,1.4964 +no_defs";
+
+  auto err = theSpatialReference.SetFromUserInput(proj4.c_str());
+
+  if (err != OGRERR_NONE)
+    throw std::runtime_error("Failed to create spatial reference from '" + proj4 + "'");
+}
+}  // namespace
+
 // ----------------------------------------------------------------------
 // Reading a shapefile and a database file. Returns TRUE if reading
 // was succesful, false otherwise. Note that we read the entire
@@ -246,6 +272,30 @@ bool NFmiEsriShape::Read(const string &theFilename, bool fDBF)
   if (!itsElements.empty())
     Init();
 
+  if (!ReadSHP(shpfilename))
+    return false;
+
+  SetSpatialReference(itsSpatialReference, theFilename, shapes_path);
+
+  // We're done if the DBF file is not desired
+
+  if (!fDBF)
+    return true;
+
+  //! If the file does not exist, or is of zero size, we're done
+
+  if (NFmiFileSystem::FileEmpty(dbffilename))
+    return true;
+
+  return ReadDBF(dbffilename);
+}
+
+// ----------------------------------------------------------------------
+// Read the shapes from the .shp file
+// ----------------------------------------------------------------------
+
+bool NFmiEsriShape::ReadSHP(const string &shpfilename)
+{
   // Open the shp file for reading
 
   ifstream shpfile(shpfilename.c_str(), ios::in | ios::binary);
@@ -341,33 +391,15 @@ bool NFmiEsriShape::Read(const string &theFilename, bool fDBF)
     pos += reclen * 2;  // Esri sizes are in 16-bit units!
   }
 
-  // We do not parse .proj files. We assume WGS84, unless one of the following files exists:
-  string fmifilename = NFmiFileSystem::FileComplete(theFilename + ".fmi", shapes_path);
-  string ykjfilename = NFmiFileSystem::FileComplete(theFilename + ".ykj", shapes_path);
+  return true;
+}
 
-  std::string proj4 = "WGS84";
-  if (NFmiFileSystem::FileExists(fmifilename))
-    proj4 = fmt::format("+proj=longlat +R={:.0f} +over +no_defs +towgs84=0,0,0", kRearth);
-  else if (NFmiFileSystem::FileExists(ykjfilename))
-    proj4 =
-        "+proj=tmerc +lat_0=0 +lon_0=27 +k=1 +x_0=3500000 +y_0=0 +ellps=intl +units=m +wktext "
-        "+towgs84=-96.0617,-82.4278,-121.7535,4.80107,0.34543,-1.37646,1.4964 +no_defs";
+// ----------------------------------------------------------------------
+// Read the attributes from the .dbf file
+// ----------------------------------------------------------------------
 
-  auto err = itsSpatialReference.SetFromUserInput(proj4.c_str());
-
-  if (err != OGRERR_NONE)
-    throw std::runtime_error("Failed to create spatial reference from '" + proj4 + "'");
-
-  // We're done if the DBF file is not desired
-
-  if (!fDBF)
-    return true;
-
-  //! If the file does not exist, or is of zero size, we're done
-
-  if (NFmiFileSystem::FileEmpty(dbffilename))
-    return true;
-
+bool NFmiEsriShape::ReadDBF(const string &dbffilename)
+{
   // Otherwise open the file for reading
 
   ifstream dbffile(dbffilename.c_str(), ios::in | ios::binary);
@@ -423,6 +455,38 @@ bool NFmiEsriShape::Read(const string &theFilename, bool fDBF)
   vector<int> fieldsizes;                    // size of field in bytes
   vector<NFmiEsriAttributeType> fieldtypes;  // field type
 
+  ReadDBFFields(dbffields, numfields, fieldoffsets, fieldsizes, fieldtypes);
+
+  // Read in the attributes themselves. By ESRI shapefile definition the
+  // record order is the exact same in the shp file and the dbf file, hence
+  // we need not worry about matching records.
+
+  // Read all the records at once, including the leading terminator byte
+
+  string dbfrecord;
+  if (!EsriRead(dbffile, dbfrecord, 1 + numrecords * recordlength))
+  {
+    dbffile.close();
+    return false;
+  }
+
+  // And loop over it, extracting the records and fields
+
+  ReadDBFRecords(dbfrecord, numrecords, recordlength, fieldoffsets, fieldsizes, fieldtypes);
+
+  return true;
+}
+
+// ----------------------------------------------------------------------
+// Read the DBF field descriptors, adding them to the attribute names
+// ----------------------------------------------------------------------
+
+void NFmiEsriShape::ReadDBFFields(const string &dbffields,
+                                  int numfields,
+                                  vector<int> &fieldoffsets,
+                                  vector<int> &fieldsizes,
+                                  vector<NFmiEsriAttributeType> &fieldtypes)
+{
   for (int num = 0; num < numfields; num++)
   {
     int fieldpos = num * kFmixBaseFieldSize;
@@ -466,25 +530,24 @@ bool NFmiEsriShape::Read(const string &theFilename, bool fDBF)
     else
       fieldoffsets.push_back(fieldoffsets[num - 1] + fieldsizes[num - 1]);
   }
+}
 
-  // Read in the attributes themselves. By ESRI shapefile definition the
-  // record order is the exact same in the shp file and the dbf file, hence
-  // we need not worry about matching records.
+// ----------------------------------------------------------------------
+// Read the DBF records into the attributes of the shapes
+// ----------------------------------------------------------------------
+
+void NFmiEsriShape::ReadDBFRecords(const string &dbfrecord,
+                                   int numrecords,
+                                   int recordlength,
+                                   const vector<int> &fieldoffsets,
+                                   const vector<int> &fieldsizes,
+                                   const vector<NFmiEsriAttributeType> &fieldtypes)
+{
+  const int numfields = static_cast<int>(fieldtypes.size());
 
   // The first shape to get an attribute
 
   NFmiEsriShape::iterator elementiter = itsElements.begin();
-
-  // Read all the records at once, including the leading terminator byte
-
-  string dbfrecord;
-  if (!EsriRead(dbffile, dbfrecord, 1 + numrecords * recordlength))
-  {
-    dbffile.close();
-    return false;
-  }
-
-  // And loop over it, extracting the records and fields
 
   for (int rec = 1; rec <= numrecords; rec++, ++elementiter)
   {
@@ -527,8 +590,6 @@ bool NFmiEsriShape::Read(const string &theFilename, bool fDBF)
       }
     }
   }
-
-  return true;
 }
 
 // ----------------------------------------------------------------------
@@ -747,6 +808,132 @@ bool NFmiEsriShape::WriteSHX(const string &theFilename) const
   return (!shxfile.fail());
 }
 
+namespace
+{
+// DBF layout constants
+const int dbf_header_size = 32;
+const int dbf_field_size = 32;
+const int dbf_header_zeros = 20;
+const int dbf_field_zeros = 10;
+const int dbf_name_size = 11;
+
+// Write the given number of zero bytes
+void write_zeros(ostream &out, int count)
+{
+  for (int i = 0; i < count; i++)
+    out << '\0';
+}
+
+// Write a dummy database with a running index for shapes without attributes
+void write_dummy_dbf(ostream &dbffile, int element_count)
+{
+  const int field_length = 7;
+  dbffile << LittleEndianShort(dbf_header_size + 1 * dbf_field_size + 1)
+          << LittleEndianShort(field_length);
+  write_zeros(dbffile, dbf_header_zeros);
+
+  dbffile << "INDEX";
+  write_zeros(dbffile, dbf_name_size - 5);
+  dbffile << 'N' << LittleEndianInt(0) << '\x06' << '\x00';
+  dbffile << LittleEndianInt(0);
+  write_zeros(dbffile, dbf_field_zeros);
+  dbffile << '\x0d';  // header record terminator
+
+  // Note: We assume the field width is wide enough
+  // so that the first character is always a space
+  // character indicating a "not-deleted" field
+  for (int i = 1; i <= element_count; i++)
+    dbffile << setw(field_length) << setfill(' ') << i;
+}
+
+// The length of a DBF field
+int dbf_field_length(const NFmiEsriAttributeName &attribute)
+{
+  switch (attribute.Type())
+  {
+    case kFmiEsriString:
+      return attribute.Length();
+    case kFmiEsriInteger:
+    case kFmiEsriDouble:
+      return attribute.FieldLength();
+  }
+  return 0;
+}
+
+// Write a DBF field descriptor
+void write_dbf_field_descriptor(ostream &dbffile, const NFmiEsriAttributeName &attribute)
+{
+  string name = attribute.Name();
+  dbffile << name;
+  write_zeros(dbffile, dbf_name_size - static_cast<int>(name.size()));
+
+  switch (attribute.Type())
+  {
+    case kFmiEsriString:
+      dbffile << kFmixBaseFieldChar << LittleEndianInt(0) << LittleEndianShort(attribute.Length());
+      break;
+    case kFmiEsriInteger:
+      dbffile << kFmixBaseFieldNumber << LittleEndianInt(0)
+              << static_cast<unsigned char>(attribute.FieldLength())
+              << static_cast<unsigned char>(attribute.DecimalCount());
+      break;
+    case kFmiEsriDouble:
+      dbffile << kFmixBaseFieldFloat << LittleEndianInt(0)
+              << static_cast<unsigned char>(attribute.FieldLength())
+              << static_cast<unsigned char>(attribute.DecimalCount());
+      break;
+  }
+  dbffile << LittleEndianInt(0);
+  write_zeros(dbffile, dbf_field_zeros);
+}
+
+// Write a DBF record of a shape
+void write_dbf_record(ostream &dbffile,
+                      const NFmiEsriElement &element,
+                      const NFmiEsriShape::attributes_type &attributes)
+{
+  dbffile << ' ';  // not deleted, "*" would indicate deleted
+
+  for (const auto *attribute : attributes)
+  {
+    const string name = attribute->Name();
+    switch (attribute->Type())
+    {
+      case kFmiEsriString:
+      {
+        const string value = element.GetString(name);
+        const int length = attribute->Length();
+        dbffile << value;
+        for (int i = 0; i < length - static_cast<int>(value.size()); i++)
+          dbffile << ' ';
+        break;
+      }
+      case kFmiEsriInteger:
+      {
+        const int value = element.GetInteger(name);
+        const int length = attribute->FieldLength();
+        dbffile << setw(length) << setfill(' ') << value;
+        break;
+      }
+      case kFmiEsriDouble:
+      {
+        const double value = element.GetDouble(name);
+        const int length = attribute->FieldLength();
+        const int decimals = attribute->DecimalCount();
+#ifdef PERKELEEN_296
+        // Perkeleen g++ v2.96, std::fixed puuttuu
+        NFmiString str = NFmiValueString::GetStringWithMaxDecimalsSmartWay(value, decimals);
+        dbffile << setw(length) << setfill(' ') << str.CharPtr();
+#else
+        dbffile << setw(length) << setfill(' ') << fixed << setprecision(decimals) << value;
+#endif
+        break;
+      }
+    }
+  }
+}
+}  // namespace
+
 // ----------------------------------------------------------------------
 // Writing a dBASE file
 // Returns false if any fails, true for success.
@@ -754,12 +941,6 @@ bool NFmiEsriShape::WriteSHX(const string &theFilename) const
 
 bool NFmiEsriShape::WriteDBF(const string &theFilename) const
 {
-  const int header_size = 32;
-  const int field_size = 32;
-  const int header_zeros = 20;
-  const int field_zeros = 10;
-  const int name_size = 11;
-
   const int element_count = static_cast<int>(itsElements.size());
 
   // Open output file
@@ -780,132 +961,27 @@ bool NFmiEsriShape::WriteDBF(const string &theFilename) const
 
   if (itsAttributeNames.empty())
   {
-    int i = 0;
-    const int field_length = 7;
-    dbffile << LittleEndianShort(header_size + 1 * field_size + 1)
-            << LittleEndianShort(field_length);
-    for (i = 0; i < header_zeros; i++)
-      dbffile << '\0';
-
-    dbffile << "INDEX";
-    for (i = 0; i < name_size - 5; i++)
-      dbffile << '\0';
-    dbffile << 'N' << LittleEndianInt(0) << '\x06' << '\x00';
-    dbffile << LittleEndianInt(0);
-    for (i = 0; i < field_zeros; i++)
-      dbffile << '\0';
-    dbffile << '\x0d';  // header record terminator
-
-    // Note: We assume the field width is wide enough
-    // so that the first character is always a space
-    // character indicating a "not-deleted" field
-    for (i = 1; i <= element_count; i++)
-      dbffile << setw(field_length) << setfill(' ') << i;
+    write_dummy_dbf(dbffile, element_count);
   }
   else
   {
     const int field_count = itsAttributeNames.size();
 
     int field_length = 1;  // 1 for the delete marker
-    int f = 0;
-    for (f = 0; f < field_count; f++)
-    {
-      const NFmiEsriAttributeName *attribute = itsAttributeNames[f];
-      switch (attribute->Type())
-      {
-        case kFmiEsriString:
-          field_length += attribute->Length();
-          break;
-        case kFmiEsriInteger:
-        case kFmiEsriDouble:
-          field_length += attribute->FieldLength();
-          break;
-      }
-    }
+    for (const auto *attribute : itsAttributeNames)
+      field_length += dbf_field_length(*attribute);
 
-    int i = 0;
-    dbffile << LittleEndianShort(header_size + field_count * field_size + 1)
+    dbffile << LittleEndianShort(dbf_header_size + field_count * dbf_field_size + 1)
             << LittleEndianShort(field_length);
-    for (i = 0; i < header_zeros; i++)
-      dbffile << '\0';
+    write_zeros(dbffile, dbf_header_zeros);
 
-    for (f = 0; f < field_count; f++)
-    {
-      const NFmiEsriAttributeName *attribute = itsAttributeNames[f];
-      string name = attribute->Name();
-      dbffile << name;
-      for (i = 0; i < name_size - static_cast<int>(name.size()); i++)
-        dbffile << '\0';
+    for (const auto *attribute : itsAttributeNames)
+      write_dbf_field_descriptor(dbffile, *attribute);
 
-      switch (attribute->Type())
-      {
-        case kFmiEsriString:
-          dbffile << kFmixBaseFieldChar << LittleEndianInt(0)
-                  << LittleEndianShort(attribute->Length());
-          break;
-        case kFmiEsriInteger:
-          dbffile << kFmixBaseFieldNumber << LittleEndianInt(0)
-                  << static_cast<unsigned char>(attribute->FieldLength())
-                  << static_cast<unsigned char>(attribute->DecimalCount());
-          break;
-        case kFmiEsriDouble:
-          dbffile << kFmixBaseFieldFloat << LittleEndianInt(0)
-                  << static_cast<unsigned char>(attribute->FieldLength())
-                  << static_cast<unsigned char>(attribute->DecimalCount());
-          break;
-      }
-      dbffile << LittleEndianInt(0);
-      for (i = 0; i < field_zeros; i++)
-        dbffile << '\0';
-    }
     dbffile << '\x0d';  // header record terminator
 
     for (const_iterator it = itsElements.begin(); it != itsElements.end(); ++it)
-    {
-      const elements_type::value_type element = *it;
-
-      dbffile << ' ';  // not deleted, "*" would indicate deleted
-
-      for (attributes_type::const_iterator jt = itsAttributeNames.begin();
-           jt != itsAttributeNames.end();
-           ++jt)
-      {
-        const string name = (*jt)->Name();
-        switch ((*jt)->Type())
-        {
-          case kFmiEsriString:
-          {
-            const string value = element->GetString(name);
-            const int length = (*jt)->Length();
-            dbffile << value;
-            for (i = 0; i < length - static_cast<int>(value.size()); i++)
-              dbffile << ' ';
-            break;
-          }
-          case kFmiEsriInteger:
-          {
-            const int value = element->GetInteger(name);
-            const int length = (*jt)->FieldLength();
-            dbffile << setw(length) << setfill(' ') << value;
-            break;
-          }
-          case kFmiEsriDouble:
-          {
-            const double value = element->GetDouble(name);
-            const int length = (*jt)->FieldLength();
-            const int decimals = (*jt)->DecimalCount();
-#ifdef PERKELEEN_296
-            // Perkeleen g++ v2.96, std::fixed puuttuu
-            NFmiString str = NFmiValueString::GetStringWithMaxDecimalsSmartWay(value, decimals);
-            dbffile << setw(length) << setfill(' ') << str.CharPtr();
-#else
-            dbffile << setw(length) << setfill(' ') << fixed << setprecision(decimals) << value;
-#endif
-            break;
-          }
-        }
-      }
-    }
+      write_dbf_record(dbffile, **it, itsAttributeNames);
   }
 
   dbffile << '\x1a';

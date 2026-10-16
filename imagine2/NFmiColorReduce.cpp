@@ -29,7 +29,6 @@
 #include <iostream>
 #include <list>
 #include <map>
-#include <memory>
 #include <vector>
 
 // std version not available in RHEL5, must use boost instead

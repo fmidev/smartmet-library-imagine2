@@ -1065,31 +1065,53 @@ void NFmiContourTree::ContourDiscrete4(float x1,
   if (values.size() > 2)
     ContourNearest4(x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4);
   else
+    ContourTwoValued4(x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4);
+}
+
+// ----------------------------------------------------------------------
+/*!
+ * Contour a rectangular element with only two distinct vertex values
+ * by fixing inside points to value 1, outside points to value 2 and
+ * then using regular linear interpolation.
+ */
+// ----------------------------------------------------------------------
+
+void NFmiContourTree::ContourTwoValued4(float x1,
+                                        float y1,
+                                        float z1,
+                                        float x2,
+                                        float y2,
+                                        float z2,
+                                        float x3,
+                                        float y3,
+                                        float z3,
+                                        float x4,
+                                        float y4,
+                                        float z4)
+{
+  VertexInsidedness c1 = Insidedness(z1);
+  VertexInsidedness c2 = Insidedness(z2);
+  VertexInsidedness c3 = Insidedness(z3);
+  VertexInsidedness c4 = Insidedness(z4);
+
+  // Make new subcontourer
+  NFmiContourTree subpath(0.5, 1.5, true, true, false);
+  subpath.ContourLinear4(x1,
+                         y1,
+                         c1 == kInside ? 1 : 2,
+                         x2,
+                         y2,
+                         c2 == kInside ? 1 : 2,
+                         x3,
+                         y3,
+                         c3 == kInside ? 1 : 2,
+                         x4,
+                         y4,
+                         c4 == kInside ? 1 : 2);
+
+  for (EdgeTreeType::iterator it = subpath.itsEdges.begin(); it != subpath.itsEdges.end(); ++it)
   {
-    VertexInsidedness c1 = Insidedness(z1);
-    VertexInsidedness c2 = Insidedness(z2);
-    VertexInsidedness c3 = Insidedness(z3);
-    VertexInsidedness c4 = Insidedness(z4);
-
-    // Make new subcontourer
-    NFmiContourTree subpath(0.5, 1.5, true, true, false);
-    subpath.ContourLinear4(x1,
-                           y1,
-                           c1 == kInside ? 1 : 2,
-                           x2,
-                           y2,
-                           c2 == kInside ? 1 : 2,
-                           x3,
-                           y3,
-                           c3 == kInside ? 1 : 2,
-                           x4,
-                           y4,
-                           c4 == kInside ? 1 : 2);
-
-    for (EdgeTreeType::iterator it = subpath.itsEdges.begin(); it != subpath.itsEdges.end(); ++it)
-    {
-      Add(*it);
-    }
+    Add(*it);
   }
 }
 

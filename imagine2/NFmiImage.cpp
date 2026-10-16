@@ -513,7 +513,7 @@ void NFmiImage::Read(const string &theFileName)
 
 void NFmiImage::Write(const string &theFileName, const string &theType) const
 {
-  if (0)
+  if (false)
     ;
 #ifdef IMAGINE_FORMAT_PNG
   else if (theType == "png")

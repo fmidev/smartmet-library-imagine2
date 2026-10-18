@@ -146,7 +146,7 @@ int getdatablock(FILE *theInput, unsigned char *theBuffer)
 
 void read_extension(FILE *theInput, int theLabel, GifScreen &theScreen)
 {
-  unsigned char buffer[256];
+  unsigned char buffer[256] = {};
 
   switch (theLabel)
   {
@@ -156,7 +156,9 @@ void read_extension(FILE *theInput, int theLabel, GifScreen &theScreen)
       break;
     case 0xf9:  // graphic control extension
     {
-      getdatablock(theInput, buffer);
+      // An empty block is the block terminator: there is nothing to parse or skip
+      if (getdatablock(theInput, buffer) == 0)
+        return;
       theScreen.disposal = (buffer[0] >> 2) & 0x7;
       theScreen.inputflag = (buffer[0] >> 1) & 0x1;
       theScreen.delaytime = LM_to_uint(buffer[1], buffer[2]);

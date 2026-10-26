@@ -108,15 +108,14 @@ ImagineXr::ImagineXr(int w, int h, string to_fn, string fmt_)
 }
 
 ImagineXr::ImagineXr(const string& from_png_fn)
-    : fmt("png"),
+    : image_surf(Cairo::ImageSurface::create_from_png(from_png_fn)),
+      fmt("png"),
       width(image_surf->get_width()),
+      height(image_surf->get_height()),
       face(nullptr),
       font_bg_color(NFmiColorTools::NoColor)
 {
   USAGE("ImagineXr(): from_fn=%s", from_png_fn.c_str());
-  image_surf = Cairo::ImageSurface::create_from_png(from_png_fn);
-
-  height = image_surf->get_height();
 
   Defaults(cr = Cairo::Context::create(image_surf));
 }

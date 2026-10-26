@@ -101,6 +101,7 @@ FMI %{DIRNAME} development files
 
 %changelog
 * Mon Oct 26 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.10.26-1.fmi
+- Fixed font specifications such as Courier:13 being rejected, which aborted programs drawing texts (since 25.1.7)
 - Fixed a crash when reading a PNG file as the base image, for example for symbols, patterns and masks (since 26.10.15)
 
 * Sun Oct 18 2026 Mika Heiskanen <mika.heiskanen@fmi.fi> - 26.10.18-1.fmi

@@ -50,6 +50,46 @@ void from_png()
 
 // ----------------------------------------------------------------------
 /*!
+ * \brief Test font specifications
+ */
+// ----------------------------------------------------------------------
+
+void makeface()
+{
+  using namespace Imagine;
+
+  ImagineXr img(30, 20);
+
+  // Every font specification used to be rejected
+  bool accepted = true;
+  try
+  {
+    img.MakeFace("Courier:13");
+  }
+  catch (...)
+  {
+    accepted = false;
+  }
+  if (!accepted)
+    TEST_FAILED("Font specification Courier:13 should be accepted");
+
+  bool rejected = false;
+  try
+  {
+    img.MakeFace("Courier");
+  }
+  catch (...)
+  {
+    rejected = true;
+  }
+  if (!rejected)
+    TEST_FAILED("Font specification without a size should be rejected");
+
+  TEST_PASSED();
+}
+
+// ----------------------------------------------------------------------
+/*!
  * The actual test suite
  */
 // ----------------------------------------------------------------------
@@ -57,7 +97,11 @@ void from_png()
 class tests : public tframe::tests
 {
   virtual const char* error_message_prefix() const { return "\n\t"; }
-  void test(void) { TEST(from_png); }
+  void test(void)
+  {
+    TEST(from_png);
+    TEST(makeface);
+  }
 };
 
 }  // namespace ImagineXrTest

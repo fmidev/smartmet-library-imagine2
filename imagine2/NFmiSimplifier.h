@@ -152,7 +152,7 @@ class NFmiSimplifier
   const vector<T> SimplifyMinDistance(const vector<T>& theData) { return theData; }
   // ------------------------------------------------------------
   // Simplify so that the maximum deviation point is kept
-  // from the line formed adjancent points kept earlier.
+  // from the line formed adjacent points kept earlier.
   // This is the Douglas-Peucker algorithm.
   // ------------------------------------------------------------
 
@@ -167,7 +167,7 @@ class NFmiSimplifier
     if (theData.size() <= 1)
       return out;
 
-    // The first point can be output already - we have atleast two points
+    // The first point can be output already - we have at least two points
 
     if (!theData.empty())
       out.push_back(theData[0]);
@@ -363,7 +363,7 @@ class NFmiSimplifier
     if (theData.size() <= 1)
       return out;
 
-    // The first point can be output already - we have atleast two points
+    // The first point can be output already - we have at least two points
 
     if (!theData.empty())
       out.push_back(theData[0]);

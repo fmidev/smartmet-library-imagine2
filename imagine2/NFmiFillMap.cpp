@@ -126,13 +126,13 @@ static void Fill2(T theBlender,
         if (x2 == i2)
           i2--;
 
-        // Check the line is atleast partially inside
+        // Check the line is at least partially inside
 
         if (i1 >= theImage.Width() || i2 < 0)
           ;  // x1 is invalidated later
         else
         {
-          // Check we fill atleast one pixel
+          // Check we fill at least one pixel
 
           if (i1 > i2)
           {
@@ -250,13 +250,13 @@ static void Fill2(T theBlender,
         if (x2 == i2)
           i2--;
 
-        // Check the line is atleast partially inside
+        // Check the line is at least partially inside
 
         if (i1 >= theImage.Width() || i2 < 0)
           ;  // x1 is invalidated later
         else
         {
-          // Check we fill atleast one pixel
+          // Check we fill at least one pixel
 
           if (i1 > i2)
           {
@@ -383,13 +383,13 @@ static void Fill2(T theBlender,
         if (x2 == i2)
           i2--;
 
-        // Check the line is atleast partially inside
+        // Check the line is at least partially inside
 
         if (i1 >= theImage.Width() || i2 < 0)
           ;  // x1 is invalidated later
         else
         {
-          // Check we fill atleast one pixel
+          // Check we fill at least one pixel
 
           if (i1 > i2)
           {

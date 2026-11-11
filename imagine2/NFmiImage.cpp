@@ -76,7 +76,7 @@ static void StrokeBasic2(T theBlender,
                          NFmiColorTools::Color theColor,
                          NFmiImage &theImage)
 {
-  // Convert coodinates to device space
+  // Convert coordinates to device space
 
   int x1 = static_cast<int>(floor(theX1 + 0.5));
   int y1 = static_cast<int>(floor(theY1 + 0.5));
@@ -183,7 +183,7 @@ static void StrokeBasic2(T theBlender,
                          int a,
                          NFmiImage &theImage)
 {
-  // Convert coodinates to device space
+  // Convert coordinates to device space
 
   int x1 = static_cast<int>(floor(theX1 + 0.5));
   int y1 = static_cast<int>(floor(theY1 + 0.5));
@@ -875,7 +875,7 @@ bool NFmiImage::AddColors(set<NFmiColorTools::Color> &theSet,
     color1 = color;
   }
 
-  // Succesfully added all colors to the set without exceeding any limit
+  // Successfully added all colors to the set without exceeding any limit
 
   return false;
 }
@@ -918,7 +918,7 @@ void NFmiImage::StrokeBasic(float theX1,
   //
   // A line would intersect at Width-0.5, or Height-0.5, and the
   // value would be rounded up in StrokeBasic primitives in NFmiImage.h,
-  // causing a memory overlow and possibly a bus error.
+  // causing a memory overflow and possibly a bus error.
   //
   // If the offset was zero, the last pixel rows would be only
   // partially included in the image, and tiny half-pixel errors

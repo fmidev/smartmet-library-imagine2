@@ -319,7 +319,7 @@ NFmiDataHints::NFmiDataHints(const NFmiDataMatrix<float>& theData, int theMaxSiz
 
 NFmiDataHints::return_type NFmiDataHints::rectangles(float theLoLimit, float theHiLimit) const
 {
-  // Call the actual implemenetation
+  // Call the actual implementation
   return itsPimple->rectangles(theLoLimit, theHiLimit);
 }
 

@@ -155,7 +155,7 @@ enum NFmiBlendRule
 #ifndef IMAGINE_WITH_CAIRO
   kFmiColorMinus,
   kFmiColorAdd,
-  kFmiColorSubstract,
+  kFmiColorSubtract,
   kFmiColorMultiply,
   kFmiColorDifference,
   kFmiColorCopyRed,

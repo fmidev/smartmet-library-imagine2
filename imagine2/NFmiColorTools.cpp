@@ -880,7 +880,7 @@ void NFmiColorTools::BlendNamesInit()
 #else
   BLENDINSERT("Minus", kFmiColorMinus);
   BLENDINSERT("Add", kFmiColorAdd);
-  BLENDINSERT("Substract", kFmiColorSubstract);
+  BLENDINSERT("Substract", kFmiColorSubtract);
   BLENDINSERT("Multiply", kFmiColorMultiply);
   BLENDINSERT("Difference", kFmiColorDifference);
   BLENDINSERT("CopyRed", kFmiColorCopyRed);

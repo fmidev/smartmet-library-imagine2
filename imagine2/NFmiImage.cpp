@@ -1007,7 +1007,7 @@ void NFmiImage::StrokeBasic(float theX1,
       StrokeBasic2(NFmiColorBlendAddContrast(), x1, y1, x2, y2, theColor, *this);
       break;
     case NFmiColorTools::kFmiColorReduceContrast:
-      StrokeBasic2(NFmiColorBlendReduceConstrast(), x1, y1, x2, y2, theColor, *this);
+      StrokeBasic2(NFmiColorBlendReduceContrast(), x1, y1, x2, y2, theColor, *this);
       break;
 
       // Cases for which RGBA stroke is faster:
@@ -1048,8 +1048,8 @@ void NFmiImage::StrokeBasic(float theX1,
     case NFmiColorTools::kFmiColorAdd:
       StrokeBasic2(NFmiColorBlendAdd(), x1, y1, x2, y2, r, g, b, a, *this);
       break;
-    case NFmiColorTools::kFmiColorSubstract:
-      StrokeBasic2(NFmiColorBlendSubstract(), x1, y1, x2, y2, r, g, b, a, *this);
+    case NFmiColorTools::kFmiColorSubtract:
+      StrokeBasic2(NFmiColorBlendSubtract(), x1, y1, x2, y2, r, g, b, a, *this);
       break;
     case NFmiColorTools::kFmiColorMultiply:
       StrokeBasic2(NFmiColorBlendMultiply(), x1, y1, x2, y2, r, g, b, a, *this);
@@ -1171,7 +1171,7 @@ void NFmiImage::Composite(const NFmiImage &thePattern,
       Composite2(NFmiColorBlendAddContrast(), thePattern, x, y, theAlpha, *this);
       break;
     case NFmiColorTools::kFmiColorReduceContrast:
-      Composite2(NFmiColorBlendReduceConstrast(), thePattern, x, y, theAlpha, *this);
+      Composite2(NFmiColorBlendReduceContrast(), thePattern, x, y, theAlpha, *this);
       break;
     case NFmiColorTools::kFmiColorOver:
       Composite2(NFmiColorBlendOver(), thePattern, x, y, theAlpha, *this);
@@ -1209,8 +1209,8 @@ void NFmiImage::Composite(const NFmiImage &thePattern,
     case NFmiColorTools::kFmiColorAdd:
       Composite2(NFmiColorBlendAdd(), thePattern, x, y, theAlpha, *this);
       break;
-    case NFmiColorTools::kFmiColorSubstract:
-      Composite2(NFmiColorBlendSubstract(), thePattern, x, y, theAlpha, *this);
+    case NFmiColorTools::kFmiColorSubtract:
+      Composite2(NFmiColorBlendSubtract(), thePattern, x, y, theAlpha, *this);
       break;
     case NFmiColorTools::kFmiColorMultiply:
       Composite2(NFmiColorBlendMultiply(), thePattern, x, y, theAlpha, *this);

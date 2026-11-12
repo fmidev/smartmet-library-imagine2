@@ -19,13 +19,14 @@
 #include "NFmiBezierTools.h"
 #include "NFmiCounter.h"
 #include "NFmiPath.h"
-
-#include <NFmiGeoTools.h>
-#include <NFmiPoint.h>
+#include "NFmiPathElement.h"
+#include <newbase/NFmiGeoTools.h>
+#include <newbase/NFmiPoint.h>
 #include <cmath>
-
-#include <iomanip>
+#include <cstddef>
+#include <iterator>
 #include <list>
+#include <stdexcept>
 #include <utility>
 #include <vector>
 

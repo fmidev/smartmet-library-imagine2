@@ -32,8 +32,8 @@
 #include "NFmiFace.h"
 #include "NFmiFreeType.h"
 #include "NFmiPath.h"
-#include <NFmiFileSystem.h>
-#include <NFmiSettings.h>
+#include <newbase/NFmiFileSystem.h>
+#include <newbase/NFmiSettings.h>
 
 extern "C"
 {

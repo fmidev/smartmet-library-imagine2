@@ -15,7 +15,6 @@
 
 #pragma once
 
-#include <NFmiGlobals.h>
 #include <string>
 #include <utility>
 

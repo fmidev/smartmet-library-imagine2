@@ -3,22 +3,21 @@
  *
  * Replacement for 'Imagine' library, using Cairo drawing
  */
+#include "NFmiPathElement.h"
 #include "imagine-config.h"
+#include <cstdio>
+#include <cstring>
+#include <vector>
 
 #ifdef IMAGINE_WITH_CAIRO
 
 #include "ImagineXr.h"
-
-#include "NFmiImage.h"
+#include <boost/algorithm/string.hpp>
 #include <macgyver/Exception.h>
 #include <macgyver/StringConversion.h>
-
 #include <cmath>
 #include <deque>
-#include <iostream>
 #include <stdexcept>
-
-#include <boost/algorithm/string.hpp>
 #include <utility>
 
 #define DEFAULT_LINE_WIDTH \

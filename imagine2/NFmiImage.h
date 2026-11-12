@@ -16,22 +16,18 @@
 
 #pragma once
 
-#include "imagine-config.h"
-
 #include "NFmiAlignment.h"
 #include "NFmiColorTools.h"
+#include "imagine-config.h"
 
 #ifndef IMAGINE_WITH_CAIRO
 #include "NFmiDrawable.h"
 #endif
 
-#include <cmath>  // for min,max,floor,ceil etc
 #include <cstdio>
 #include <set>  // for sets
 #include <stdexcept>
-#include <string>   // for filenames, drawing text etc
-#include <utility>  // for pairs
-#include <vector>   // for vectors
+#include <string>  // for filenames, drawing text etc
 
 #ifdef __BORLANDC__
 using std::FILE;

@@ -20,9 +20,12 @@
 #include "NFmiBezierTools.h"
 #include "NFmiCounter.h"
 #include "NFmiPath.h"
-
-#include <NFmiGeoTools.h>
-
+#include "NFmiPathElement.h"
+#include <newbase/NFmiGeoTools.h>
+#include <newbase/NFmiGlobals.h>
+#include <newbase/NFmiPoint.h>
+#include <cstddef>
+#include <deque>
 #include <stdexcept>
 #include <utility>
 #include <vector>

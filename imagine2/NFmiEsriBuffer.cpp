@@ -5,9 +5,10 @@
 // ======================================================================
 
 #include "NFmiEsriBuffer.h"
-#include <algorithm>  // swap()
+#include <cstdint>
 #include <cstring>
 #include <iostream>
+#include <utility>
 
 #ifdef UNIX
 extern "C"

@@ -13,11 +13,13 @@
 
 #pragma once
 
-#include "imagine-config.h"
-
+#include "NFmiAlignment.h"
 #include "NFmiEsriShape.h"
 #include "NFmiEsriTools.h"
 #include "NFmiPath.h"
+#include "imagine-config.h"
+
+class NFmiArea;
 
 #ifdef IMAGINE_WITH_CAIRO
 #include "ImagineXr.h"
@@ -28,8 +30,7 @@
 #include "NFmiImage.h"
 #endif
 
-#include <NFmiArea.h>
-
+#include <iosfwd>
 #include <stdexcept>
 #include <string>
 

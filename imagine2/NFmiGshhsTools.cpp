@@ -7,10 +7,12 @@
 
 #include "NFmiGshhsTools.h"
 #include "NFmiPath.h"
-#include <NFmiFileSystem.h>
-#include <NFmiPoint.h>
-#include <NFmiSettings.h>
+#include "imagine-config.h"
+#include <newbase/NFmiFileSystem.h>
+#include <newbase/NFmiSettings.h>
+#include <cstdio>
 #include <stdexcept>
+#include <utility>
 
 using namespace std;
 

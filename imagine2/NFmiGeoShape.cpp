@@ -12,12 +12,30 @@
 // ======================================================================
 
 #include "NFmiGeoShape.h"
+#include "NFmiEsriBox.h"
+#include "NFmiEsriElement.h"
 #include "NFmiEsriMultiPatch.h"
-#include "NFmiEsriMultiPointZ.h"
-#include "NFmiEsriPolyLineZ.h"
-#include "NFmiEsriPolygonZ.h"
+#include "NFmiEsriMultiPoint.h"
+#include "NFmiEsriPoint.h"
+#include "NFmiEsriPointZ.h"
+#include "NFmiEsriPolyLine.h"
+#include "NFmiEsriPolygon.h"
+#include "NFmiEsriProjector.h"
 #include <gis/CoordinateTransformation.h>
 #include <gis/SpatialReference.h>
+#include <newbase/NFmiArea.h>
+#include <newbase/NFmiPoint.h>
+#include <algorithm>
+#include <iterator>
+#include <ostream>
+#include <utility>
+#include <vector>
+
+class OGRSpatialReference;
+namespace Imagine
+{
+class NFmiEsriAttributeName;
+}  // namespace Imagine
 
 using namespace std;
 

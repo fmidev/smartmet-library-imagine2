@@ -8,18 +8,15 @@
 #pragma once
 
 #include "NFmiEsriAttribute.h"
-#include "NFmiEsriBuffer.h"
-#include "NFmiEsriProjector.h"
-
-#include <memory>
-
+#include "NFmiEsriAttributeName.h"
 #include <iostream>
 #include <list>
 #include <string>
-#include <vector>
 
 namespace Imagine
 {
+class NFmiEsriProjector;
+
 enum NFmiEsriElementType
 {
   kFmiEsriNull = 0,

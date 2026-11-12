@@ -21,13 +21,9 @@
 
 #pragma once
 
-#include <NFmiDef.h>
-
-#include <algorithm>
-#include <cmath>   // max,abs etc
-#include <string>  // for color name definitions
-
 #include "imagine-config.h"
+#include <algorithm>
+#include <string>  // for color name definitions
 
 namespace Imagine
 {

@@ -6,9 +6,8 @@
 // ======================================================================
 
 #include "NFmiCounter.h"
-#include "NFmiGlobals.h"
-#include "tframe.h"
-#include <cmath>
+#include <regression/tframe.h>
+#include <iostream>
 
 //! Protection against conflicts with global functions
 namespace NFmiCounterTest

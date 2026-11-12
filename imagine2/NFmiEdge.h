@@ -12,9 +12,6 @@
 
 #pragma once
 
-#include <NFmiGlobals.h>
-#include <cmath>
-
 namespace Imagine
 {
 // ----------------------------------------------------------------------

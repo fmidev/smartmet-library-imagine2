@@ -5,7 +5,11 @@
 // ======================================================================
 
 #include "NFmiDataHints.h"
-#include <NFmiGlobals.h>
+#include <newbase/NFmiDataMatrix.h>
+#include <newbase/NFmiGlobals.h>
+#include <algorithm>
+#include <stdexcept>
+#include <vector>
 
 using namespace std;
 

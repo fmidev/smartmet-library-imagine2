@@ -181,13 +181,12 @@
 // ======================================================================
 
 #include "NFmiColorTools.h"
-
-#include <NFmiGlobals.h>
-#include <cmath>
-
 #include <algorithm>
+#include <cmath>
+#include <cstddef>
 #include <map>
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace Imagine

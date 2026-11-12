@@ -12,12 +12,10 @@
 
 #pragma once
 
-#include <NFmiDef.h>
-
 namespace Imagine
 {
-class NFmiEsriPoint;  // introduce projector argument type
 class NFmiEsriBox;
+class NFmiEsriPoint;  // introduce projector argument type
 
 class NFmiEsriProjector
 {

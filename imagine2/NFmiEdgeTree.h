@@ -23,11 +23,8 @@
 #include "NFmiFillMap.h"  // Fill map generation and rendering
 #endif
 
-#include <algorithm>
 #include <list>
 #include <set>
-#include <utility>
-#include <vector>
 
 namespace Imagine
 {

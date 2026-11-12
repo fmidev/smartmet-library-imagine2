@@ -124,29 +124,32 @@
 
 #pragma once
 
+#include "NFmiPath.h"
 #include "imagine-config.h"
 
 // Essential includes:
 
 #include "NFmiEdgeTree.h"  // Input edges
 
+namespace Fmi
+{
+class CoordinateMatrix;
+}  // namespace Fmi
+template <class T>
+class NFmiDataMatrix;
+
 #ifndef IMAGINE_WITH_CAIRO
 #include "NFmiFillMap.h"  // Fill map generation and rendering
 #endif
 
-#include "NFmiDataHints.h"
-
-#include <NFmiFastQueryInfo.h>  // for querydata
-#include <NFmiGlobals.h>        // for kFloatMissing
-#include <NFmiGrid.h>           // for grids
-
-#include <algorithm>  // insert
-#include <set>        // sets
-#include <utility>    // pairs
-#include <vector>     // vectors
+#include <newbase/NFmiGlobals.h>
+#include <newbase/NFmiGlobals.h>  // for kFloatMissing
+#include <string>
+#include <vector>  // vectors
 
 namespace Imagine
 {
+class NFmiDataHints;
 /// Class to calculating 2D contour polygons given a data interval.
 
 class NFmiContourTree : public NFmiEdgeTree

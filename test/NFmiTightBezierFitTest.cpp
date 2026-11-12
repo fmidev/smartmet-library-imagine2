@@ -7,8 +7,9 @@
 
 #include "NFmiPath.h"
 #include "NFmiTightBezierFit.h"
-#include "tframe.h"
-#include <cmath>
+#include <regression/tframe.h>
+#include <iostream>
+#include <string>
 
 using namespace std;
 

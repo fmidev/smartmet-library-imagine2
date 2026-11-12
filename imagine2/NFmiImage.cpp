@@ -19,22 +19,18 @@
                                  // -funktiolla.
 #endif
 
-#include "NFmiColorBlend.h"
-#include "NFmiColorReduce.h"
-
 #include "NFmiImage.h"
+#include "NFmiColorReduce.h"
 
 #ifndef IMAGINE_WITH_CAIRO
 #include "NFmiImageTools.h"
 #endif
 
-#include <NFmiFileSystem.h>
-#include <NFmiStringTools.h>
-
-#include <algorithm>
+#include <newbase/NFmiFileSystem.h>
 #include <cstdlib>  // for rand, RAND_MAX
-#include <iostream>
+#include <cstring>
 #include <sstream>
+#include <utility>
 
 extern "C"
 {

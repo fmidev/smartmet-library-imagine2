@@ -5,11 +5,11 @@
  */
 // ======================================================================
 
-#include "imagine-config.h"
-
 #include "ImagineXr.h"
-#include "tframe.h"
+#include "NFmiAlignment.h"
+#include <regression/tframe.h>
 #include <cstdio>
+#include <iostream>
 #include <string>
 #include <unistd.h>
 

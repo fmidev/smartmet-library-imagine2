@@ -12,8 +12,6 @@
 
 #pragma once
 
-#include <NFmiGlobals.h>
-
 namespace Imagine
 {
 class NFmiEsriBox

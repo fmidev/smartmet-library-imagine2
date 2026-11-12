@@ -104,7 +104,6 @@
 
 #pragma once
 
-#include <NFmiGlobals.h>
 #include <algorithm>
 #include <cmath>
 #include <vector>

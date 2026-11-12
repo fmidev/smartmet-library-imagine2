@@ -1,8 +1,11 @@
 #include "NFmiEsriTools.h"
+#include "NFmiEsriAttributeName.h"
+#include "NFmiEsriElement.h"
 #include "NFmiEsriShape.h"
-#include "NFmiStringTools.h"
+#include <newbase/NFmiStringTools.h>
 #include <list>
 #include <stdexcept>
+#include <vector>
 
 using namespace std;
 

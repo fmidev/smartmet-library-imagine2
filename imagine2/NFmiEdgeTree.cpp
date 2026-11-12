@@ -11,8 +11,10 @@
 // ======================================================================
 
 #include "NFmiEdgeTree.h"
+#include "NFmiPathElement.h"
 #include <list>
 #include <stdexcept>
+#include <utility>
 
 using namespace std;
 

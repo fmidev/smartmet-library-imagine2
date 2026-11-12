@@ -8,9 +8,12 @@
 #include "NFmiBezierTools.h"
 #include "NFmiCounter.h"
 #include "NFmiPath.h"
-#include "NFmiStringTools.h"
-#include "tframe.h"
+#include <newbase/NFmiStringTools.h>
+#include <regression/tframe.h>
 #include <cmath>
+#include <cstdlib>
+#include <iostream>
+#include <string>
 
 using namespace std;
 

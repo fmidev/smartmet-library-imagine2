@@ -6,18 +6,25 @@
 #include "NFmiPath.h"
 #include "NFmiContourTree.h"
 #include "NFmiCounter.h"
+#include "NFmiEdge.h"
 #include "NFmiEsriBox.h"
-
-#include <NFmiGrid.h>
-#include <NFmiValueString.h>
+#include <newbase/NFmiArea.h>
+#include <newbase/NFmiGlobals.h>
+#include <newbase/NFmiGrid.h>
+#include <newbase/NFmiPoint.h>
+#include <newbase/NFmiString.h>
+#include <newbase/NFmiValueString.h>
+#include <cctype>
 #include <cmath>
+#include <cstdlib>
+#include <iterator>
 
 #ifdef IMAGINE_WITH_CAIRO
 #include "ImagineXr.h"
+
 #define CAIRO_LINE_WIDTH (1.0)
 #endif
 
-#include <algorithm>
 #include <iostream>
 #include <set>
 #include <sstream>

@@ -21,19 +21,18 @@
 #include "NFmiColorReduce.h"
 #include "NFmiColorTools.h"
 #include "NFmiImage.h"
-#include "NFmiNearTree.h"
-
-#include <memory>
-
-#include <iomanip>
-#include <iostream>
-#include <list>
+#include <algorithm>
+#include <cmath>
 #include <map>
+#include <memory>
+#include <stdexcept>
+#include <utility>
 #include <vector>
 
 // std version not available in RHEL5, must use boost instead
 
 #include <boost/unordered_map.hpp>
+
 using namespace std;
 
 // The actual public interfaces

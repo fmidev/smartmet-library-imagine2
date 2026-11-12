@@ -6,10 +6,11 @@
 // ======================================================================
 
 #include "NFmiDataHints.h"
-#include "NFmiGlobals.h"
-#include "tframe.h"
-#include <cmath>
+#include <newbase/NFmiDataMatrix.h>
+#include <newbase/NFmiGlobals.h>
+#include <regression/tframe.h>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 

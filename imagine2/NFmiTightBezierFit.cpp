@@ -21,13 +21,13 @@
 #include "NFmiBezierTools.h"
 #include "NFmiCounter.h"
 #include "NFmiPath.h"
-
-#include <NFmiGeoTools.h>
-
-#include <iomanip>
+#include "NFmiPathElement.h"
+#include <newbase/NFmiGeoTools.h>
+#include <deque>
 #include <list>
-#include <utility>
 #include <vector>
+
+class NFmiPoint;
 
 using namespace std;
 

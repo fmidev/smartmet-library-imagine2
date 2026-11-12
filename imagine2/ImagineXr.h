@@ -14,12 +14,16 @@
 
 #include "NFmiAlignment.h"
 #include "NFmiColorTools.h"
-#include "NFmiPathElement.h"
-
 #include <cairomm/cairomm.h>
-
+#include <cstdint>
 #include <deque>
+#include <stdexcept>
 #include <string>
+
+namespace Imagine
+{
+struct NFmiPathElement;
+}  // namespace Imagine
 
 using namespace std;
 using namespace Cairo;

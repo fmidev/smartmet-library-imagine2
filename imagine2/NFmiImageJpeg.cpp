@@ -10,10 +10,11 @@
 //
 // ======================================================================
 
+#include "NFmiColorTools.h"
 #include "NFmiImage.h"
-#include <cstdlib>
+#include <cstdio>
 #include <cstring>
-#include <iostream>
+#include <stdexcept>
 
 #ifdef IMAGINE_FORMAT_JPEG
 

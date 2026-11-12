@@ -34,14 +34,15 @@
 
 // Essential includes
 
-#include "NFmiPathElement.h"
-
 #include "NFmiAlignment.h"
 #include "NFmiColorTools.h"
-#include "NFmiImage.h"
+#include "NFmiPathElement.h"
+
+class NFmiArea;
 
 #ifdef IMAGINE_WITH_CAIRO
 #include "ImagineXr.h"
+
 #define CAIRO_NORMAL_LINE_WIDTH (0.4)  // 2.0 is normal Cairo default
 #else
 #include "NFmiAffine.h"
@@ -49,16 +50,9 @@
 #include "NFmiFillMap.h"
 #endif
 
-#include <gis/SpatialReference.h>
-#include <NFmiArea.h>
-
-#include <algorithm>
-#include <cmath>   // for sqrt
-#include <cstdio>  // for sprintf in ftoa
 #include <deque>
-#include <string>
-
 #include <iostream>  // << is overloaded
+#include <string>
 #include <utility>
 
 class NFmiGrid;

@@ -11,9 +11,10 @@
 //
 // ======================================================================
 
+#include "NFmiColorTools.h"
 #include "NFmiImage.h"
-
-#include <iostream>
+#include <cstdio>
+#include <version>
 
 using namespace std;
 

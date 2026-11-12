@@ -15,8 +15,6 @@
 
 #pragma once
 
-#include <NFmiDef.h>
-
 namespace Imagine
 {
 // ----------------------------------------------------------------------

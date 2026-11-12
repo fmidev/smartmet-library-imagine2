@@ -13,13 +13,16 @@
 // ======================================================================
 
 #include "NFmiCardinalBezierFit.h"
-
 #include "NFmiBezierTools.h"
 #include "NFmiCounter.h"
 #include "NFmiPath.h"
+#include "NFmiPathElement.h"
 #include <cmath>
-
 #include <list>
+#include <utility>
+#include <vector>
+
+class NFmiPoint;
 
 using namespace std;
 

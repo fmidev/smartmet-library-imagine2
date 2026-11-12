@@ -3,14 +3,14 @@
 // NFmiImage addendum - PNM reading and writing
 // ======================================================================
 
+#include "NFmiColorTools.h"
 #include "NFmiImage.h"
-#include <NFmiStringTools.h>
-
-#include <algorithm>
-#include <iostream>
-#include <map>
-#include <set>
+#include <newbase/NFmiStringTools.h>
+#include <cstdio>
+#include <cstring>
 #include <sstream>
+#include <stdexcept>
+#include <string>
 
 using namespace std;
 

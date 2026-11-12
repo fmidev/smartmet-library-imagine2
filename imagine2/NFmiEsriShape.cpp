@@ -137,21 +137,37 @@
 #endif
 
 #include "NFmiEsriShape.h"
-#include "NFmiEsriMultiPatch.h"
+#include "NFmiEsriAttribute.h"
+#include "NFmiEsriBuffer.h"
+#include "NFmiEsriMultiPoint.h"
+#include "NFmiEsriMultiPointM.h"
 #include "NFmiEsriMultiPointZ.h"
 #include "NFmiEsriNull.h"
+#include "NFmiEsriPoint.h"
+#include "NFmiEsriPointM.h"
 #include "NFmiEsriPointZ.h"
+#include "NFmiEsriPolyLine.h"
+#include "NFmiEsriPolyLineM.h"
 #include "NFmiEsriPolyLineZ.h"
+#include "NFmiEsriPolygon.h"
+#include "NFmiEsriPolygonM.h"
 #include "NFmiEsriPolygonZ.h"
-
-#include <NFmiFileSystem.h>
-#include <NFmiSettings.h>
-#include <NFmiTime.h>
-
 #include <fmt/format.h>
+#include <newbase/NFmiFileSystem.h>
+#include <newbase/NFmiGlobals.h>
+#include <newbase/NFmiSettings.h>
+#include <newbase/NFmiStringTools.h>
+#include <newbase/NFmiTime.h>
 #include <cstdlib>
 #include <fstream>
 #include <iomanip>
+#include <iostream>
+#include <stdexcept>
+
+namespace Imagine
+{
+class NFmiEsriProjector;
+}  // namespace Imagine
 
 using namespace Imagine::NFmiEsriBuffer;  // Conversion tools
 using namespace std;

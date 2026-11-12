@@ -143,7 +143,6 @@ class NFmiDataMatrix;
 #endif
 
 #include <newbase/NFmiGlobals.h>
-#include <newbase/NFmiGlobals.h>  // for kFloatMissing
 #include <string>
 #include <vector>  // vectors
 

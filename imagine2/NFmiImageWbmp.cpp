@@ -14,7 +14,6 @@
 #include "NFmiColorTools.h"
 #include "NFmiImage.h"
 #include <cstdio>
-#include <version>
 
 using namespace std;
 
